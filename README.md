@@ -15,7 +15,8 @@ Artwork for the email blast template in
 
 | file | display size | used for |
 | --- | --- | --- |
-| `hero-banner.jpg` | 600×300 | hero banner (1200×600 source, retina) |
+| `hero-banner.jpg` | 640×213 | hero banner (1200×400 source, retina) |
+| `hero-banner-short.png` | — | the 1200×400 crop, lossless |
 | `hero-banner.png` | — | uncompressed master for the hero |
 | `logo-white.png` | 120 wide | full lockup on dark backgrounds |
 | `logo-dark.png` | 120 wide | full lockup on light backgrounds |
