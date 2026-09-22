@@ -23,6 +23,7 @@ Artwork for the email blast template in
 | `icon-colored-512.png` | — | spare colored mark |
 | `icon-white-512.png` | — | spare white mark |
 | `icon-colored.svg` | — | vector mark, for web not email |
+| `poster-demo.jpg` | 544×306 | video poster with play button, links to YouTube |
 | `social-linkedin.png` | 24×24 | footer social icon |
 | `social-mail.png` | 24×20 | footer social icon |
 
