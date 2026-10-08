@@ -749,6 +749,218 @@ footer.end-note svg { width: 18px; height: 18px; }
   .funnel > div { grid-template-columns: 84px minmax(0, 1fr) 70px; }
   .msg { max-width: 92%; }
 }
+
+/* ================= v0.2 direction: neutral, hairline, soft (after easyui + beautifului) ================= */
+:root {
+  --bg: #FAFAFA; --surface: #FFFFFF; --surface-2: #F7F7F8; --surface-3: #F1F1F2; --sunken: #EDEDEF;
+  --line: #EAEAEC; --line-strong: #DCDCE0;
+  --ink: #0A0A0B; --ink-2: #52525B; --ink-3: #71717A; --ink-4: #A1A1AA;
+  --accent-soft: #EEF3FF; --accent-soft-ink: #0538CB;
+  --primary: #0A0A0B; --primary-ink: #FFFFFF; --primary-hover: #27272A;
+  --field: #FFFFFF;
+  --success: #15803D; --success-soft: #ECF8F0; --success-ink: #166534;
+  --warning: #C2610C; --warning-soft: #FFF4E8; --warning-ink: #9A4A08;
+  --danger: #DC2626; --danger-soft: #FDEEEE; --danger-ink: #B42323;
+  --ai-soft: #F1F5FF; --ai-line: #DCE5FD;
+  --note: #8A6400; --note-soft: #FFFAEB; --note-line: #F3E6B5;
+  --r-sm: 6px; --r-md: 10px; --r-lg: 14px; --r-xl: 20px;
+  --e1: 0 0 0 1px var(--line), 0 1px 2px rgba(15,15,20,.04);
+  --e2: 0 0 0 1px var(--line), 0 10px 25px -8px rgba(15,15,20,.14);
+  --e3: 0 0 0 1px var(--line), 0 28px 60px -16px rgba(15,15,20,.26);
+  --focus: 0 0 0 3px rgba(0,87,255,.22);
+  --track-body: -0.011em; --track-head: -0.035em;
+}
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) {
+  --bg: #111113; --surface: #1C1C1F; --surface-2: #18181A; --surface-3: #232326; --sunken: #26262A;
+  --line: #29292D; --line-strong: #36363B;
+  --ink: #F2F2F3; --ink-2: #A1A1A6; --ink-3: #75757B; --ink-4: #4D4D52;
+  --accent: #3D7FFF; --accent-hover: #5590FF; --accent-soft: #18233A; --accent-soft-ink: #A9C4FF;
+  --primary: #F2F2F3; --primary-ink: #111113; --primary-hover: #FFFFFF;
+  --field: #18181A;
+  --success: #4ADE80; --success-soft: #15261C; --success-ink: #86EFAC;
+  --warning: #F59E0B; --warning-soft: #2B2112; --warning-ink: #FCD38A;
+  --danger: #F87171; --danger-soft: #2E1717; --danger-ink: #FCA5A5;
+  --ai: #9DB8FF; --ai-soft: #171E2E; --ai-line: #25314F;
+  --note: #F2CC66; --note-soft: #26210F; --note-line: #3D3415;
+  --e1: 0 0 0 1px var(--line); --e2: 0 0 0 1px var(--line-strong), 0 12px 30px -8px rgba(0,0,0,.55); --e3: 0 0 0 1px var(--line-strong), 0 30px 70px -16px rgba(0,0,0,.7);
+  --focus: 0 0 0 3px rgba(61,127,255,.35);
+  color-scheme: dark;
+} }
+:root[data-theme="dark"] {
+  --bg: #111113; --surface: #1C1C1F; --surface-2: #18181A; --surface-3: #232326; --sunken: #26262A;
+  --line: #29292D; --line-strong: #36363B;
+  --ink: #F2F2F3; --ink-2: #A1A1A6; --ink-3: #75757B; --ink-4: #4D4D52;
+  --accent: #3D7FFF; --accent-hover: #5590FF; --accent-soft: #18233A; --accent-soft-ink: #A9C4FF;
+  --primary: #F2F2F3; --primary-ink: #111113; --primary-hover: #FFFFFF;
+  --field: #18181A;
+  --success: #4ADE80; --success-soft: #15261C; --success-ink: #86EFAC;
+  --warning: #F59E0B; --warning-soft: #2B2112; --warning-ink: #FCD38A;
+  --danger: #F87171; --danger-soft: #2E1717; --danger-ink: #FCA5A5;
+  --ai: #9DB8FF; --ai-soft: #171E2E; --ai-line: #25314F;
+  --note: #F2CC66; --note-soft: #26210F; --note-line: #3D3415;
+  --e1: 0 0 0 1px var(--line); --e2: 0 0 0 1px var(--line-strong), 0 12px 30px -8px rgba(0,0,0,.55); --e3: 0 0 0 1px var(--line-strong), 0 30px 70px -16px rgba(0,0,0,.7);
+  --focus: 0 0 0 3px rgba(61,127,255,.35);
+  color-scheme: dark;
+}
+
+body { font-size: 13.5px; letter-spacing: var(--track-body); }
+.intro h1, .group-head h2 { letter-spacing: var(--track-head); }
+.intro h1 { font-weight: 500; }
+.index { background: var(--bg); }
+.index a { border-radius: 7px; font-size: 12.5px; }
+.index a.on { background: var(--surface-3); color: var(--ink); }
+.plate { border-radius: var(--r-xl); box-shadow: var(--e1); }
+.plate > header h3 { font-size: 14px; letter-spacing: -.015em; }
+.plate > header h3 .dom { background: var(--surface-3); color: var(--ink-2); font-size: 10px; }
+.spec.well { border: 0; background: var(--surface-2); box-shadow: inset 0 0 0 1px var(--line); border-radius: var(--r-lg); }
+.stats span { border: 0; box-shadow: 0 0 0 1px var(--line); }
+
+/* buttons: quieter, rings instead of borders */
+.btn { --h: 32px; border-radius: var(--r-md); font-size: 13px; padding: 0 12px; border: 0; }
+.btn.sm { --h: 28px; border-radius: 8px; font-size: 12.5px; }
+.btn.lg { --h: 40px; border-radius: 12px; font-size: 14px; }
+.btn.secondary { box-shadow: 0 0 0 1px var(--line-strong), 0 1px 2px rgba(15,15,20,.05); }
+.btn.secondary:hover { box-shadow: 0 0 0 1px var(--ink-4); }
+.btn.danger-ghost { box-shadow: 0 0 0 1px color-mix(in srgb, var(--danger) 35%, transparent); }
+.btn.focus { box-shadow: var(--focus); }
+.btn.secondary.focus { box-shadow: 0 0 0 1px var(--accent), var(--focus); }
+.split .btn:last-child { border-left: 0; box-shadow: inset 1px 0 0 rgba(255,255,255,.16); }
+.split .btn.secondary:last-child { box-shadow: 0 0 0 1px var(--line-strong); margin-left: 1px; }
+
+/* fields */
+.input { height: 34px; border: 0; background: var(--field); box-shadow: 0 0 0 1px var(--line-strong); border-radius: var(--r-md); }
+.input:hover { box-shadow: 0 0 0 1px var(--ink-4); }
+.input.focus, .input:focus-within { box-shadow: 0 0 0 1px var(--accent), var(--focus); }
+.input.error { box-shadow: 0 0 0 1px var(--danger), 0 0 0 3px color-mix(in srgb, var(--danger) 16%, transparent); }
+.input.disabled, .input.readonly { background: var(--surface-2); box-shadow: 0 0 0 1px var(--line); border-style: solid; }
+.input.textarea { height: auto; }
+.tags { border: 0; box-shadow: 0 0 0 1px var(--line-strong); background: var(--field); }
+.var { border-radius: 6px; font-size: 11.5px; }
+.menu { border-radius: var(--r-lg); padding: 5px; }
+.menu .mi { border-radius: 8px; font-size: 13px; padding: 6px 9px; }
+.box { border-radius: 5px; border-width: 1px; }
+.rcard { border: 0; box-shadow: 0 0 0 1px var(--line-strong); border-radius: var(--r-lg); }
+.rcard.on { box-shadow: 0 0 0 1.5px var(--accent); background: var(--surface); }
+
+/* pills everywhere for selection controls */
+.seg { border-radius: var(--r-pill); padding: 3px; background: var(--surface-3); }
+.seg button { border-radius: var(--r-pill); font-size: 12.5px; padding: 4px 12px; }
+.seg button.on { box-shadow: 0 0 0 1px var(--line), 0 1px 2px rgba(15,15,20,.08); }
+.tabs { border-bottom: 0; gap: 2px; }
+.tabs button { padding: 5px 12px; margin: 0; border: 0; border-radius: var(--r-pill); font-size: 13px; }
+.tabs button:hover { background: var(--surface-2); }
+.tabs button.on { background: var(--surface-3); border: 0; }
+.tabs button.on .count { background: var(--surface); color: var(--ink); box-shadow: 0 0 0 1px var(--line); }
+.chip { border: 0; box-shadow: 0 0 0 1px var(--line-strong); height: 28px; font-size: 12.5px; }
+.chip.on { box-shadow: none; }
+.chip.sm { height: 22px; font-size: 11.5px; }
+
+/* status: small rounded-rect tints, dot first */
+.pill { height: 20px; border-radius: 6px; padding: 0 7px; font-size: 11.5px; }
+.pill.lg { height: 24px; border-radius: 7px; font-size: 12px; }
+.pill.outline { box-shadow: inset 0 0 0 1px var(--line-strong); }
+.count { border-radius: 6px; height: 18px; font-size: 10.5px; }
+.dept.boxed { border-radius: 6px; height: 22px; font-size: 12px; background: var(--surface-3); }
+
+/* sidebar: same-tone, quiet (was a navy rail) */
+.sidebar { background: var(--surface-2); color: var(--ink-2); box-shadow: inset 0 0 0 1px var(--line); border-radius: var(--r-xl); }
+.sidebar .sb-brand { color: var(--ink); }
+.sidebar .sb-brand .fold { color: var(--ink-3); }
+.sidebar .sec { color: var(--ink-4); }
+.sidebar a { color: var(--ink-2); font-size: 13px; padding: 6px 9px; border-radius: 8px; }
+.sidebar a:hover { background: var(--surface-3); color: var(--ink); }
+.sidebar a.on { background: var(--surface); color: var(--ink); box-shadow: 0 0 0 1px var(--line), 0 1px 2px rgba(15,15,20,.06); font-weight: 500; }
+.sidebar a.on svg.i { color: var(--accent); }
+.sidebar a .count { background: var(--surface-3); color: var(--ink-2); }
+.sidebar a .count.accent { background: var(--accent); color: #fff; }
+.sidebar .me { border-top-color: var(--line); }
+.sidebar .me b { color: var(--ink); } .sidebar .me span { color: var(--ink-3); }
+.pat .rail-m { background: var(--surface-2); box-shadow: inset -1px 0 0 var(--line); }
+.pat .rail-m i { background: var(--surface-3); } .pat .rail-m i.on { background: var(--accent-soft); box-shadow: inset 0 0 0 1px var(--accent); }
+.topbar { border-radius: var(--r-lg); }
+
+/* data */
+.card { border-radius: var(--r-lg); }
+.card.flat { border: 0; box-shadow: 0 0 0 1px var(--line); }
+.kpi .v { font-size: 26px; letter-spacing: var(--track-head); }
+.kpi-strip { border-radius: var(--r-lg); }
+.tbl-wrap { border-radius: var(--r-lg); }
+table.t { font-size: 12.5px; }
+table.t th { background: var(--surface); font-size: 11.5px; color: var(--ink-3); font-weight: 500; padding: 8px 14px; }
+table.t td { padding: 10px 14px; }
+table.t tbody tr.sel { background: var(--accent-soft); }
+.bulkbar { border-radius: var(--r-pill); padding: 5px 6px 5px 14px; }
+.acc { border: 0; box-shadow: 0 0 0 1px var(--line); border-radius: var(--r-lg); }
+.week { border: 0; box-shadow: 0 0 0 1px var(--line); border-radius: var(--r-lg); }
+.week .ev { box-shadow: inset 2px 0 0 var(--c); background: color-mix(in srgb, var(--c) 9%, var(--surface)); }
+.vehicle { border: 0; box-shadow: 0 0 0 1px var(--line); border-radius: var(--r-lg); }
+.player { border: 0; box-shadow: 0 0 0 1px var(--line); border-radius: var(--r-lg); }
+.player .play { width: 34px; height: 34px; }
+.empty .ic { border-radius: 12px; background: var(--surface-2); box-shadow: inset 0 0 0 1px var(--line); }
+
+/* conversation: Cleo tinted, staff neutral, customer white */
+.thread { border-radius: var(--r-lg); background: var(--surface-2); }
+.msg .bub { border-radius: 14px; font-size: 13px; }
+.msg.staff .bub { background: var(--surface-3); color: var(--ink); box-shadow: inset 0 0 0 1px var(--line); }
+.msg.ai .bub { background: var(--ai-soft); box-shadow: inset 0 0 0 1px var(--ai-line); }
+.event { border-radius: var(--r-lg); }
+.composer { border-radius: var(--r-lg); box-shadow: 0 0 0 1px var(--line-strong); }
+.convo, .notif { border-radius: var(--r-lg); }
+.th-head { border-radius: var(--r-lg); }
+.livebar { border-radius: var(--r-pill); }
+.livebar.warn { background: var(--warning-soft); color: var(--warning-ink); box-shadow: 0 0 0 1px color-mix(in srgb, var(--warning) 30%, transparent); }
+.livebar.warn .pulse { background: var(--warning); box-shadow: none; }
+
+/* overlays */
+.dialog { border-radius: var(--r-xl); }
+.sheet { border-radius: var(--r-xl) 0 0 var(--r-xl); }
+.pop, .cmdk { border-radius: var(--r-xl); }
+.toast { border-radius: var(--r-lg); }
+.callout { border-radius: var(--r-lg); }
+.scrim { background: color-mix(in srgb, var(--ink-c) 30%, transparent); border-radius: var(--r-lg); }
+
+/* ---------- new in v0.2: Cleo agent pieces ---------- */
+.actions-log { width: 100%; max-width: 460px; display: flex; flex-direction: column; gap: 6px; font-size: 12.5px; }
+.actions-log .hd { display: flex; align-items: center; gap: 6px; color: var(--ink-3); cursor: pointer; }
+.actions-log .row-a { display: grid; grid-template-columns: 16px auto minmax(0,1fr); gap: 8px; align-items: center; }
+.actions-log .row-a svg.i { width: 14px; height: 14px; color: var(--ink-3); }
+.actions-log .row-a b { font-weight: 500; white-space: nowrap; }
+.actions-log .arg { font: 11.5px var(--mono); color: var(--ink-3); background: var(--surface-2); box-shadow: inset 0 0 0 1px var(--line); border-radius: 6px; padding: 3px 8px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.capsules { display: flex; flex-direction: column; gap: 6px; width: 100%; max-width: 460px; }
+.capsule { display: flex; align-items: center; gap: 10px; padding: 6px 8px 6px 6px; border-radius: var(--r-pill); background: var(--surface); box-shadow: 0 0 0 1px var(--line), 0 1px 2px rgba(15,15,20,.04); font-size: 13px; }
+.capsule .st { width: 22px; height: 22px; border-radius: 50%; display: grid; place-items: center; flex: none; font-size: 11px; font-weight: 600; }
+.capsule .st.ok { background: var(--success); color: #fff; } .capsule .st.ok svg { width: 12px; height: 12px; stroke: currentColor; stroke-width: 3; fill: none; }
+.capsule .st.run { box-shadow: inset 0 0 0 1.5px var(--line-strong); color: var(--ink-2); position: relative; }
+.capsule .st.run::after { content: ""; position: absolute; inset: -1px; border-radius: 50%; border: 1.5px solid transparent; border-top-color: var(--accent); animation: spin 1s linear infinite; }
+.capsule .st.fail { background: var(--danger-soft); color: var(--danger); }
+.capsule b { font-weight: 500; flex: 1; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.capsule .m { color: var(--ink-3); font-size: 12px; white-space: nowrap; }
+.ask { width: 100%; max-width: 360px; background: var(--surface); border-radius: var(--r-lg); box-shadow: var(--e2); padding: 12px; display: flex; flex-direction: column; gap: 8px; font-size: 13px; }
+.ask .q { display: flex; justify-content: space-between; gap: 8px; font-weight: 500; }
+.ask .who { display: flex; align-items: center; gap: 6px; font-size: 11.5px; color: var(--ink-3); }
+.ask .opt { display: flex; align-items: center; gap: 8px; padding: 4px 2px; color: var(--ink-2); cursor: pointer; }
+.ask .opt.on { color: var(--ink); }
+.ask .other { color: var(--ink-4); padding: 4px 2px; }
+.ask .af { display: flex; justify-content: space-between; align-items: center; padding-top: 4px; }
+.ask .af span { color: var(--ink-3); font-size: 12px; }
+.ask .btn { border-radius: var(--r-pill); }
+.rec { width: 100%; max-width: 380px; background: var(--surface); border-radius: var(--r-lg); box-shadow: var(--e2); padding: 12px; display: flex; flex-direction: column; gap: 10px; font-size: 13px; }
+.rec b.t { font-weight: 500; font-size: 13.5px; }
+.rec p { margin: 0; color: var(--ink-2); line-height: 1.6; }
+.rec .ent { display: inline-flex; align-items: center; gap: 4px; padding: 0 7px 0 4px; height: 20px; border-radius: var(--r-pill); background: var(--surface-3); color: var(--ink); font-size: 12px; vertical-align: 1px; }
+.rec .ent .av { --sz: 14px; font-size: 7px; }
+.rec .rf { display: flex; justify-content: space-between; align-items: center; gap: 8px; }
+.conf { display: inline-flex; align-items: center; gap: 6px; font-size: 12px; color: var(--ink-2); }
+.conf i { display: inline-flex; gap: 2px; align-items: flex-end; }
+.conf i b { width: 3px; border-radius: 1px; background: var(--success); }
+.conf i b.off { background: var(--line-strong); }
+.rec .btn { border-radius: var(--r-pill); }
+.think { display: flex; flex-direction: column; gap: 8px; font-size: 13px; width: 100%; max-width: 460px; }
+.think .th { display: inline-flex; align-items: center; gap: 8px; color: var(--ink-2); cursor: pointer; }
+.think .th svg.mark { width: 14px; height: 14px; }
+.think ul { list-style: none; margin: 0; padding: 0 0 0 7px; border-left: 1px solid var(--line-strong); display: flex; flex-direction: column; gap: 6px; }
+.think li { padding-left: 14px; color: var(--ink-3); font-size: 12.5px; }
+.think li b { color: var(--ink-2); font-weight: 500; }
 </style>
 <svg width="0" height="0" style="position:absolute" aria-hidden="true">
 <symbol id="i-search" viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></symbol>
@@ -836,9 +1048,9 @@ footer.end-note svg { width: 18px; height: 18px; }
 
 <main>
 <section class="intro">
-  <span class="eyebrow"><svg width="16" height="16" aria-hidden="true" style="flex:none"><use href="#cleo-mark"/></svg> Cleo dashboard · Design system v0.1</span>
+  <span class="eyebrow"><svg width="16" height="16" aria-hidden="true" style="flex:none"><use href="#cleo-mark"/></svg> Cleo dashboard · Design system v0.2</span>
   <h1>The Cleo component palette</h1>
-  <p>Every building block the Cleo dashboard needs, from tokens to full screens, drawn in the Cleo brand. Service advisors live in this product all day, so the system favours calm surfaces, dense but readable data, and clear signals for anything that needs a human.</p>
+  <p>Every building block the Cleo dashboard needs, from tokens to full screens, drawn in the Cleo brand. Service advisors live in this product all day, so the system favours calm surfaces, dense but readable data, and clear signals for anything that needs a human.</p><p style="font-size:14px;color:var(--ink-3)">v0.2 direction: neutral greys with Cleo Blue used sparingly, hairline rings instead of borders, softer radii, pill-shaped selection controls, tighter type, and new pieces for Cleo's agent work.</p>
   <div class="stats"><span><b>6</b> foundations</span><span><b id="count-c">0</b> components</span><span><b>7</b> page patterns</span><span>Light and dark</span><span class="ex-note"><svg class="i sm" aria-hidden="true"><use href="#i-info"/></svg> All names and figures are example data</span></div>
 </section>
 
@@ -1097,11 +1309,11 @@ footer.end-note svg { width: 18px; height: 18px; }
 
 <!-- ============================ 02 NAVIGATION ============================ -->
 <section class="group" id="navigation" data-group="Navigation">
-  <div class="group-head"><span class="gn">02</span><h2>Navigation &amp; layout</h2><p>How people move around: a dark rail that stays put, a top bar for scope (rooftop and dates), and tabs inside pages.</p></div>
+  <div class="group-head"><span class="gn">02</span><h2>Navigation &amp; layout</h2><p>How people move around: a quiet sidebar that stays put, a top bar for scope (rooftop and dates), and pill tabs inside pages.</p></div>
   <div class="plates">
 
     <article class="plate wide" id="c-sidebar" data-c>
-      <header><h3>App sidebar</h3><p>Dark in both themes. Counts show work waiting; the accent marks where you are. Collapses to an icon rail with tooltips.</p></header>
+      <header><h3>App sidebar</h3><p>Same tone as the page, so content stays the focus. Counts show work waiting; the active item is a raised white pill. Collapses to an icon rail with tooltips.</p></header>
       <div class="spec">
         <nav class="sidebar" aria-label="Example app navigation">
           <div class="sb-brand"><svg width="26" height="26" aria-hidden="true"><use href="#cleo-mark"/></svg>Cleo<span class="fold"><svg class="i" aria-hidden="true"><use href="#i-panel"/></svg></span></div>
@@ -1148,7 +1360,7 @@ footer.end-note svg { width: 18px; height: 18px; }
     </article>
 
     <article class="plate" id="c-tabs" data-c>
-      <header><h3>Tabs</h3><p>Underline tabs switch sections of a page and can carry counts. Inside a sheet, use the segmented style instead.</p></header>
+      <header><h3>Tabs</h3><p>Pill tabs switch sections of a page and can carry counts. Inside a sheet or card, use the segmented control instead.</p></header>
       <div class="spec col">
         <div class="tabs" data-tabs><button class="on">All calls<span class="count">412</span></button><button>Needs follow-up<span class="count">9</span></button><button>Booked</button><button>Transferred</button></div>
         <div class="tabs" data-tabs><button class="on">Inbound</button><button>Outbound</button><button>Appointments</button><button>Team</button></div>
@@ -1384,7 +1596,60 @@ footer.end-note svg { width: 18px; height: 18px; }
       </div></div>
     </article>
 
-    <article class="plate wide" id="c-thread" data-c>
+        <article class="plate" id="c-actions" data-c>
+      <header><h3>Cleo actions log <span class="dom">Cleo</span></h3><p>What Cleo actually did on a call or thread, as compact rows with the record each action touched. Collapsed to one line by default.</p></header>
+      <div class="spec"><div class="actions-log">
+        <div class="hd"><svg class="i sm" aria-hidden="true"><use href="#i-chev-d"/></svg>4 actions, 1 text sent</div>
+        <div class="row-a"><svg class="i" aria-hidden="true"><use href="#i-search"/></svg><b>Looked up customer</b><span class="arg">(555) 014-2290 → Maria Gonzales</span></div>
+        <div class="row-a"><svg class="i" aria-hidden="true"><use href="#i-cal"/></svg><b>Checked availability</b><span class="arg">Dan Whitaker · Thu Oct 10</span></div>
+        <div class="row-a"><svg class="i" aria-hidden="true"><use href="#i-check"/></svg><b>Booked appointment</b><span class="arg">RO-48213 · 8:00 AM</span></div>
+        <div class="row-a"><svg class="i" aria-hidden="true"><use href="#i-msg"/></svg><b>Sent confirmation</b><span class="arg">SMS · delivered</span></div>
+      </div></div>
+    </article>
+
+    <article class="plate" id="c-capsules" data-c>
+      <header><h3>Work capsules <span class="dom">Cleo</span></h3><p>Live progress for multi-step work Cleo runs in the background: a callback list, a recall campaign, a morning follow-up sweep.</p></header>
+      <div class="spec"><div class="capsules">
+        <div class="capsule"><span class="st ok"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg></span><b>Called back overnight voicemails</b><span class="m">9 customers</span><span class="pill success">Done</span></div>
+        <div class="capsule"><span class="st run">2</span><b>Texting recall 24TA07 owners</b><span class="m">38 of 112</span><svg class="i sm" aria-hidden="true"><use href="#i-chev-d"/></svg></div>
+        <div class="capsule"><span class="st fail"><svg class="i sm" aria-hidden="true"><use href="#i-x"/></svg></span><b>Sync appointments to scheduler</b><span class="m">Retrying</span><span class="pill danger">Failed</span></div>
+      </div></div>
+    </article>
+
+    <article class="plate" id="c-ask" data-c>
+      <header><h3>Approval request <span class="dom">Cleo</span></h3><p>When Cleo needs a person's decision before acting, it asks in a small card with the options it can take, plus "something else".</p></header>
+      <div class="spec well" style="justify-content:center"><div class="ask">
+        <div class="who"><svg width="12" height="12" aria-hidden="true" style="flex:none"><use href="#cleo-mark"/></svg>Cleo · on a call with Robert Chen</div>
+        <div class="q"><span>Customer is upset about a repeat brake noise. Offer a goodwill discount?</span><button class="btn ghost icon sm" aria-label="Dismiss"><svg class="i sm" aria-hidden="true"><use href="#i-x"/></svg></button></div>
+        <label class="opt on check radio" data-radio="ask"><span class="box"></span>Waive the diagnostic fee ($149)</label>
+        <label class="opt check radio" data-radio="ask"><span class="box"></span>10% off the repair</label>
+        <label class="opt check radio" data-radio="ask"><span class="box"></span>No discount, book a re-check</label>
+        <div class="other">Something else…</div>
+        <div class="af"><span>Caller on hold · 0:24</span><div class="row tight"><button class="btn secondary sm">Take the call</button><button class="btn accent sm">Approve</button></div></div>
+      </div></div>
+    </article>
+
+    <article class="plate" id="c-rec" data-c>
+      <header><h3>Recommendation card <span class="dom">Cleo</span></h3><p>Cleo proposes work it could do, with the people and numbers involved inline and how sure it is.</p></header>
+      <div class="spec well" style="justify-content:center"><div class="rec">
+        <b class="t">Want me to reach out about winter tires?</b>
+        <p>18 customers with all-season tires and over 30k miles visited last winter. I can text them and book with <span class="ent"><span class="av c3">PS</span>Priya</span> on <span class="pill">Saturdays</span>.</p>
+        <div class="rf"><span class="conf"><i><b style="height:6px"></b><b style="height:9px"></b><b style="height:12px"></b></i>High confidence</span><div class="row tight"><button class="btn secondary sm">Edit list</button><button class="btn accent sm">Start outreach</button></div></div>
+      </div></div>
+    </article>
+
+    <article class="plate" id="c-think" data-c>
+      <header><h3>Reasoning trace <span class="dom">Cleo</span></h3><p>Why Cleo did something, folded behind one line. Opens to the steps and the knowledge it used.</p></header>
+      <div class="spec col"><div class="think">
+        <span class="th"><svg class="mark" aria-hidden="true"><use href="#cleo-mark"/></svg>Transferred to Parts after checking 3 things <svg class="i sm" aria-hidden="true"><use href="#i-chev-d"/></svg></span>
+        <ul>
+          <li><b>Intent:</b> recall part availability (2021 Highlander)</li>
+          <li><b>Knowledge:</b> "Recall parts questions go to the Parts desk"</li>
+          <li><b>Hours:</b> Parts is open until 6 PM, 2 people on shift</li>
+        </ul>
+      </div></div>
+    </article>
+<article class="plate wide" id="c-thread" data-c>
       <header><h3>Message thread <span class="dom">Cleo</span></h3><p>Customer on the left in white; Cleo on the right in a tinted bubble labelled with the mark; staff on the right in solid blue; internal notes centred and yellow, never sent. Calls and appointments appear as event cards in the flow.</p></header>
       <div class="spec"><div class="thread">
         <div class="divider">Tuesday, Oct 8</div>
@@ -1455,7 +1720,7 @@ footer.end-note svg { width: 18px; height: 18px; }
       <header><h3>Live call bar <span class="dom">Cleo</span></h3><p>Floats at the bottom while a call is in progress, so staff can listen in or take over from any page.</p></header>
       <div class="spec col">
         <div class="livebar"><span class="pulse"></span><span><b>Cleo is on a call</b> <span class="muted">· Robert Chen · 1:12</span></span><span class="eq"><i></i><i></i><i></i><i></i></span><button class="btn ghost sm"><svg class="i sm" aria-hidden="true"><use href="#i-headset"/></svg>Listen</button><button class="btn secondary sm">Take over</button><button class="btn ghost icon sm" aria-label="Minimise"><svg class="i sm" aria-hidden="true"><use href="#i-chev-d"/></svg></button></div>
-        <div class="livebar" style="background:var(--warning);color:#1A1200"><span class="pulse" style="background:#1A1200"></span><span><b>Transfer waiting</b> · Parts desk · ringing 0:18</span><button class="btn secondary sm">Pick up</button></div>
+        <div class="livebar warn"><span class="pulse"></span><span><b>Transfer waiting</b> · Parts desk · ringing 0:18</span><button class="btn secondary sm">Pick up</button></div>
       </div>
     </article>
 
@@ -1645,7 +1910,7 @@ footer.end-note svg { width: 18px; height: 18px; }
   </div>
 </section>
 
-<footer class="end-note"><svg width="26" height="26" aria-hidden="true"><use href="#cleo-mark"/></svg>Cleo component palette · v0.1 · built on the Cleo brand kit</footer>
+<footer class="end-note"><svg width="26" height="26" aria-hidden="true"><use href="#cleo-mark"/></svg>Cleo component palette · v0.2 · built on the Cleo brand kit</footer>
 </main>
 </div>
 
