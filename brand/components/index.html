@@ -1195,6 +1195,7 @@ footer.end-note svg { width: 24px; height: 24px; }
 <symbol id="i-cmd" viewBox="0 0 24 24"><path d="M15 6v12a3 3 0 1 0 3-3H6a3 3 0 1 0 3 3V6a3 3 0 1 0-3 3h12a3 3 0 1 0-3-3"/></symbol>
 <symbol id="i-enter" viewBox="0 0 24 24"><path d="M9 10 4 15l5 5"/><path d="M20 4v7a4 4 0 0 1-4 4H4"/></symbol>
 <symbol id="i-shield" viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></symbol>
+<symbol id="i-roller" viewBox="0 0 24 24"><rect x="3" y="3" width="15" height="6" rx="2"/><path d="M18 6h1.5A1.5 1.5 0 0 1 21 7.5v3a1.5 1.5 0 0 1-1.5 1.5H12a1.5 1.5 0 0 0-1.5 1.5V15"/><rect x="8.75" y="15" width="3.5" height="6" rx="1"/></symbol>
 <symbol id="i-cash" viewBox="0 0 24 24"><rect x="2.5" y="6" width="19" height="12" rx="2.5"/><circle cx="12" cy="12" r="2.5"/><path d="M6 12h.01M18 12h.01"/></symbol>
 <symbol id="i-recall" viewBox="0 0 24 24"><path d="M12 2 2 21h20z"/><path d="M12 9v5M12 17.5h.01"/></symbol>
 <symbol id="i-box" viewBox="0 0 24 24"><path d="M21 8 12 3 3 8v8l9 5 9-5z"/><path d="m3 8 9 5 9-5M12 13v8"/></symbol>
@@ -1231,7 +1232,7 @@ footer.end-note svg { width: 24px; height: 24px; }
         <div class="swatches" id="semantic"></div>
         <div class="lbl" style="margin-top:8px">Departments</div>
         <div class="row tight">
-          <span class="dept boxed"><svg class="i sm" aria-hidden="true"><use href="#i-wrench"/></svg>Service</span><span class="dept boxed"><svg class="i sm" aria-hidden="true"><use href="#i-tag"/></svg>Sales</span><span class="dept boxed"><svg class="i sm" aria-hidden="true"><use href="#i-box"/></svg>Parts</span><span class="dept boxed"><svg class="i sm" aria-hidden="true"><use href="#i-cash"/></svg>Finance</span><span class="dept boxed"><svg class="i sm" aria-hidden="true"><use href="#i-car"/></svg>Body shop</span>
+          <span class="dept boxed"><svg class="i sm" aria-hidden="true"><use href="#i-wrench"/></svg>Service</span><span class="dept boxed"><svg class="i sm" aria-hidden="true"><use href="#i-tag"/></svg>Sales</span><span class="dept boxed"><svg class="i sm" aria-hidden="true"><use href="#i-box"/></svg>Parts</span><span class="dept boxed"><svg class="i sm" aria-hidden="true"><use href="#i-cash"/></svg>Finance</span><span class="dept boxed"><svg class="i sm" aria-hidden="true"><use href="#i-roller"/></svg>Body shop</span>
           <span class="cap">Departments carry an icon, not a colour, so they never compete with status or with Cleo's blue. Charts use the chart palette below.</span>
         </div>
       </div>
@@ -1364,7 +1365,7 @@ footer.end-note svg { width: 24px; height: 24px; }
       <header><h3>Select</h3><p>For short, fixed lists. The open list marks the current value and supports type-ahead.</p></header>
       <div class="spec col">
         <div class="field"><label>Department</label><div class="input select-trigger"><span class="v"><span class="dept"><svg class="i sm" aria-hidden="true"><use href="#i-wrench"/></svg>Service</span></span><svg class="i" aria-hidden="true"><use href="#i-chev-d"/></svg></div></div>
-        <div class="menu" style="max-width:320px"><div class="mi sel"><span class="dept"><svg class="i sm" aria-hidden="true"><use href="#i-wrench"/></svg>Service</span><span class="end"><svg class="i" aria-hidden="true"><use href="#i-check"/></svg></span></div><div class="mi hl"><span class="dept"><svg class="i sm" aria-hidden="true"><use href="#i-tag"/></svg>Sales</span></div><div class="mi"><span class="dept"><svg class="i sm" aria-hidden="true"><use href="#i-box"/></svg>Parts</span></div><div class="mi"><span class="dept"><svg class="i sm" aria-hidden="true"><use href="#i-cash"/></svg>Finance</span></div><div class="mi dis"><span class="dept"><svg class="i sm" aria-hidden="true"><use href="#i-car"/></svg>Body shop</span><span class="end">Not set up</span></div></div>
+        <div class="menu" style="max-width:320px"><div class="mi sel"><span class="dept"><svg class="i sm" aria-hidden="true"><use href="#i-wrench"/></svg>Service</span><span class="end"><svg class="i" aria-hidden="true"><use href="#i-check"/></svg></span></div><div class="mi hl"><span class="dept"><svg class="i sm" aria-hidden="true"><use href="#i-tag"/></svg>Sales</span></div><div class="mi"><span class="dept"><svg class="i sm" aria-hidden="true"><use href="#i-box"/></svg>Parts</span></div><div class="mi"><span class="dept"><svg class="i sm" aria-hidden="true"><use href="#i-cash"/></svg>Finance</span></div><div class="mi dis"><span class="dept"><svg class="i sm" aria-hidden="true"><use href="#i-roller"/></svg>Body shop</span><span class="end">Not set up</span></div></div>
       </div>
     </article>
 
@@ -2262,7 +2263,7 @@ footer.end-note svg { width: 24px; height: 24px; }
   $("#spacing").innerHTML = [4, 8, 12, 16, 20, 24, 32, 40, 48, 64].map(function (s) { return '<div><i style="height:' + s + 'px"></i>' + s + "</div>"; }).join("");
 
   /* ---------- icons ---------- */
-  var icons = ["home","inbox","phone","phone-in","phone-fwd","msg","mail","cal","clock","bell","user","users","tasks","mega","chart","gear","search","filter","sliders","columns","sort","plus","x","check","chev-d","play","pause","volume","download","mic","headset","spark","wrench","car","recall","file","tag","pin","building","cash","lock","shield","pencil","trash","copy","ext","refresh","snooze","hand","ban","info","warn","ok","err","send","clip"];
+  var icons = ["home","inbox","phone","phone-in","phone-fwd","msg","mail","cal","clock","bell","user","users","tasks","mega","chart","gear","search","filter","sliders","columns","sort","plus","x","check","chev-d","play","pause","volume","download","mic","headset","spark","wrench","car","recall","file","tag","pin","building","cash","roller","lock","shield","pencil","trash","copy","ext","refresh","snooze","hand","ban","info","warn","ok","err","send","clip"];
   $("#icons").innerHTML = icons.map(function (i) { return '<div><svg class="i"><use href="#i-' + i + '"/></svg>' + i + "</div>"; }).join("");
 
   /* ---------- mini calendars ---------- */
