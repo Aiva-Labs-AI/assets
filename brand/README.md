@@ -24,6 +24,11 @@ filters aren't supported. Wordmark: Geist SemiBold at
 -3.3% tracking, `#000000`, cap height two thirds of the mark, gap 17% of the
 mark.
 
+## `components/`
+
+The component palette for the Cleo dashboard: open `components/index.html`
+in a browser. See [`components/README.md`](components/README.md).
+
 ## `colors/`
 
 `palette.svg` (swatch sheet), `palette.json` and `palette.css` (tokens).
