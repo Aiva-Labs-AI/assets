@@ -1,0 +1,128 @@
+{
+  "family": "Geist",
+  "source": "https://vercel.com/font (SIL OFL 1.1)",
+  "color": "#000000",
+  "styles": [
+    {
+      "name": "Heading 1",
+      "weight": 400,
+      "size": 64,
+      "lineHeight": 1.1,
+      "letterSpacing": "-2%",
+      "opacity": 1.0
+    },
+    {
+      "name": "Heading 2",
+      "weight": 400,
+      "size": 48,
+      "lineHeight": 1.1,
+      "letterSpacing": "-2%",
+      "opacity": 1.0
+    },
+    {
+      "name": "Heading 3",
+      "weight": 400,
+      "size": 42,
+      "lineHeight": 1.2,
+      "letterSpacing": "-2%",
+      "opacity": 1.0
+    },
+    {
+      "name": "Heading 4",
+      "weight": 400,
+      "size": 36,
+      "lineHeight": 1.2,
+      "letterSpacing": "-2%",
+      "opacity": 1.0
+    },
+    {
+      "name": "Heading 5",
+      "weight": 400,
+      "size": 32,
+      "lineHeight": 1.2,
+      "letterSpacing": "-2%",
+      "opacity": 1.0
+    },
+    {
+      "name": "Heading 6",
+      "weight": 400,
+      "size": 28,
+      "lineHeight": 1.2,
+      "letterSpacing": "-2%",
+      "opacity": 1.0
+    },
+    {
+      "name": "Paragraph XXL",
+      "weight": 400,
+      "size": 22,
+      "lineHeight": 1.3,
+      "letterSpacing": "+2%",
+      "opacity": 0.6
+    },
+    {
+      "name": "Paragraph XL",
+      "weight": 400,
+      "size": 20,
+      "lineHeight": 1.3,
+      "letterSpacing": "+2%",
+      "opacity": 0.6
+    },
+    {
+      "name": "Paragraph L",
+      "weight": 400,
+      "size": 18,
+      "lineHeight": 1.3,
+      "letterSpacing": "+2%",
+      "opacity": 0.6
+    },
+    {
+      "name": "Paragraph M",
+      "weight": 400,
+      "size": 16,
+      "lineHeight": 1.3,
+      "letterSpacing": "+2%",
+      "opacity": 0.6
+    },
+    {
+      "name": "Paragraph M Bold",
+      "weight": 500,
+      "size": 16,
+      "lineHeight": 1.3,
+      "letterSpacing": "+2%",
+      "opacity": 0.6
+    },
+    {
+      "name": "Paragraph S",
+      "weight": 400,
+      "size": 14,
+      "lineHeight": 1.3,
+      "letterSpacing": "+2%",
+      "opacity": 0.6
+    },
+    {
+      "name": "Paragraph S Bold",
+      "weight": 500,
+      "size": 14,
+      "lineHeight": 1.3,
+      "letterSpacing": "+2%",
+      "opacity": 0.6
+    },
+    {
+      "name": "Paragraph XS",
+      "weight": 400,
+      "size": 12,
+      "lineHeight": 1.3,
+      "letterSpacing": "+2%",
+      "opacity": 0.6
+    },
+    {
+      "name": "Paragraph XS Bold",
+      "weight": 500,
+      "size": 12,
+      "lineHeight": 1.3,
+      "letterSpacing": "+2%",
+      "opacity": 0.6
+    }
+  ],
+  "notes": "The sheet's last row repeats 'Paragraph XS / Regular' but is set in Medium; it is listed here as Paragraph XS Bold."
+}

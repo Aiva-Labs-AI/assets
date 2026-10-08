@@ -7,6 +7,11 @@ email clients and third-party tools can load it from an absolute URL.
 https://cdn.jsdelivr.net/gh/Aiva-Labs-AI/assets@main/<path>
 ```
 
+## `brand/`
+
+Vector brand kit (logo, colours, type scale, icons, graphic elements).
+See [`brand/README.md`](brand/README.md).
+
 ## `email/`
 
 Artwork for the email blast template in
