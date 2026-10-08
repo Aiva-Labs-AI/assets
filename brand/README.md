@@ -11,6 +11,7 @@ nothing depends on installed fonts.
 | `cleo-mark.svg` | logomark with the sheet's shading (each band casts a soft shadow onto the gap and the piece beneath it) |
 | `cleo-mark-flat.svg` | logomark without the shadow, for small sizes and print |
 | `cleo-mark-negative.svg` | white mark for black or dark backgrounds |
+| `cleo-mark-mono.svg` | one colour (`currentColor`), back pieces at half strength; for status pills and other coloured fills |
 | `cleo-logo.svg` / `cleo-logo-flat.svg` | horizontal lockup, mark + wordmark |
 | `cleo-logo-stacked.svg` | stacked lockup |
 | `cleo-wordmark.svg` | wordmark alone |

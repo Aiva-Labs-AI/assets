@@ -1,11 +1,3 @@
-<!doctype html>
-<html lang="en">
-<head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<style>:root{color-scheme:light}body{margin:0}img{max-width:100%}[hidden]{display:none!important}</style>
-</head>
-<body>
 <title>Cleo Component Palette</title>
 <meta name="description" content="Every component in the Cleo dashboard design system, rendered live in the Cleo brand: foundations, primitives, navigation, data display, communication, overlays and page patterns.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -54,9 +46,6 @@
   --ai: #0538CB;      --ai-soft: #EDF1FD;     --ai-line: #C9D6FA;
   --note: #8A6400;    --note-soft: #FFF8E1;   --note-line: #F1DE9C;
 
-  /* department hues, for dots and chips only */
-  --dept-service: #0057FF; --dept-sales: #0E9F8E; --dept-parts: #C27A00; --dept-finance: #6B4FD8; --dept-body: #D9534F;
-
   /* type */
   --font: "Geist", ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
   --mono: "Geist Mono", ui-monospace, "SF Mono", Menlo, monospace;
@@ -86,7 +75,6 @@
   --info: #3379FF; --info-soft: #0F2457; --info-ink: #A9C4FF;
   --ai: #8FB0FF; --ai-soft: #101C3D; --ai-line: #213A7A;
   --note: #F2CC66; --note-soft: #2B230B; --note-line: #4D3F12;
-  --dept-service: #4D8BFF; --dept-sales: #2FC7B3; --dept-parts: #F0A93A; --dept-finance: #9C86FF; --dept-body: #FF7A75;
   --e1: 0 1px 2px rgba(0,0,0,.4), 0 0 0 1px var(--line);
   --e2: 0 12px 32px -8px rgba(0,0,0,.6), 0 0 0 1px var(--line-strong);
   --e3: 0 30px 80px -16px rgba(0,0,0,.75), 0 0 0 1px var(--line-strong);
@@ -106,7 +94,6 @@
   --info: #3379FF; --info-soft: #0F2457; --info-ink: #A9C4FF;
   --ai: #8FB0FF; --ai-soft: #101C3D; --ai-line: #213A7A;
   --note: #F2CC66; --note-soft: #2B230B; --note-line: #4D3F12;
-  --dept-service: #4D8BFF; --dept-sales: #2FC7B3; --dept-parts: #F0A93A; --dept-finance: #9C86FF; --dept-body: #FF7A75;
   --e1: 0 1px 2px rgba(0,0,0,.4), 0 0 0 1px var(--line);
   --e2: 0 12px 32px -8px rgba(0,0,0,.6), 0 0 0 1px var(--line-strong);
   --e3: 0 30px 80px -16px rgba(0,0,0,.75), 0 0 0 1px var(--line-strong);
@@ -205,7 +192,7 @@ main { padding: var(--s10) clamp(16px, 4vw, 56px) var(--s16); min-width: 0; }
 .motion-demo .track i { position: absolute; inset: 0 auto 0 0; width: 40%; border-radius: 3px; background: var(--accent); animation: slide 1.6s var(--ease) infinite alternate; }
 @keyframes slide { to { transform: translateX(150%); } }
 .spin { animation: spin 1.2s linear infinite; } @keyframes spin { to { transform: rotate(360deg); } }
-.turn { animation: turn 3.2s var(--ease) infinite; } @keyframes turn { 0%,20% { transform: rotate(0); } 60%,100% { transform: rotate(90deg); } }
+
 
 /* ---------- primitives ---------- */
 .btn { --h: 36px; display: inline-flex; align-items: center; justify-content: center; gap: 8px; height: var(--h); padding: 0 14px; border-radius: var(--r-md); border: 1px solid transparent; font: 500 13.5px/1 var(--font); letter-spacing: .005em; cursor: pointer; white-space: nowrap; transition: background var(--t-fast) var(--ease), border-color var(--t-fast), color var(--t-fast), box-shadow var(--t-fast); text-decoration: none; }
@@ -961,6 +948,182 @@ table.t tbody tr.sel { background: var(--accent-soft); }
 .think ul { list-style: none; margin: 0; padding: 0 0 0 7px; border-left: 1px solid var(--line-strong); display: flex; flex-direction: column; gap: 6px; }
 .think li { padding-left: 14px; color: var(--ink-3); font-size: 12.5px; }
 .think li b { color: var(--ink-2); font-weight: 500; }
+
+/* ---------- v0.2.1: blue primary, cleaner player ---------- */
+:root { --primary: #0057FF; --primary-ink: #FFFFFF; --primary-hover: #004AD9; }
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) { --primary: #3D7FFF; --primary-ink: #FFFFFF; --primary-hover: #5590FF; } }
+:root[data-theme="dark"] { --primary: #3D7FFF; --primary-ink: #FFFFFF; --primary-hover: #5590FF; }
+.btn.primary { box-shadow: inset 0 1px 0 rgba(255,255,255,.14), 0 1px 2px rgba(0,40,140,.25); }
+.pager .pages button.on { background: var(--accent-soft); color: var(--accent-soft-ink); }
+
+.player { gap: 12px; padding: 8px 12px 8px 8px; background: var(--surface); box-shadow: 0 0 0 1px var(--line); border-radius: var(--r-lg); }
+.player .play { width: 32px; height: 32px; background: var(--accent-soft); color: var(--accent); transition: background var(--t-fast); }
+.player .play:hover { background: color-mix(in srgb, var(--accent) 18%, var(--surface)); }
+.player .play svg.i { width: 12px; height: 12px; }
+.player .wave { height: 28px; min-width: 120px; }
+.player time { font-size: 11.5px; min-width: 76px; text-align: right; }
+.player .ctrl { gap: 0; margin-left: -4px; }
+.player .ctrl .btn { color: var(--ink-3); }
+.speed { font: 500 11.5px var(--font); color: var(--ink-2); }
+.player.compact { padding: 4px 10px 4px 4px; background: var(--surface-2); box-shadow: none; }
+.player.compact .play { width: 26px; height: 26px; }
+.player.compact .play svg.i { width: 10px; height: 10px; }
+.player.compact .wave { height: 18px; }
+.event .player.compact, .sheet .player.compact { background: var(--surface-2); }
+
+/* ---------- v0.2.2: status set B, departments as icons, chart palette ---------- */
+:root {
+  --warning: #E9A919; --warning-soft: #FFF6DC; --warning-ink: #7A5200;
+  --info: #71717A; --info-soft: #F1F1F2; --info-ink: #3F3F46;
+  --chart-1: #2a78d6; --chart-2: #eb6834; --chart-3: #1baf7a; --chart-4: #eda100; --chart-5: #e87ba4;
+}
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) {
+  --warning: #F2B640; --warning-soft: #2B2410; --warning-ink: #F7D27E;
+  --info: #A1A1A6; --info-soft: #232326; --info-ink: #D4D4D8;
+  --chart-1: #3987e5; --chart-2: #d95926; --chart-3: #199e70; --chart-4: #c98500; --chart-5: #d55181;
+} }
+:root[data-theme="dark"] {
+  --warning: #F2B640; --warning-soft: #2B2410; --warning-ink: #F7D27E;
+  --info: #A1A1A6; --info-soft: #232326; --info-ink: #D4D4D8;
+  --chart-1: #3987e5; --chart-2: #d95926; --chart-3: #199e70; --chart-4: #c98500; --chart-5: #d55181;
+}
+.dept::before { display: none; }
+.dept { gap: 5px; color: var(--ink-2); }
+.dept svg.i { color: var(--ink-3); width: 13px; height: 13px; }
+.dept.boxed { background: var(--surface-3); color: var(--ink); }
+.livebar.warn { color: var(--warning-ink); }
+#donut text { fill: var(--ink-3); font: 12px var(--font); }
+
+/* ---------- v0.2.3: live call bar on a light surface ---------- */
+.livebar { background: var(--surface); color: var(--ink); box-shadow: var(--e2); padding: 6px 6px 6px 14px; }
+.livebar .muted { color: var(--ink-3); }
+.livebar .pulse { background: var(--success); box-shadow: 0 0 0 0 color-mix(in srgb, var(--success) 50%, transparent); animation: pulse2 1.6s ease-out infinite; }
+@keyframes pulse2 { to { box-shadow: 0 0 0 9px color-mix(in srgb, var(--success) 0%, transparent); } }
+.livebar .eq i { background: var(--accent); }
+.livebar .btn.ghost { color: var(--ink-2); }
+.livebar .btn.ghost:hover { background: var(--surface-3); color: var(--ink); }
+.livebar .btn.secondary { box-shadow: none; background: var(--accent); color: #fff; }
+.livebar.warn { background: var(--warning-soft); color: var(--warning-ink); box-shadow: 0 0 0 1px color-mix(in srgb, var(--warning) 40%, transparent), 0 8px 20px -10px rgba(15,15,20,.2); }
+.livebar.warn .pulse { background: var(--warning); animation: none; }
+.livebar.warn .btn.secondary { background: var(--surface); color: var(--ink); box-shadow: 0 0 0 1px var(--line-strong); }
+
+
+/* ---------- v0.2.4: the living mark ---------- */
+.cm-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: var(--s4); width: 100%; }
+.cm-cell { display: flex; flex-direction: column; align-items: center; text-align: center; gap: 8px; padding: 22px 14px 18px; border-radius: var(--r-lg); background: var(--surface-2); box-shadow: inset 0 0 0 1px var(--line); }
+.cm-cell b { font-weight: 600; font-size: 13.5px; margin-top: 6px; }
+.cm-cell .cap { max-width: 24ch; }
+svg.cm { overflow: visible; flex: none; }
+.cm .cm-rot, .cm .cm-arm { transform-origin: 0 0; }
+.cm-arm { --tx: calc(var(--dx) * 1px); --ty: calc(var(--dy) * 1px); }
+@media (prefers-reduced-motion: reduce) { .cm .cm-rot, .cm .cm-arm { animation: none !important; opacity: 1 !important; transform: none !important; } }
+.btn svg.cm, .pill svg.cm { margin-right: 1px; }
+.livebar svg.cm { margin-right: 2px; }
+.pill.live { background: var(--success-soft); color: var(--success-ink); }
+.pill.live .d { background: var(--success); box-shadow: 0 0 0 0 color-mix(in srgb, var(--success) 55%, transparent); animation: live-dot 1.6s ease-out infinite; }
+@keyframes live-dot { to { box-shadow: 0 0 0 5px color-mix(in srgb, var(--success) 0%, transparent); } }
+@media (prefers-reduced-motion: reduce) { .pill.live .d { animation: none; } }
+
+
+/* ---------- v0.2.5: bigger mark, draw-on + collapse & bloom ---------- */
+.index .brand svg { width: 34px; height: 34px; }
+.index .brand b { font-size: 19px; }
+.sidebar .sb-brand { font-size: 18px; gap: 10px; }
+.sidebar .sb-brand svg { width: 30px; height: 30px; }
+.sidebar.mini .sb-brand svg { width: 30px; height: 30px; }
+.sidebar .sb-brand .fold svg { width: 16px; height: 16px; }
+.pat .rail-m svg { width: 26px; height: 26px; }
+footer.end-note svg { width: 24px; height: 24px; }
+.av.ai svg { width: 84%; height: 84%; }
+.cm-draw .cm-fill { opacity: 0; animation: cm-df 3.2s ease infinite; }
+@keyframes cm-dr { 0% { stroke-dashoffset: 1; opacity: 1; } 45% { stroke-dashoffset: 0; opacity: 1; } 62%, 100% { stroke-dashoffset: 0; opacity: 0; } }
+@keyframes cm-df { 0%, 38% { opacity: 0; } 58%, 86% { opacity: 1; } 100% { opacity: 0; } }
+@media (prefers-reduced-motion: reduce) { .cm-draw .cm-fill { opacity: 1 !important; animation: none !important; } .cm-draw .cm-o { opacity: 0 !important; animation: none !important; } }
+
+
+/* ---------- v0.2.6: one family, derived from draw-on and bloom ---------- */
+
+
+/* ---------- v0.2.7: small marks never change size ---------- */
+
+
+/* ---------- v0.2.8: mono mark, takes the colour of its context ---------- */
+.mark-mono { --mark-front: currentColor; --mark-back: currentColor; }
+.mark-mono .mk-b { fill-opacity: .5; }
+
+
+/* ---------- v0.2.9: outline mark + variants plate ---------- */
+.mk-f, .mk-b { stroke-width: var(--mark-sw, 0); vector-effect: non-scaling-stroke; stroke-linejoin: round; }
+.mk-f { stroke: var(--mark-stroke, none); }
+.mk-b { stroke: var(--mark-stroke-back, none); }
+.mv-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: var(--s3); width: 100%; }
+.mv { display: flex; flex-direction: column; gap: 6px; padding: 16px; border-radius: var(--r-lg); background: var(--surface-2); box-shadow: inset 0 0 0 1px var(--line); }
+.mv b { font-weight: 600; font-size: 13.5px; margin-top: 4px; }
+.mv-sw { display: flex; align-items: center; gap: 16px; height: 48px; }
+.mv-blue { background: var(--accent); box-shadow: none; color: #fff; }
+.mv-blue .cap { color: rgba(255,255,255,.75); }
+
+
+/* ---------- v0.3: one motion language, built on draw-on ---------- */
+.cm-draw .cm-o { fill: none; stroke: var(--mark-front); stroke-width: var(--cm-sw, 2px); vector-effect: non-scaling-stroke; stroke-linejoin: round; stroke-linecap: round; stroke-dasharray: 1 1.05; stroke-dashoffset: 1; }
+.cm-draw .cm-ob { stroke: var(--mark-back); }
+.cm-draw .cm-o { animation: cm-dr 3.2s cubic-bezier(.65,0,.35,1) infinite; }
+/* Tracing: a single segment runs around every outline forever. No fill, no rotation. */
+.cm-trace .cm-o { fill: none; stroke: var(--mark-front); stroke-width: var(--cm-swu, 8); vector-effect: none; stroke-linejoin: round; stroke-linecap: round; stroke-dasharray: .3 .7; animation: cm-tr 2.4s linear infinite; }
+.cm-trace .cm-ob { stroke: var(--mark-back); }
+.cm-trace .cm-fill { display: none; }
+@keyframes cm-tr { from { stroke-dashoffset: 1; } to { stroke-dashoffset: 0; } }
+@media (prefers-reduced-motion: reduce) { .cm-trace .cm-o { animation: none !important; stroke-dasharray: none; } }
+/* Agent configuration pattern */
+.ag { display: flex; flex-direction: column; gap: var(--s4); width: 100%; background: var(--bg); border: 1px solid var(--line); border-radius: var(--r-lg); padding: var(--s5); }
+.ag-top { display: flex; align-items: center; justify-content: space-between; gap: var(--s3); flex-wrap: wrap; }
+.ag-id { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; }
+.ag-id b { display: block; font-family: var(--font-display, var(--font)); font-size: 20px; font-weight: 600; letter-spacing: -.02em; }
+.ag-id span:not(.pill):not(.d) { font-size: 12.5px; color: var(--ink-3); }
+.ag-body { display: grid; grid-template-columns: minmax(0, 1fr) 320px; gap: var(--s4); align-items: start; }
+.ag-list { display: flex; flex-direction: column; margin-top: 8px; }
+.ag-list > div { display: flex; align-items: center; justify-content: space-between; gap: var(--s4); padding: 11px 0; border-bottom: 1px solid var(--line); }
+.ag-list > div:last-child { border-bottom: 0; padding-bottom: 0; }
+.ag-list b { display: block; font-weight: 500; font-size: 13.5px; }
+.ag-list span:not(.switch):not(.tr) { display: block; font-size: 12.5px; color: var(--ink-3); }
+.ag-list .dis b { color: var(--ink-3); }
+.ag-list .btn.link { display: inline; font-size: 12.5px; }
+.ag-grid2 { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: var(--s4); }
+.ag-grid2 .select-trigger .btn { margin-left: auto; }
+.ag-test { background: var(--surface); border-radius: var(--r-lg); box-shadow: var(--e1); padding: var(--s4); display: flex; flex-direction: column; position: sticky; top: var(--s4); }
+.ag-test-hd { display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 10px; gap: 8px; flex-wrap: wrap; }
+.ag-test-hd b { font-weight: 600; font-size: 14px; }
+.ag-test .msg { max-width: 88%; }
+@media (max-width: 900px) { .ag-body { grid-template-columns: 1fr; } .ag { padding: var(--s3); } }
+/* Today: operational home */
+.ov-sec { display: flex; flex-direction: column; gap: 10px; min-width: 0; }
+.ov-hd { display: flex; align-items: center; gap: 8px; }
+.ov-hd b { font-weight: 600; font-size: 14px; }
+.ov-live { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: var(--s3); }
+.ov-call { background: var(--surface); border-radius: var(--r-lg); box-shadow: var(--e1); padding: 14px; display: flex; flex-direction: column; gap: 4px; min-width: 0; }
+.ov-call.warn { box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--warning) 45%, transparent), var(--e1); }
+.ov-call-top { display: flex; align-items: center; gap: 8px; margin-bottom: 6px; }
+.ov-call-top .cap { margin-left: auto; }
+.ov-call b { font-weight: 600; font-size: 14px; }
+.ov-call > span { font-size: 12.5px; color: var(--ink-3); margin-bottom: 8px; }
+.ov-call .eq { display: inline-flex; gap: 2px; align-items: center; height: 12px; }
+.ov-call .eq i { width: 2px; background: var(--accent); border-radius: 1px; animation: eq 1s ease-in-out infinite; }
+.ov-call .eq i:nth-child(2) { animation-delay: .2s; } .ov-call .eq i:nth-child(3) { animation-delay: .4s; } .ov-call .eq i:nth-child(4) { animation-delay: .1s; }
+.ov-cols { display: grid; grid-template-columns: minmax(0, 3fr) minmax(0, 2fr); gap: var(--s4); align-items: start; }
+.ov-list { padding: 4px 16px; background: var(--surface); }
+.ov-list > div { display: grid; grid-template-columns: auto minmax(0, 1fr) auto auto; gap: 12px; align-items: center; padding: 12px 0; border-bottom: 1px solid var(--line); }
+.ov-list > div:last-child { border-bottom: 0; }
+.ov-list b { display: block; font-weight: 500; font-size: 13.5px; }
+.ov-list div > span:not(.pill):not(.ov-ic) { display: block; font-size: 12.5px; color: var(--ink-3); }
+.ov-ic { width: 28px; height: 28px; border-radius: 8px; display: grid; place-items: center; background: var(--surface-3); color: var(--ink-2); }
+.ov-ic.warn { background: var(--warning-soft); color: var(--warning-ink); }
+.ov-age { font-size: 12px; color: var(--ink-3); }
+.ov-act { display: flex; gap: 4px; }
+.ov-next > div { grid-template-columns: 44px minmax(0, 1fr) auto; }
+.ov-time { font-size: 13px; font-weight: 600; }
+.ov-feed > div { grid-template-columns: auto minmax(0, 1fr) auto; padding: 9px 0; font-size: 13px; }
+.ov-feed b { display: inline; font-weight: 600; }
+@media (max-width: 900px) { .ov-cols { grid-template-columns: 1fr; } .ov-list > div { grid-template-columns: auto minmax(0, 1fr) auto; } .ov-act { grid-column: 2 / -1; } }
 </style>
 <svg width="0" height="0" style="position:absolute" aria-hidden="true">
 <symbol id="i-search" viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></symbol>
@@ -1034,12 +1197,13 @@ table.t tbody tr.sel { background: var(--accent-soft); }
 <symbol id="i-shield" viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></symbol>
 <symbol id="i-dollar" viewBox="0 0 24 24"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></symbol>
 <symbol id="i-recall" viewBox="0 0 24 24"><path d="M12 2 2 21h20z"/><path d="M12 9v5M12 17.5h.01"/></symbol>
+<symbol id="i-box" viewBox="0 0 24 24"><path d="M21 8 12 3 3 8v8l9 5 9-5z"/><path d="m3 8 9 5 9-5M12 13v8"/></symbol>
 <symbol id="i-ban" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="m5.7 5.7 12.6 12.6"/></symbol>
 <symbol id="cleo-mark" viewBox="-99 -99 198 198"><g transform="rotate(0)"><path class="mk-b" d="M-78.19,5.72C-82.85,1.53 -88.68,-4.15 -92.65,-9.09C-97.51,-15.13 -96.46,-18.05 -93.52,-24.81C-90.96,-30.70 -87.45,-36.19 -83.75,-41.22C-80.04,-46.27 -75.52,-51.61 -70.96,-55.93L-70.64,-56.17L-70.31,-56.41L-69.98,-56.65L-69.64,-56.89L-69.30,-57.13L-68.96,-57.37L-68.61,-57.61L-68.26,-57.85L-67.91,-58.09L-67.55,-58.33L-67.19,-58.57L-66.83,-58.79L-66.43,-58.94L-66.03,-59.09L-65.63,-59.23L-65.23,-59.37L-64.82,-59.51L-64.41,-59.64L-64.00,-59.77L-63.59,-59.90L-63.18,-60.03L-62.77,-60.15L-62.35,-60.27L-61.94,-60.38L-61.52,-60.50L-61.10,-60.61L-60.68,-60.71L-60.26,-60.81L-59.84,-60.91L-59.42,-61.01L-58.99,-61.10L-58.57,-61.19L-58.15,-61.27L-57.72,-61.35L-57.30,-61.43L-56.87,-61.50L-56.45,-61.57L-56.02,-61.63L-55.60,-61.69L-55.17,-61.74L-54.74,-61.79L-54.32,-61.84L-53.89,-61.88L-53.47,-61.92L-53.05,-61.95L-52.62,-61.98L-52.20,-62.00L-51.78,-62.02L-51.36,-62.04L-50.94,-62.05L-50.52,-62.05L-50.10,-62.05L-49.68,-62.04L-49.27,-62.03L-48.85,-62.01L-48.44,-61.99L-48.03,-61.96L-47.62,-61.93L-47.22,-61.89L-47.21,-61.89L-46.81,-61.85L-46.42,-61.81L-46.02,-61.76L-45.62,-61.71L-45.23,-61.67L-44.83,-61.61L-44.44,-61.56L-44.05,-61.51L-43.65,-61.45L-43.26,-61.40L-42.87,-61.34L-42.48,-61.27L-42.08,-61.21L-41.69,-61.15L-41.30,-61.08L-40.91,-61.01L-40.52,-60.94L-40.13,-60.86L-39.75,-60.79L-39.36,-60.71L-38.97,-60.63L-38.58,-60.55L-38.20,-60.46L-37.81,-60.38L-37.43,-60.29L-37.04,-60.20L-36.66,-60.10L-36.27,-60.01L-35.89,-59.91L-35.51,-59.81L-35.13,-59.71L-34.74,-59.60L-34.36,-59.49L-33.98,-59.38L-33.60,-59.27L-33.22,-59.16L-32.85,-59.04L-32.47,-58.92L-32.09,-58.80L-31.71,-58.67L-31.34,-58.54L-30.96,-58.41L-30.59,-58.28L-30.21,-58.14L-29.84,-58.01L-29.47,-57.87L-29.10,-57.72L-28.72,-57.58L-28.35,-57.43L-27.98,-57.27L-27.61,-57.12L-27.25,-56.96L-26.88,-56.80L-26.51,-56.64L-26.14,-56.47L-25.78,-56.30L-25.41,-56.13L-25.05,-55.95L-24.69,-55.78L-24.68,-55.77L-24.62,-55.74L-24.55,-55.71L-24.49,-55.68L-24.42,-55.64L-24.35,-55.61L-24.29,-55.58L-24.22,-55.54L-24.16,-55.51L-24.09,-55.48L-24.03,-55.45L-23.96,-55.41L-23.89,-55.38L-23.83,-55.35L-23.76,-55.31L-23.70,-55.28L-23.63,-55.25L-23.56,-55.21L-23.50,-55.18L-23.43,-55.15L-23.37,-55.11L-23.30,-55.08L-23.24,-55.05L-23.17,-55.01L-23.11,-54.98L-23.04,-54.95L-22.97,-54.91L-22.91,-54.88L-22.84,-54.85L-22.78,-54.81L-22.71,-54.78L-22.65,-54.74L-22.58,-54.71L-22.52,-54.68L-22.45,-54.64L-22.39,-54.61L-22.32,-54.57L-22.26,-54.54L-22.19,-54.51L-22.13,-54.47L-22.06,-54.44L-22.00,-54.40L-21.93,-54.37L-21.87,-54.34L-21.80,-54.30L-21.73,-54.27L-21.67,-54.23L-21.60,-54.20L-21.54,-54.17L-21.47,-54.13L-21.41,-54.10L-21.35,-54.06L-21.28,-54.03L-21.22,-53.99L-21.15,-53.96L-21.09,-53.92L-21.02,-53.89L-20.96,-53.86L-20.89,-53.82L-21.30,-52.90C-30.97,-52.29 -41.81,-48.89 -49.36,-42.99C-56.82,-37.17 -62.40,-29.19 -67.25,-21.12C-72.14,-12.96 -76.03,-3.52 -78.19,5.72Z"/></g><g transform="rotate(90)"><path class="mk-b" d="M-78.19,5.72C-82.85,1.53 -88.68,-4.15 -92.65,-9.09C-97.51,-15.13 -96.46,-18.05 -93.52,-24.81C-90.96,-30.70 -87.45,-36.19 -83.75,-41.22C-80.04,-46.27 -75.52,-51.61 -70.96,-55.93L-70.64,-56.17L-70.31,-56.41L-69.98,-56.65L-69.64,-56.89L-69.30,-57.13L-68.96,-57.37L-68.61,-57.61L-68.26,-57.85L-67.91,-58.09L-67.55,-58.33L-67.19,-58.57L-66.83,-58.79L-66.43,-58.94L-66.03,-59.09L-65.63,-59.23L-65.23,-59.37L-64.82,-59.51L-64.41,-59.64L-64.00,-59.77L-63.59,-59.90L-63.18,-60.03L-62.77,-60.15L-62.35,-60.27L-61.94,-60.38L-61.52,-60.50L-61.10,-60.61L-60.68,-60.71L-60.26,-60.81L-59.84,-60.91L-59.42,-61.01L-58.99,-61.10L-58.57,-61.19L-58.15,-61.27L-57.72,-61.35L-57.30,-61.43L-56.87,-61.50L-56.45,-61.57L-56.02,-61.63L-55.60,-61.69L-55.17,-61.74L-54.74,-61.79L-54.32,-61.84L-53.89,-61.88L-53.47,-61.92L-53.05,-61.95L-52.62,-61.98L-52.20,-62.00L-51.78,-62.02L-51.36,-62.04L-50.94,-62.05L-50.52,-62.05L-50.10,-62.05L-49.68,-62.04L-49.27,-62.03L-48.85,-62.01L-48.44,-61.99L-48.03,-61.96L-47.62,-61.93L-47.22,-61.89L-47.21,-61.89L-46.81,-61.85L-46.42,-61.81L-46.02,-61.76L-45.62,-61.71L-45.23,-61.67L-44.83,-61.61L-44.44,-61.56L-44.05,-61.51L-43.65,-61.45L-43.26,-61.40L-42.87,-61.34L-42.48,-61.27L-42.08,-61.21L-41.69,-61.15L-41.30,-61.08L-40.91,-61.01L-40.52,-60.94L-40.13,-60.86L-39.75,-60.79L-39.36,-60.71L-38.97,-60.63L-38.58,-60.55L-38.20,-60.46L-37.81,-60.38L-37.43,-60.29L-37.04,-60.20L-36.66,-60.10L-36.27,-60.01L-35.89,-59.91L-35.51,-59.81L-35.13,-59.71L-34.74,-59.60L-34.36,-59.49L-33.98,-59.38L-33.60,-59.27L-33.22,-59.16L-32.85,-59.04L-32.47,-58.92L-32.09,-58.80L-31.71,-58.67L-31.34,-58.54L-30.96,-58.41L-30.59,-58.28L-30.21,-58.14L-29.84,-58.01L-29.47,-57.87L-29.10,-57.72L-28.72,-57.58L-28.35,-57.43L-27.98,-57.27L-27.61,-57.12L-27.25,-56.96L-26.88,-56.80L-26.51,-56.64L-26.14,-56.47L-25.78,-56.30L-25.41,-56.13L-25.05,-55.95L-24.69,-55.78L-24.68,-55.77L-24.62,-55.74L-24.55,-55.71L-24.49,-55.68L-24.42,-55.64L-24.35,-55.61L-24.29,-55.58L-24.22,-55.54L-24.16,-55.51L-24.09,-55.48L-24.03,-55.45L-23.96,-55.41L-23.89,-55.38L-23.83,-55.35L-23.76,-55.31L-23.70,-55.28L-23.63,-55.25L-23.56,-55.21L-23.50,-55.18L-23.43,-55.15L-23.37,-55.11L-23.30,-55.08L-23.24,-55.05L-23.17,-55.01L-23.11,-54.98L-23.04,-54.95L-22.97,-54.91L-22.91,-54.88L-22.84,-54.85L-22.78,-54.81L-22.71,-54.78L-22.65,-54.74L-22.58,-54.71L-22.52,-54.68L-22.45,-54.64L-22.39,-54.61L-22.32,-54.57L-22.26,-54.54L-22.19,-54.51L-22.13,-54.47L-22.06,-54.44L-22.00,-54.40L-21.93,-54.37L-21.87,-54.34L-21.80,-54.30L-21.73,-54.27L-21.67,-54.23L-21.60,-54.20L-21.54,-54.17L-21.47,-54.13L-21.41,-54.10L-21.35,-54.06L-21.28,-54.03L-21.22,-53.99L-21.15,-53.96L-21.09,-53.92L-21.02,-53.89L-20.96,-53.86L-20.89,-53.82L-21.30,-52.90C-30.97,-52.29 -41.81,-48.89 -49.36,-42.99C-56.82,-37.17 -62.40,-29.19 -67.25,-21.12C-72.14,-12.96 -76.03,-3.52 -78.19,5.72Z"/></g><g transform="rotate(180)"><path class="mk-b" d="M-78.19,5.72C-82.85,1.53 -88.68,-4.15 -92.65,-9.09C-97.51,-15.13 -96.46,-18.05 -93.52,-24.81C-90.96,-30.70 -87.45,-36.19 -83.75,-41.22C-80.04,-46.27 -75.52,-51.61 -70.96,-55.93L-70.64,-56.17L-70.31,-56.41L-69.98,-56.65L-69.64,-56.89L-69.30,-57.13L-68.96,-57.37L-68.61,-57.61L-68.26,-57.85L-67.91,-58.09L-67.55,-58.33L-67.19,-58.57L-66.83,-58.79L-66.43,-58.94L-66.03,-59.09L-65.63,-59.23L-65.23,-59.37L-64.82,-59.51L-64.41,-59.64L-64.00,-59.77L-63.59,-59.90L-63.18,-60.03L-62.77,-60.15L-62.35,-60.27L-61.94,-60.38L-61.52,-60.50L-61.10,-60.61L-60.68,-60.71L-60.26,-60.81L-59.84,-60.91L-59.42,-61.01L-58.99,-61.10L-58.57,-61.19L-58.15,-61.27L-57.72,-61.35L-57.30,-61.43L-56.87,-61.50L-56.45,-61.57L-56.02,-61.63L-55.60,-61.69L-55.17,-61.74L-54.74,-61.79L-54.32,-61.84L-53.89,-61.88L-53.47,-61.92L-53.05,-61.95L-52.62,-61.98L-52.20,-62.00L-51.78,-62.02L-51.36,-62.04L-50.94,-62.05L-50.52,-62.05L-50.10,-62.05L-49.68,-62.04L-49.27,-62.03L-48.85,-62.01L-48.44,-61.99L-48.03,-61.96L-47.62,-61.93L-47.22,-61.89L-47.21,-61.89L-46.81,-61.85L-46.42,-61.81L-46.02,-61.76L-45.62,-61.71L-45.23,-61.67L-44.83,-61.61L-44.44,-61.56L-44.05,-61.51L-43.65,-61.45L-43.26,-61.40L-42.87,-61.34L-42.48,-61.27L-42.08,-61.21L-41.69,-61.15L-41.30,-61.08L-40.91,-61.01L-40.52,-60.94L-40.13,-60.86L-39.75,-60.79L-39.36,-60.71L-38.97,-60.63L-38.58,-60.55L-38.20,-60.46L-37.81,-60.38L-37.43,-60.29L-37.04,-60.20L-36.66,-60.10L-36.27,-60.01L-35.89,-59.91L-35.51,-59.81L-35.13,-59.71L-34.74,-59.60L-34.36,-59.49L-33.98,-59.38L-33.60,-59.27L-33.22,-59.16L-32.85,-59.04L-32.47,-58.92L-32.09,-58.80L-31.71,-58.67L-31.34,-58.54L-30.96,-58.41L-30.59,-58.28L-30.21,-58.14L-29.84,-58.01L-29.47,-57.87L-29.10,-57.72L-28.72,-57.58L-28.35,-57.43L-27.98,-57.27L-27.61,-57.12L-27.25,-56.96L-26.88,-56.80L-26.51,-56.64L-26.14,-56.47L-25.78,-56.30L-25.41,-56.13L-25.05,-55.95L-24.69,-55.78L-24.68,-55.77L-24.62,-55.74L-24.55,-55.71L-24.49,-55.68L-24.42,-55.64L-24.35,-55.61L-24.29,-55.58L-24.22,-55.54L-24.16,-55.51L-24.09,-55.48L-24.03,-55.45L-23.96,-55.41L-23.89,-55.38L-23.83,-55.35L-23.76,-55.31L-23.70,-55.28L-23.63,-55.25L-23.56,-55.21L-23.50,-55.18L-23.43,-55.15L-23.37,-55.11L-23.30,-55.08L-23.24,-55.05L-23.17,-55.01L-23.11,-54.98L-23.04,-54.95L-22.97,-54.91L-22.91,-54.88L-22.84,-54.85L-22.78,-54.81L-22.71,-54.78L-22.65,-54.74L-22.58,-54.71L-22.52,-54.68L-22.45,-54.64L-22.39,-54.61L-22.32,-54.57L-22.26,-54.54L-22.19,-54.51L-22.13,-54.47L-22.06,-54.44L-22.00,-54.40L-21.93,-54.37L-21.87,-54.34L-21.80,-54.30L-21.73,-54.27L-21.67,-54.23L-21.60,-54.20L-21.54,-54.17L-21.47,-54.13L-21.41,-54.10L-21.35,-54.06L-21.28,-54.03L-21.22,-53.99L-21.15,-53.96L-21.09,-53.92L-21.02,-53.89L-20.96,-53.86L-20.89,-53.82L-21.30,-52.90C-30.97,-52.29 -41.81,-48.89 -49.36,-42.99C-56.82,-37.17 -62.40,-29.19 -67.25,-21.12C-72.14,-12.96 -76.03,-3.52 -78.19,5.72Z"/></g><g transform="rotate(270)"><path class="mk-b" d="M-78.19,5.72C-82.85,1.53 -88.68,-4.15 -92.65,-9.09C-97.51,-15.13 -96.46,-18.05 -93.52,-24.81C-90.96,-30.70 -87.45,-36.19 -83.75,-41.22C-80.04,-46.27 -75.52,-51.61 -70.96,-55.93L-70.64,-56.17L-70.31,-56.41L-69.98,-56.65L-69.64,-56.89L-69.30,-57.13L-68.96,-57.37L-68.61,-57.61L-68.26,-57.85L-67.91,-58.09L-67.55,-58.33L-67.19,-58.57L-66.83,-58.79L-66.43,-58.94L-66.03,-59.09L-65.63,-59.23L-65.23,-59.37L-64.82,-59.51L-64.41,-59.64L-64.00,-59.77L-63.59,-59.90L-63.18,-60.03L-62.77,-60.15L-62.35,-60.27L-61.94,-60.38L-61.52,-60.50L-61.10,-60.61L-60.68,-60.71L-60.26,-60.81L-59.84,-60.91L-59.42,-61.01L-58.99,-61.10L-58.57,-61.19L-58.15,-61.27L-57.72,-61.35L-57.30,-61.43L-56.87,-61.50L-56.45,-61.57L-56.02,-61.63L-55.60,-61.69L-55.17,-61.74L-54.74,-61.79L-54.32,-61.84L-53.89,-61.88L-53.47,-61.92L-53.05,-61.95L-52.62,-61.98L-52.20,-62.00L-51.78,-62.02L-51.36,-62.04L-50.94,-62.05L-50.52,-62.05L-50.10,-62.05L-49.68,-62.04L-49.27,-62.03L-48.85,-62.01L-48.44,-61.99L-48.03,-61.96L-47.62,-61.93L-47.22,-61.89L-47.21,-61.89L-46.81,-61.85L-46.42,-61.81L-46.02,-61.76L-45.62,-61.71L-45.23,-61.67L-44.83,-61.61L-44.44,-61.56L-44.05,-61.51L-43.65,-61.45L-43.26,-61.40L-42.87,-61.34L-42.48,-61.27L-42.08,-61.21L-41.69,-61.15L-41.30,-61.08L-40.91,-61.01L-40.52,-60.94L-40.13,-60.86L-39.75,-60.79L-39.36,-60.71L-38.97,-60.63L-38.58,-60.55L-38.20,-60.46L-37.81,-60.38L-37.43,-60.29L-37.04,-60.20L-36.66,-60.10L-36.27,-60.01L-35.89,-59.91L-35.51,-59.81L-35.13,-59.71L-34.74,-59.60L-34.36,-59.49L-33.98,-59.38L-33.60,-59.27L-33.22,-59.16L-32.85,-59.04L-32.47,-58.92L-32.09,-58.80L-31.71,-58.67L-31.34,-58.54L-30.96,-58.41L-30.59,-58.28L-30.21,-58.14L-29.84,-58.01L-29.47,-57.87L-29.10,-57.72L-28.72,-57.58L-28.35,-57.43L-27.98,-57.27L-27.61,-57.12L-27.25,-56.96L-26.88,-56.80L-26.51,-56.64L-26.14,-56.47L-25.78,-56.30L-25.41,-56.13L-25.05,-55.95L-24.69,-55.78L-24.68,-55.77L-24.62,-55.74L-24.55,-55.71L-24.49,-55.68L-24.42,-55.64L-24.35,-55.61L-24.29,-55.58L-24.22,-55.54L-24.16,-55.51L-24.09,-55.48L-24.03,-55.45L-23.96,-55.41L-23.89,-55.38L-23.83,-55.35L-23.76,-55.31L-23.70,-55.28L-23.63,-55.25L-23.56,-55.21L-23.50,-55.18L-23.43,-55.15L-23.37,-55.11L-23.30,-55.08L-23.24,-55.05L-23.17,-55.01L-23.11,-54.98L-23.04,-54.95L-22.97,-54.91L-22.91,-54.88L-22.84,-54.85L-22.78,-54.81L-22.71,-54.78L-22.65,-54.74L-22.58,-54.71L-22.52,-54.68L-22.45,-54.64L-22.39,-54.61L-22.32,-54.57L-22.26,-54.54L-22.19,-54.51L-22.13,-54.47L-22.06,-54.44L-22.00,-54.40L-21.93,-54.37L-21.87,-54.34L-21.80,-54.30L-21.73,-54.27L-21.67,-54.23L-21.60,-54.20L-21.54,-54.17L-21.47,-54.13L-21.41,-54.10L-21.35,-54.06L-21.28,-54.03L-21.22,-53.99L-21.15,-53.96L-21.09,-53.92L-21.02,-53.89L-20.96,-53.86L-20.89,-53.82L-21.30,-52.90C-30.97,-52.29 -41.81,-48.89 -49.36,-42.99C-56.82,-37.17 -62.40,-29.19 -67.25,-21.12C-72.14,-12.96 -76.03,-3.52 -78.19,5.72Z"/></g><g transform="rotate(0)"><path class="mk-f" d="M26.81,-8.23C22.52,-14.68 16.87,-21.64 11.59,-27.23C6.33,-32.83 0.58,-38.08 -5.53,-42.78C-11.64,-47.47 -18.19,-51.44 -25.13,-54.88C-32.14,-58.35 -39.58,-60.10 -47.31,-60.90C-55.05,-61.69 -63.95,-59.33 -70.96,-55.93C-65.51,-63.43 -58.70,-71.78 -51.97,-78.33C-45.41,-84.73 -34.64,-84.23 -25.66,-82.22C-16.85,-80.25 -8.47,-75.12 -0.64,-70.35C7.24,-65.55 14.31,-59.48 20.94,-53.04C27.60,-46.57 32.94,-39.91 38.78,-32.65C44.04,-26.11 33.38,-14.17 26.81,-8.23Z"/></g><g transform="rotate(90)"><path class="mk-f" d="M26.81,-8.23C22.52,-14.68 16.87,-21.64 11.59,-27.23C6.33,-32.83 0.58,-38.08 -5.53,-42.78C-11.64,-47.47 -18.19,-51.44 -25.13,-54.88C-32.14,-58.35 -39.58,-60.10 -47.31,-60.90C-55.05,-61.69 -63.95,-59.33 -70.96,-55.93C-65.51,-63.43 -58.70,-71.78 -51.97,-78.33C-45.41,-84.73 -34.64,-84.23 -25.66,-82.22C-16.85,-80.25 -8.47,-75.12 -0.64,-70.35C7.24,-65.55 14.31,-59.48 20.94,-53.04C27.60,-46.57 32.94,-39.91 38.78,-32.65C44.04,-26.11 33.38,-14.17 26.81,-8.23Z"/></g><g transform="rotate(180)"><path class="mk-f" d="M26.81,-8.23C22.52,-14.68 16.87,-21.64 11.59,-27.23C6.33,-32.83 0.58,-38.08 -5.53,-42.78C-11.64,-47.47 -18.19,-51.44 -25.13,-54.88C-32.14,-58.35 -39.58,-60.10 -47.31,-60.90C-55.05,-61.69 -63.95,-59.33 -70.96,-55.93C-65.51,-63.43 -58.70,-71.78 -51.97,-78.33C-45.41,-84.73 -34.64,-84.23 -25.66,-82.22C-16.85,-80.25 -8.47,-75.12 -0.64,-70.35C7.24,-65.55 14.31,-59.48 20.94,-53.04C27.60,-46.57 32.94,-39.91 38.78,-32.65C44.04,-26.11 33.38,-14.17 26.81,-8.23Z"/></g><g transform="rotate(270)"><path class="mk-f" d="M26.81,-8.23C22.52,-14.68 16.87,-21.64 11.59,-27.23C6.33,-32.83 0.58,-38.08 -5.53,-42.78C-11.64,-47.47 -18.19,-51.44 -25.13,-54.88C-32.14,-58.35 -39.58,-60.10 -47.31,-60.90C-55.05,-61.69 -63.95,-59.33 -70.96,-55.93C-65.51,-63.43 -58.70,-71.78 -51.97,-78.33C-45.41,-84.73 -34.64,-84.23 -25.66,-82.22C-16.85,-80.25 -8.47,-75.12 -0.64,-70.35C7.24,-65.55 14.31,-59.48 20.94,-53.04C27.60,-46.57 32.94,-39.91 38.78,-32.65C44.04,-26.11 33.38,-14.17 26.81,-8.23Z"/></g></symbol>
 </svg>
 <div class="frame">
 <aside class="index" aria-label="Contents">
-  <div class="brand"><svg width="26" height="26" aria-hidden="true"><use href="#cleo-mark"/></svg><b>Cleo</b><span>Components</span></div>
+  <div class="brand"><svg width="30" height="30" aria-hidden="true"><use href="#cleo-mark"/></svg><b>Cleo</b><span>Components</span></div>
   <nav id="toc"></nav>
   <div class="theme-switch"><div class="seg" role="group" aria-label="Theme">
     <button data-theme-set="system" class="on" type="button">Auto</button><button data-theme-set="light" type="button"><svg class="i sm" aria-hidden="true"><use href="#i-sun"/></svg>Light</button><button data-theme-set="dark" type="button"><svg class="i sm" aria-hidden="true"><use href="#i-moon"/></svg>Dark</button>
@@ -1048,10 +1212,10 @@ table.t tbody tr.sel { background: var(--accent-soft); }
 
 <main>
 <section class="intro">
-  <span class="eyebrow"><svg width="16" height="16" aria-hidden="true" style="flex:none"><use href="#cleo-mark"/></svg> Cleo dashboard · Design system v0.2</span>
+  <span class="eyebrow"><svg width="18" height="18" aria-hidden="true" style="flex:none"><use href="#cleo-mark"/></svg> Cleo dashboard · Design system</span>
   <h1>The Cleo component palette</h1>
-  <p>Every building block the Cleo dashboard needs, from tokens to full screens, drawn in the Cleo brand. Service advisors live in this product all day, so the system favours calm surfaces, dense but readable data, and clear signals for anything that needs a human.</p><p style="font-size:14px;color:var(--ink-3)">v0.2 direction: neutral greys with Cleo Blue used sparingly, hairline rings instead of borders, softer radii, pill-shaped selection controls, tighter type, and new pieces for Cleo's agent work.</p>
-  <div class="stats"><span><b>6</b> foundations</span><span><b id="count-c">0</b> components</span><span><b>7</b> page patterns</span><span>Light and dark</span><span class="ex-note"><svg class="i sm" aria-hidden="true"><use href="#i-info"/></svg> All names and figures are example data</span></div>
+  <p>Every building block the Cleo dashboard needs, from tokens to full screens, drawn in the Cleo brand. Service advisors live in this product all day, so the system favours calm surfaces, dense but readable data, and clear signals for anything that needs a human.</p>
+  <div class="stats"><span><b>6</b> foundations</span><span><b id="count-c">0</b> components</span><span><b>9</b> page patterns</span><span>Light and dark</span><span class="ex-note"><svg class="i sm" aria-hidden="true"><use href="#i-info"/></svg> All names and figures are example data</span></div>
 </section>
 
 <!-- ============================ 00 FOUNDATIONS ============================ -->
@@ -1067,8 +1231,8 @@ table.t tbody tr.sel { background: var(--accent-soft); }
         <div class="swatches" id="semantic"></div>
         <div class="lbl" style="margin-top:8px">Departments</div>
         <div class="row tight">
-          <span class="dept boxed" style="--c:var(--dept-service)">Service</span><span class="dept boxed" style="--c:var(--dept-sales)">Sales</span><span class="dept boxed" style="--c:var(--dept-parts)">Parts</span><span class="dept boxed" style="--c:var(--dept-finance)">Finance</span><span class="dept boxed" style="--c:var(--dept-body)">Body shop</span>
-          <span class="cap">Used only as small dots and chips, never as fills.</span>
+          <span class="dept boxed"><svg class="i sm" aria-hidden="true"><use href="#i-wrench"/></svg>Service</span><span class="dept boxed"><svg class="i sm" aria-hidden="true"><use href="#i-tag"/></svg>Sales</span><span class="dept boxed"><svg class="i sm" aria-hidden="true"><use href="#i-box"/></svg>Parts</span><span class="dept boxed"><svg class="i sm" aria-hidden="true"><use href="#i-dollar"/></svg>Finance</span><span class="dept boxed"><svg class="i sm" aria-hidden="true"><use href="#i-car"/></svg>Body shop</span>
+          <span class="cap">Departments carry an icon, not a colour, so they never compete with status or with Cleo's blue. Charts use the chart palette below.</span>
         </div>
       </div>
     </article>
@@ -1097,15 +1261,33 @@ table.t tbody tr.sel { background: var(--accent-soft); }
       </div></div>
     </article>
 
-    <article class="plate" id="c-motion" data-c>
-      <header><h3>Motion &amp; loading</h3><p>120ms for hover and press, 200ms for toggles, 320ms for sheets. The mark turns a quarter for "Cleo is thinking" and spins for page loads.</p></header>
-      <div class="spec"><div class="motion-demo">
-        <div class="stack" style="align-items:center"><svg width="36" height="36" class="turn"><use href="#cleo-mark"/></svg><span class="cap">Thinking</span></div>
-        <div class="stack" style="align-items:center"><svg width="36" height="36" class="spin"><use href="#cleo-mark"/></svg><span class="cap">Loading</span></div>
-        <div class="stack"><div class="track"><i></i></div><span class="cap mono">cubic-bezier(.2,.8,.2,1)</span></div>
+    <article class="plate wide" id="c-motion" data-c>
+      <header><h3>Motion &amp; the living mark</h3><p>One motion language, built on draw-on: a one-shot reveal for loads, and a perpetual trace for anything Cleo is working on. The mark never shrinks, and the line keeps a minimum weight so it reads at 16px. All mark motion stops when the viewer prefers reduced motion.</p></header>
+      <div class="spec"><div class="cm-grid">
+        <div class="cm-cell"><span data-cm="draw" data-size="56"></span><b>Draw-on</b><span class="cap">The outline traces in, the colour fills, and the mark settles. App and page load.</span></div>
+        <div class="cm-cell"><span data-cm="trace" data-size="56"></span><b>Tracing</b><span class="cap">A short stroke runs around the outline without end. No fill, no turn. Loading, saving, thinking, live calls.</span></div></div></div>
+      <div class="spec" style="padding-top:0"><div class="row"><span class="lbl">In context</span>
+        <button class="btn primary"><span data-cm="trace" data-size="16" data-tone="white"></span>Saving…</button>
+        <span class="pill ai lg"><span data-cm="trace" data-size="13"></span>Cleo is drafting a reply</span>
+        <span class="pill success lg"><svg width="13" height="13" class="mark-mono" aria-hidden="true"><use href="#cleo-mark"/></svg>Booked</span><span class="pill warning lg"><span data-cm="trace" data-size="13" data-tone="mono"></span>Cleo on hold</span><span class="pill danger lg"><svg width="13" height="13" class="mark-mono" aria-hidden="true"><use href="#cleo-mark"/></svg>Cleo missed it</span>
+        <div class="stack" style="flex-direction:row;align-items:center;gap:8px"><div class="track" style="width:140px;height:4px;border-radius:2px;background:var(--sunken);position:relative;overflow:hidden"><i style="position:absolute;inset:0 auto 0 0;width:40%;border-radius:2px;background:var(--accent);animation:slide 1.6s var(--ease) infinite alternate"></i></div><span class="cap mono">cubic-bezier(.2,.8,.2,1)</span></div>
       </div></div>
     </article>
 
+
+    <article class="plate wide" id="c-markvariants" data-c>
+      <header><h3>Mark variants</h3><p>Full colour is the default. White sits on Cleo Blue fills. Mono takes the text colour of wherever it sits, so the mark never clashes with a green, amber or red context.</p></header>
+      <div class="spec col">
+        <div class="mv-grid">
+          <div class="mv"><div class="mv-sw"><svg width="40" height="40" class="" aria-hidden="true"><use href="#cleo-mark"/></svg><svg width="24" height="24" class="" aria-hidden="true"><use href="#cleo-mark"/></svg><svg width="16" height="16" class="" aria-hidden="true"><use href="#cleo-mark"/></svg></div><b>Full colour</b><span class="cap">Default, on neutral surfaces</span></div>
+          <div class="mv mv-blue"><div class="mv-sw"><svg width="40" height="40" class="mark-white" aria-hidden="true"><use href="#cleo-mark"/></svg><svg width="24" height="24" class="mark-white" aria-hidden="true"><use href="#cleo-mark"/></svg><svg width="16" height="16" class="mark-white" aria-hidden="true"><use href="#cleo-mark"/></svg></div><b>White</b><span class="cap">On Cleo Blue: primary buttons, app icon</span></div>
+          <div class="mv"><div class="mv-sw" style="color:var(--ink)"><svg width="40" height="40" class="mark-mono" aria-hidden="true"><use href="#cleo-mark"/></svg><svg width="24" height="24" class="mark-mono" aria-hidden="true"><use href="#cleo-mark"/></svg><svg width="16" height="16" class="mark-mono" aria-hidden="true"><use href="#cleo-mark"/></svg></div><b>Mono</b><span class="cap">Takes the text colour; back pieces at half strength</span></div>
+        </div>
+        <div class="row tight"><span class="lbl">In context</span>
+          <span class="pill success lg"><svg width="14" height="14" class="mark-mono" aria-hidden="true"><use href="#cleo-mark"/></svg>Booked by Cleo</span><span class="pill warning lg"><svg width="14" height="14" class="mark-mono" aria-hidden="true"><use href="#cleo-mark"/></svg>Cleo needs you</span><span class="pill danger lg"><svg width="14" height="14" class="mark-mono" aria-hidden="true"><use href="#cleo-mark"/></svg>Cleo missed it</span>
+        </div>
+      </div>
+    </article>
     <article class="plate wide" id="c-icons" data-c>
       <header><h3>Iconography</h3><p>Line icons on a 24 grid, 1.75 stroke, round caps. 16px in controls, 20px in empty states and navigation.</p></header>
       <div class="spec"><div class="icon-grid" id="icons"></div></div>
@@ -1119,13 +1301,13 @@ table.t tbody tr.sel { background: var(--accent-soft); }
   <div class="plates">
 
     <article class="plate wide" id="c-button" data-c>
-      <header><h3>Button</h3><p>Ink primary for the main action on a screen, outline secondary for everything else. Accent is reserved for Cleo-specific actions; danger needs a confirmation step.</p></header>
+      <header><h3>Button</h3><p>Cleo Blue primary for the main action on a screen, outline secondary for everything else. Actions that hand work to Cleo use the soft blue tint with the sparkle; danger needs a confirmation step.</p></header>
       <div class="spec col">
         <div class="row"><span class="lbl">Variants</span>
-          <button class="btn primary">Save changes</button><button class="btn secondary">Cancel</button><button class="btn ghost">Skip</button><button class="btn accent"><svg class="i" aria-hidden="true"><use href="#i-spark"/></svg>Draft with Cleo</button><button class="btn tint"><svg class="i" aria-hidden="true"><use href="#i-plus"/></svg>Add note</button><button class="btn danger">Remove member</button><button class="btn link">View call details <svg class="i sm" aria-hidden="true"><use href="#i-arrow-r"/></svg></button>
+          <button class="btn primary">Save changes</button><button class="btn secondary">Cancel</button><button class="btn ghost">Skip</button><button class="btn tint"><svg class="i" aria-hidden="true"><use href="#i-spark"/></svg>Draft with Cleo</button><button class="btn ghost"><svg class="i" aria-hidden="true"><use href="#i-plus"/></svg>Add note</button><button class="btn danger">Remove member</button><button class="btn link">View call details <svg class="i sm" aria-hidden="true"><use href="#i-arrow-r"/></svg></button>
         </div>
         <div class="row"><span class="lbl">States</span>
-          <button class="btn primary hover">Hover</button><button class="btn primary focus">Focus</button><button class="btn primary" disabled>Disabled</button><button class="btn primary"><svg width="16" height="16" class="spin mark-white"><use href="#cleo-mark"/></svg>Saving…</button><button class="btn secondary focus">Focus</button><button class="btn secondary" disabled>Disabled</button>
+          <button class="btn primary hover">Hover</button><button class="btn primary focus">Focus</button><button class="btn primary" disabled>Disabled</button><button class="btn primary"><span data-cm="trace" data-size="16" data-tone="white"></span>Saving…</button><button class="btn secondary focus">Focus</button><button class="btn secondary" disabled>Disabled</button>
         </div>
         <div class="row"><span class="lbl">Sizes</span>
           <button class="btn primary sm">Small</button><button class="btn primary">Medium</button><button class="btn primary lg">Large</button><button class="btn secondary sm"><svg class="i sm" aria-hidden="true"><use href="#i-download"/></svg>Export</button><button class="btn secondary"><svg class="i" aria-hidden="true"><use href="#i-filter"/></svg>Filter<span class="count">3</span></button><button class="btn secondary lg"><svg class="i" aria-hidden="true"><use href="#i-cal"/></svg>Last 30 days<svg class="i" aria-hidden="true"><use href="#i-chev-d"/></svg></button>
@@ -1181,8 +1363,8 @@ table.t tbody tr.sel { background: var(--accent-soft); }
     <article class="plate" id="c-select" data-c>
       <header><h3>Select</h3><p>For short, fixed lists. The open list marks the current value and supports type-ahead.</p></header>
       <div class="spec col">
-        <div class="field"><label>Department</label><div class="input select-trigger"><span class="v"><span class="dept" style="--c:var(--dept-service)">Service</span></span><svg class="i" aria-hidden="true"><use href="#i-chev-d"/></svg></div></div>
-        <div class="menu" style="max-width:320px"><div class="mi sel"><span class="dept" style="--c:var(--dept-service)">Service</span><span class="end"><svg class="i" aria-hidden="true"><use href="#i-check"/></svg></span></div><div class="mi hl"><span class="dept" style="--c:var(--dept-sales)">Sales</span></div><div class="mi"><span class="dept" style="--c:var(--dept-parts)">Parts</span></div><div class="mi"><span class="dept" style="--c:var(--dept-finance)">Finance</span></div><div class="mi dis"><span class="dept" style="--c:var(--dept-body)">Body shop</span><span class="end">Not set up</span></div></div>
+        <div class="field"><label>Department</label><div class="input select-trigger"><span class="v"><span class="dept"><svg class="i sm" aria-hidden="true"><use href="#i-wrench"/></svg>Service</span></span><svg class="i" aria-hidden="true"><use href="#i-chev-d"/></svg></div></div>
+        <div class="menu" style="max-width:320px"><div class="mi sel"><span class="dept"><svg class="i sm" aria-hidden="true"><use href="#i-wrench"/></svg>Service</span><span class="end"><svg class="i" aria-hidden="true"><use href="#i-check"/></svg></span></div><div class="mi hl"><span class="dept"><svg class="i sm" aria-hidden="true"><use href="#i-tag"/></svg>Sales</span></div><div class="mi"><span class="dept"><svg class="i sm" aria-hidden="true"><use href="#i-box"/></svg>Parts</span></div><div class="mi"><span class="dept"><svg class="i sm" aria-hidden="true"><use href="#i-dollar"/></svg>Finance</span></div><div class="mi dis"><span class="dept"><svg class="i sm" aria-hidden="true"><use href="#i-car"/></svg>Body shop</span><span class="end">Not set up</span></div></div>
       </div>
     </article>
 
@@ -1276,8 +1458,8 @@ table.t tbody tr.sel { background: var(--accent-soft); }
     <article class="plate" id="c-badge" data-c>
       <header><h3>Status pill</h3><p>One word or two, with a dot or icon so the state reads without colour. Neutral is the default; colour is for states that need action.</p></header>
       <div class="spec col">
-        <div class="row tight"><span class="pill"><span class="d"></span>Open</span><span class="pill info"><span class="d"></span>In progress</span><span class="pill success"><svg class="i sm" aria-hidden="true"><use href="#i-check"/></svg>Booked</span><span class="pill warning"><svg class="i sm" aria-hidden="true"><use href="#i-hand"/></svg>Needs a human</span><span class="pill danger"><svg class="i sm" aria-hidden="true"><use href="#i-warn"/></svg>Missed</span><span class="pill ai"><svg width="12" height="12" aria-hidden="true" style="flex:none"><use href="#cleo-mark"/></svg>Handled by Cleo</span></div>
-        <div class="row tight"><span class="pill outline">Draft</span><span class="pill solid">Live</span><span class="pill lg success"><svg class="i sm" aria-hidden="true"><use href="#i-play"/></svg>Active</span><span class="pill lg"><svg class="i sm" aria-hidden="true"><use href="#i-pause"/></svg>Paused</span><span class="count">12</span><span class="count accent">3</span><span class="count danger">9+</span></div>
+        <div class="row tight"><span class="pill"><span class="d"></span>Open</span><span class="pill info"><span class="d"></span>In progress</span><span class="pill success"><svg class="i sm" aria-hidden="true"><use href="#i-check"/></svg>Booked</span><span class="pill warning"><svg class="i sm" aria-hidden="true"><use href="#i-hand"/></svg>Needs a human</span><span class="pill danger"><svg class="i sm" aria-hidden="true"><use href="#i-warn"/></svg>Missed</span><span class="pill ai"><svg width="14" height="14" aria-hidden="true" style="flex:none"><use href="#cleo-mark"/></svg>Handled by Cleo</span></div>
+        <div class="row tight"><span class="pill outline">Draft</span><span class="pill live"><span class="d"></span>Live</span><span class="pill lg success"><svg class="i sm" aria-hidden="true"><use href="#i-play"/></svg>Active</span><span class="pill lg"><svg class="i sm" aria-hidden="true"><use href="#i-pause"/></svg>Paused</span><span class="count">12</span><span class="count accent">3</span><span class="count danger">9+</span></div>
       </div>
     </article>
 
@@ -1292,7 +1474,7 @@ table.t tbody tr.sel { background: var(--accent-soft); }
     <article class="plate" id="c-avatar" data-c>
       <header><h3>Avatar</h3><p>Initials on a fixed palette so staff stay recognisable. Cleo always shows the mark; customers get a neutral avatar.</p></header>
       <div class="spec col">
-        <div class="row"><div class="av xs">DW</div><div class="av sm c2">PS</div><div class="av">MG<span class="st"></span></div><div class="av lg c3">AL<span class="st away"></span></div><div class="av xl c4">JR<span class="st off"></span></div><div class="av lg ai" title="Cleo"><svg class="mark-white" aria-hidden="true"><use href="#cleo-mark"/></svg></div><div class="av lg cust"><svg class="i" aria-hidden="true"><use href="#i-user"/></svg></div></div>
+        <div class="row"><div class="av xs">DW</div><div class="av sm c2">PS</div><div class="av">MG<span class="st"></span></div><div class="av lg c3">AL<span class="st away"></span></div><div class="av xl c4">JR<span class="st off"></span></div><div class="av lg ai" title="Cleo"><svg class="mark-mono" aria-hidden="true"><use href="#cleo-mark"/></svg></div><div class="av lg cust"><svg class="i" aria-hidden="true"><use href="#i-user"/></svg></div></div>
         <div class="row"><div class="avs"><div class="av sm">DW</div><div class="av sm c2">PS</div><div class="av sm c3">AL</div><div class="av sm cust" style="font-size:10px">+4</div></div><span class="cap">Group</span></div>
       </div>
     </article>
@@ -1316,7 +1498,7 @@ table.t tbody tr.sel { background: var(--accent-soft); }
       <header><h3>App sidebar</h3><p>Same tone as the page, so content stays the focus. Counts show work waiting; the active item is a raised white pill. Collapses to an icon rail with tooltips.</p></header>
       <div class="spec">
         <nav class="sidebar" aria-label="Example app navigation">
-          <div class="sb-brand"><svg width="26" height="26" aria-hidden="true"><use href="#cleo-mark"/></svg>Cleo<span class="fold"><svg class="i" aria-hidden="true"><use href="#i-panel"/></svg></span></div>
+          <div class="sb-brand"><svg width="30" height="30" aria-hidden="true"><use href="#cleo-mark"/></svg>Cleo<span class="fold"><svg class="i" aria-hidden="true"><use href="#i-panel"/></svg></span></div>
           <a href="#c-sidebar" class="on"><svg class="i" aria-hidden="true"><use href="#i-home"/></svg>Home</a>
           <a href="#c-sidebar"><svg class="i" aria-hidden="true"><use href="#i-inbox"/></svg>Inbox<span class="count accent">6</span></a>
           <a href="#c-sidebar"><svg class="i" aria-hidden="true"><use href="#i-phone"/></svg>Calls</a>
@@ -1331,7 +1513,7 @@ table.t tbody tr.sel { background: var(--accent-soft); }
           <div class="me"><div class="av sm c3">AL<span class="st"></span></div><div><b>Alex Lin</b><span>Service manager</span></div></div>
         </nav>
         <nav class="sidebar mini" aria-label="Example collapsed navigation">
-          <div class="sb-brand" style="padding:4px 0 14px"><svg width="26" height="26" aria-hidden="true"><use href="#cleo-mark"/></svg></div>
+          <div class="sb-brand" style="padding:4px 0 14px"><svg width="30" height="30" aria-hidden="true"><use href="#cleo-mark"/></svg></div>
           <a href="#c-sidebar" class="on" aria-label="Home"><svg class="i" aria-hidden="true"><use href="#i-home"/></svg></a><a href="#c-sidebar" aria-label="Inbox"><svg class="i" aria-hidden="true"><use href="#i-inbox"/></svg><span class="count accent">6</span></a><a href="#c-sidebar" aria-label="Calls"><svg class="i" aria-hidden="true"><use href="#i-phone"/></svg></a><a href="#c-sidebar" aria-label="Tasks"><svg class="i" aria-hidden="true"><use href="#i-tasks"/></svg><span class="count">14</span></a><a href="#c-sidebar" aria-label="Appointments"><svg class="i" aria-hidden="true"><use href="#i-cal"/></svg></a><a href="#c-sidebar" aria-label="Campaigns"><svg class="i" aria-hidden="true"><use href="#i-mega"/></svg></a><a href="#c-sidebar" aria-label="Customers"><svg class="i" aria-hidden="true"><use href="#i-users"/></svg></a><a href="#c-sidebar" aria-label="Reports"><svg class="i" aria-hidden="true"><use href="#i-chart"/></svg></a><a href="#c-sidebar" aria-label="Settings"><svg class="i" aria-hidden="true"><use href="#i-gear"/></svg></a>
         </nav>
         <div class="stack" style="align-self:center"><span class="tip rt">Tasks · 14 open</span><span class="cap">Collapsed items show a tooltip on hover.</span></div>
@@ -1429,12 +1611,12 @@ table.t tbody tr.sel { background: var(--accent-soft); }
         <div class="tbl-wrap"><table class="t">
           <thead><tr><th style="width:36px"><span class="box mixed" style="display:inline-grid"></span></th><th class="sorted"><span class="sort">Caller <svg class="i sm" aria-hidden="true"><use href="#i-chev-d"/></svg></span></th><th>Intent</th><th>Outcome</th><th>Department</th><th>Sentiment</th><th class="num"><span class="sort">Duration <svg class="i sm" aria-hidden="true"><use href="#i-sort"/></svg></span></th><th class="num"><span class="sort">Time <svg class="i sm" aria-hidden="true"><use href="#i-sort"/></svg></span></th><th></th></tr></thead>
           <tbody>
-            <tr class="sel"><td><span class="box on"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg></span></td><td class="who"><b>Maria Gonzales</b><span>(555) 014-2290 · 3rd call</span></td><td>Book oil change</td><td><span class="pill success"><svg class="i sm" aria-hidden="true"><use href="#i-check"/></svg>Booked</span></td><td><span class="dept" style="--c:var(--dept-service)">Service</span></td><td><span class="sentiment"><i><b style="--p:82%"></b></i>Positive</span></td><td class="num">2:41</td><td class="num">9:14 AM</td><td><div class="act"><button class="btn ghost icon sm" aria-label="Play"><svg class="i sm" aria-hidden="true"><use href="#i-play"/></svg></button><button class="btn ghost icon sm" aria-label="More"><svg class="i sm" aria-hidden="true"><use href="#i-more"/></svg></button></div></td></tr>
-            <tr class="sel"><td><span class="box on"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg></span></td><td class="who"><b>Unknown caller</b><span>(555) 019-7731</span></td><td>Recall question</td><td><span class="pill warning"><svg class="i sm" aria-hidden="true"><use href="#i-hand"/></svg>Needs a human</span></td><td><span class="dept" style="--c:var(--dept-service)">Service</span></td><td><span class="sentiment"><i><b style="--p:44%"></b></i>Neutral</span></td><td class="num">4:02</td><td class="num">9:02 AM</td><td><div class="act"><button class="btn ghost icon sm" aria-label="Play"><svg class="i sm" aria-hidden="true"><use href="#i-play"/></svg></button><button class="btn ghost icon sm" aria-label="More"><svg class="i sm" aria-hidden="true"><use href="#i-more"/></svg></button></div></td></tr>
-            <tr><td><span class="box"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg></span></td><td class="who"><b>James Okafor</b><span>(555) 011-4408</span></td><td>Vehicle status</td><td><span class="pill"><svg class="i sm" aria-hidden="true"><use href="#i-phone-fwd"/></svg>Transferred</span></td><td><span class="dept" style="--c:var(--dept-service)">Service</span></td><td><span class="sentiment"><i><b style="--p:58%"></b></i>Neutral</span></td><td class="num">1:15</td><td class="num">8:47 AM</td><td><div class="act"><button class="btn ghost icon sm" aria-label="Play"><svg class="i sm" aria-hidden="true"><use href="#i-play"/></svg></button><button class="btn ghost icon sm" aria-label="More"><svg class="i sm" aria-hidden="true"><use href="#i-more"/></svg></button></div></td></tr>
-            <tr><td><span class="box"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg></span></td><td class="who"><b>Linda Park</b><span>(555) 016-3125</span></td><td>Parts availability</td><td><span class="pill ai"><svg width="12" height="12" aria-hidden="true" style="flex:none"><use href="#cleo-mark"/></svg>Resolved by Cleo</span></td><td><span class="dept" style="--c:var(--dept-parts)">Parts</span></td><td><span class="sentiment"><i><b style="--p:74%"></b></i>Positive</span></td><td class="num">3:20</td><td class="num">8:31 AM</td><td><div class="act"><button class="btn ghost icon sm" aria-label="Play"><svg class="i sm" aria-hidden="true"><use href="#i-play"/></svg></button><button class="btn ghost icon sm" aria-label="More"><svg class="i sm" aria-hidden="true"><use href="#i-more"/></svg></button></div></td></tr>
+            <tr class="sel"><td><span class="box on"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg></span></td><td class="who"><b>Maria Gonzales</b><span>(555) 014-2290 · 3rd call</span></td><td>Book oil change</td><td><span class="pill success"><svg class="i sm" aria-hidden="true"><use href="#i-check"/></svg>Booked</span></td><td><span class="dept"><svg class="i sm" aria-hidden="true"><use href="#i-wrench"/></svg>Service</span></td><td><span class="sentiment"><i><b style="--p:82%"></b></i>Positive</span></td><td class="num">2:41</td><td class="num">9:14 AM</td><td><div class="act"><button class="btn ghost icon sm" aria-label="Play"><svg class="i sm" aria-hidden="true"><use href="#i-play"/></svg></button><button class="btn ghost icon sm" aria-label="More"><svg class="i sm" aria-hidden="true"><use href="#i-more"/></svg></button></div></td></tr>
+            <tr class="sel"><td><span class="box on"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg></span></td><td class="who"><b>Unknown caller</b><span>(555) 019-7731</span></td><td>Recall question</td><td><span class="pill warning"><svg class="i sm" aria-hidden="true"><use href="#i-hand"/></svg>Needs a human</span></td><td><span class="dept"><svg class="i sm" aria-hidden="true"><use href="#i-wrench"/></svg>Service</span></td><td><span class="sentiment"><i><b style="--p:44%"></b></i>Neutral</span></td><td class="num">4:02</td><td class="num">9:02 AM</td><td><div class="act"><button class="btn ghost icon sm" aria-label="Play"><svg class="i sm" aria-hidden="true"><use href="#i-play"/></svg></button><button class="btn ghost icon sm" aria-label="More"><svg class="i sm" aria-hidden="true"><use href="#i-more"/></svg></button></div></td></tr>
+            <tr><td><span class="box"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg></span></td><td class="who"><b>James Okafor</b><span>(555) 011-4408</span></td><td>Vehicle status</td><td><span class="pill"><svg class="i sm" aria-hidden="true"><use href="#i-phone-fwd"/></svg>Transferred</span></td><td><span class="dept"><svg class="i sm" aria-hidden="true"><use href="#i-wrench"/></svg>Service</span></td><td><span class="sentiment"><i><b style="--p:58%"></b></i>Neutral</span></td><td class="num">1:15</td><td class="num">8:47 AM</td><td><div class="act"><button class="btn ghost icon sm" aria-label="Play"><svg class="i sm" aria-hidden="true"><use href="#i-play"/></svg></button><button class="btn ghost icon sm" aria-label="More"><svg class="i sm" aria-hidden="true"><use href="#i-more"/></svg></button></div></td></tr>
+            <tr><td><span class="box"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg></span></td><td class="who"><b>Linda Park</b><span>(555) 016-3125</span></td><td>Parts availability</td><td><span class="pill ai"><svg width="14" height="14" aria-hidden="true" style="flex:none"><use href="#cleo-mark"/></svg>Resolved by Cleo</span></td><td><span class="dept"><svg class="i sm" aria-hidden="true"><use href="#i-box"/></svg>Parts</span></td><td><span class="sentiment"><i><b style="--p:74%"></b></i>Positive</span></td><td class="num">3:20</td><td class="num">8:31 AM</td><td><div class="act"><button class="btn ghost icon sm" aria-label="Play"><svg class="i sm" aria-hidden="true"><use href="#i-play"/></svg></button><button class="btn ghost icon sm" aria-label="More"><svg class="i sm" aria-hidden="true"><use href="#i-more"/></svg></button></div></td></tr>
             <tr class="exp"><td colspan="9"><div class="kv"><div><span>Summary</span><b>Asked whether the Highlander recall part is in stock; Cleo confirmed and texted a booking link.</b></div><div><span>Vehicle</span><b>2021 Toyota Highlander</b></div><div><span>Follow-up</span><b>None needed</b></div></div></td></tr>
-            <tr><td><span class="box"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg></span></td><td class="who"><b>Robert Chen</b><span>(555) 012-8890 · after hours</span></td><td>Reschedule</td><td><span class="pill danger"><svg class="i sm" aria-hidden="true"><use href="#i-warn"/></svg>Dropped</span></td><td><span class="dept" style="--c:var(--dept-service)">Service</span></td><td><span class="sentiment"><i><b style="--p:22%"></b></i>Negative</span></td><td class="num">0:38</td><td class="num">Oct 7</td><td><div class="act"><button class="btn ghost icon sm" aria-label="Play"><svg class="i sm" aria-hidden="true"><use href="#i-play"/></svg></button><button class="btn ghost icon sm" aria-label="More"><svg class="i sm" aria-hidden="true"><use href="#i-more"/></svg></button></div></td></tr>
+            <tr><td><span class="box"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg></span></td><td class="who"><b>Robert Chen</b><span>(555) 012-8890 · after hours</span></td><td>Reschedule</td><td><span class="pill danger"><svg class="i sm" aria-hidden="true"><use href="#i-warn"/></svg>Dropped</span></td><td><span class="dept"><svg class="i sm" aria-hidden="true"><use href="#i-wrench"/></svg>Service</span></td><td><span class="sentiment"><i><b style="--p:22%"></b></i>Negative</span></td><td class="num">0:38</td><td class="num">Oct 7</td><td><div class="act"><button class="btn ghost icon sm" aria-label="Play"><svg class="i sm" aria-hidden="true"><use href="#i-play"/></svg></button><button class="btn ghost icon sm" aria-label="More"><svg class="i sm" aria-hidden="true"><use href="#i-more"/></svg></button></div></td></tr>
             <tr><td><span class="skel" style="display:block;width:18px;height:18px;border-radius:5px"></span></td><td><div class="skel" style="width:140px;margin-bottom:6px"></div><div class="skel" style="width:90px;height:8px"></div></td><td><div class="skel" style="width:100px"></div></td><td><div class="skel" style="width:70px;height:20px;border-radius:999px"></div></td><td><div class="skel" style="width:60px"></div></td><td><div class="skel" style="width:80px"></div></td><td><div class="skel" style="width:32px;margin-left:auto"></div></td><td><div class="skel" style="width:48px;margin-left:auto"></div></td><td></td></tr>
           </tbody></table></div>
         <span class="cap">Shown: selected rows, hover actions, an expanded row, and a loading row.</span>
@@ -1529,7 +1711,7 @@ table.t tbody tr.sel { background: var(--accent-soft); }
     </article>
 
     <article class="plate wide" id="c-calendar" data-c>
-      <header><h3>Schedule view</h3><p>Week view of appointments by advisor or bay; colour shows the department, the left edge marks Cleo-booked visits.</p></header>
+      <header><h3>Schedule view</h3><p>Week view of appointments by advisor or bay. Visits Cleo booked carry the mark and a blue edge; everything else stays neutral.</p></header>
       <div class="spec"><div class="week-scroll"><div class="week" id="week"></div></div></div>
     </article>
 
@@ -1557,7 +1739,7 @@ table.t tbody tr.sel { background: var(--accent-soft); }
   <div class="plates">
 
     <article class="plate wide" id="c-player" data-c>
-      <header><h3>Call recording player <span class="dom">Cleo</span></h3><p>Waveform scrubber with played portion, speed, volume and download. Clicking a transcript line seeks here; the compact form sits inside thread events and table rows.</p></header>
+      <header><h3>Call recording player <span class="dom">Cleo</span></h3><p>Slim waveform scrubber with played portion, speed, volume and download. Clicking a transcript line seeks here; the compact form sits inside thread events and table rows.</p></header>
       <div class="spec col">
         <div class="player" id="player1"><button class="play" data-play aria-label="Play recording"><svg class="i" aria-hidden="true"><use href="#i-play"/></svg></button><svg class="wave" data-wave="64" data-progress=".38" viewBox="0 0 600 40" preserveAspectRatio="none"></svg><time><b class="tnum">1:02</b> / 2:41</time><div class="ctrl"><button class="btn ghost sm"><span class="speed">1.5×</span></button><button class="btn ghost icon sm" aria-label="Volume"><svg class="i sm" aria-hidden="true"><use href="#i-volume"/></svg></button><button class="btn ghost icon sm" aria-label="Download recording"><svg class="i sm" aria-hidden="true"><use href="#i-download"/></svg></button></div></div>
         <div class="row"><div class="player compact" style="width:auto;flex:1;max-width:420px"><button class="play" data-play aria-label="Play recording"><svg class="i" aria-hidden="true"><use href="#i-play"/></svg></button><svg class="wave" data-wave="40" data-progress="0" viewBox="0 0 300 26" preserveAspectRatio="none"></svg><time class="tnum">0:00 / 0:38</time></div>
@@ -1569,18 +1751,18 @@ table.t tbody tr.sel { background: var(--accent-soft); }
       <header><h3>Transcript <span class="dom">Cleo</span></h3><p>Speaker, timestamp and text. The line being played is highlighted; search matches are marked; actions Cleo took appear inline where they happened.</p></header>
       <div class="spec"><div class="transcript">
         <div class="tr-head"><div class="input pill" style="width:220px;height:32px"><svg class="i sm" aria-hidden="true"><use href="#i-search"/></svg><input value="Thursday" aria-label="Search transcript"><span class="cap">1 of 2</span></div><div class="row tight"><button class="btn ghost sm"><svg class="i sm" aria-hidden="true"><use href="#i-copy"/></svg>Copy</button><span class="switch sm on" data-toggle><span class="tr"></span>Follow playback</span></div></div>
-        <div class="tline"><time>0:00</time><div class="av sm ai"><svg class="mark-white" aria-hidden="true"><use href="#cleo-mark"/></svg></div><div><span class="who">Cleo</span>Thanks for calling Riverside Toyota service, this is Cleo. How can I help?</div></div>
+        <div class="tline"><time>0:00</time><div class="av sm ai"><svg class="mark-mono" aria-hidden="true"><use href="#cleo-mark"/></svg></div><div><span class="who">Cleo</span>Thanks for calling Riverside Toyota service, this is Cleo. How can I help?</div></div>
         <div class="tline"><time>0:06</time><div class="av sm cust">MG</div><div><span class="who">Maria Gonzales</span>Hi, I need an oil change for my RAV4, ideally <mark>Thursday</mark> morning.</div></div>
-        <div class="tline now"><time>0:14</time><div class="av sm ai"><svg class="mark-white" aria-hidden="true"><use href="#cleo-mark"/></svg></div><div><span class="who">Cleo</span>I have <mark>Thursday</mark> at 8:00 or 9:30 AM with Dan. Would 8:00 work? It takes about 45 minutes.<div class="tag-event"><span class="pill ai"><svg class="i sm" aria-hidden="true"><use href="#i-cal"/></svg>Checked advisor availability</span></div></div></div>
+        <div class="tline now"><time>0:14</time><div class="av sm ai"><svg class="mark-mono" aria-hidden="true"><use href="#cleo-mark"/></svg></div><div><span class="who">Cleo</span>I have <mark>Thursday</mark> at 8:00 or 9:30 AM with Dan. Would 8:00 work? It takes about 45 minutes.<div class="tag-event"><span class="pill ai"><svg class="i sm" aria-hidden="true"><use href="#i-cal"/></svg>Checked advisor availability</span></div></div></div>
         <div class="tline"><time>0:23</time><div class="av sm cust">MG</div><div><span class="who">Maria Gonzales</span>8 works. Can you also check the tire pressure light?</div></div>
-        <div class="tline"><time>0:29</time><div class="av sm ai"><svg class="mark-white" aria-hidden="true"><use href="#cleo-mark"/></svg></div><div><span class="who">Cleo</span>Done. You're booked for Thursday at 8:00 AM, and I've added a tire pressure check. I'll text you a confirmation.<div class="tag-event"><span class="pill success"><svg class="i sm" aria-hidden="true"><use href="#i-check"/></svg>Appointment booked</span><span class="pill"><svg class="i sm" aria-hidden="true"><use href="#i-msg"/></svg>Confirmation texted</span></div></div></div>
+        <div class="tline"><time>0:29</time><div class="av sm ai"><svg class="mark-mono" aria-hidden="true"><use href="#cleo-mark"/></svg></div><div><span class="who">Cleo</span>Done. You're booked for Thursday at 8:00 AM, and I've added a tire pressure check. I'll text you a confirmation.<div class="tag-event"><span class="pill success"><svg class="i sm" aria-hidden="true"><use href="#i-check"/></svg>Appointment booked</span><span class="pill"><svg class="i sm" aria-hidden="true"><use href="#i-msg"/></svg>Confirmation texted</span></div></div></div>
       </div></div>
     </article>
 
     <article class="plate" id="c-summary" data-c>
       <header><h3>Call summary <span class="dom">Cleo</span></h3><p>Cleo's write-up of the call: what happened, the outcome, what's left to do. Always labelled as AI-generated, with a way to flag it.</p></header>
       <div class="spec col"><div class="card flat summary">
-        <div class="card-head"><span class="ai-label"><svg width="16" height="16" aria-hidden="true" style="flex:none"><use href="#cleo-mark"/></svg>Summary by Cleo</span><div class="row tight"><span class="pill success"><svg class="i sm" aria-hidden="true"><use href="#i-check"/></svg>Booked</span><span class="sentiment"><i><b style="--p:82%"></b></i>Positive</span></div></div>
+        <div class="card-head"><span class="ai-label"><svg width="18" height="18" aria-hidden="true" style="flex:none"><use href="#cleo-mark"/></svg>Summary by Cleo</span><div class="row tight"><span class="pill success"><svg class="i sm" aria-hidden="true"><use href="#i-check"/></svg>Booked</span><span class="sentiment"><i><b style="--p:82%"></b></i>Positive</span></div></div>
         <ol><li>Customer called to book an oil change for a 2022 RAV4.</li><li>Booked Thursday Oct 10 at 8:00 AM with Dan Whitaker; added a tire pressure check.</li><li>Confirmation texted to (555) 014-2290.</li></ol>
         <div class="row" style="justify-content:space-between;margin-top:14px;padding-top:12px;border-top:1px solid var(--line)"><div class="row tight"><span class="chip sm">Oil change</span><span class="chip sm">TPMS</span></div><div class="row tight"><span class="cap">Accurate?</span><button class="btn ghost icon sm" aria-label="Yes"><svg class="i sm" aria-hidden="true"><use href="#i-check"/></svg></button><button class="btn ghost icon sm" aria-label="No"><svg class="i sm" aria-hidden="true"><use href="#i-x"/></svg></button></div></div>
       </div></div>
@@ -1590,7 +1772,7 @@ table.t tbody tr.sel { background: var(--accent-soft); }
       <header><h3>Call path <span class="dom">Cleo</span></h3><p>How a call moved: who answered, where it was transferred, and whether anyone picked up.</p></header>
       <div class="spec"><div class="tl">
         <div><span class="n"><svg class="i sm" aria-hidden="true"><use href="#i-phone-in"/></svg></span><div><b>Call received</b><p>Main service line</p></div><time>9:02:10</time></div>
-        <div><span class="n ai"><svg width="16" height="16" aria-hidden="true" style="flex:none"><use href="#cleo-mark"/></svg></span><div><b>Cleo answered</b><p>Customer asked about a recall part</p></div><time>9:02:11</time></div>
+        <div><span class="n ai"><svg width="18" height="18" aria-hidden="true" style="flex:none"><use href="#cleo-mark"/></svg></span><div><b>Cleo answered</b><p>Customer asked about a recall part</p></div><time>9:02:11</time></div>
         <div><span class="n"><svg class="i sm" aria-hidden="true"><use href="#i-phone-fwd"/></svg></span><div><b>Transferred to Parts desk</b><p>Rang 4 times</p></div><time>9:05:40</time></div>
         <div><span class="n warn"><svg class="i sm" aria-hidden="true"><use href="#i-hand"/></svg></span><div><b>No answer, back to Cleo</b><p>Cleo took a message and flagged it</p></div><time>9:06:12</time></div>
       </div></div>
@@ -1619,7 +1801,7 @@ table.t tbody tr.sel { background: var(--accent-soft); }
     <article class="plate" id="c-ask" data-c>
       <header><h3>Approval request <span class="dom">Cleo</span></h3><p>When Cleo needs a person's decision before acting, it asks in a small card with the options it can take, plus "something else".</p></header>
       <div class="spec well" style="justify-content:center"><div class="ask">
-        <div class="who"><svg width="12" height="12" aria-hidden="true" style="flex:none"><use href="#cleo-mark"/></svg>Cleo · on a call with Robert Chen</div>
+        <div class="who"><svg width="14" height="14" aria-hidden="true" style="flex:none"><use href="#cleo-mark"/></svg>Cleo · on a call with Robert Chen</div>
         <div class="q"><span>Customer is upset about a repeat brake noise. Offer a goodwill discount?</span><button class="btn ghost icon sm" aria-label="Dismiss"><svg class="i sm" aria-hidden="true"><use href="#i-x"/></svg></button></div>
         <label class="opt on check radio" data-radio="ask"><span class="box"></span>Waive the diagnostic fee ($149)</label>
         <label class="opt check radio" data-radio="ask"><span class="box"></span>10% off the repair</label>
@@ -1650,14 +1832,14 @@ table.t tbody tr.sel { background: var(--accent-soft); }
       </div></div>
     </article>
 <article class="plate wide" id="c-thread" data-c>
-      <header><h3>Message thread <span class="dom">Cleo</span></h3><p>Customer on the left in white; Cleo on the right in a tinted bubble labelled with the mark; staff on the right in solid blue; internal notes centred and yellow, never sent. Calls and appointments appear as event cards in the flow.</p></header>
+      <header><h3>Message thread <span class="dom">Cleo</span></h3><p>Customer on the left in white; Cleo on the right in a tinted bubble labelled with the mark; staff on the right in solid blue; notes centred and yellow, never sent. Calls and appointments appear as event cards in the flow.</p></header>
       <div class="spec"><div class="thread">
         <div class="divider">Tuesday, Oct 8</div>
         <div class="event"><div class="eh"><span class="ic call"><svg class="i sm" aria-hidden="true"><use href="#i-phone-in"/></svg></span><div><b>Inbound call · 2:41</b><span>Answered by Cleo · 9:14 AM</span></div><span class="end pill success"><svg class="i sm" aria-hidden="true"><use href="#i-check"/></svg>Booked</span></div><div class="player compact" style="border:0;padding:0"><button class="play" data-play aria-label="Play recording"><svg class="i" aria-hidden="true"><use href="#i-play"/></svg></button><svg class="wave" data-wave="56" data-progress="0" viewBox="0 0 400 26" preserveAspectRatio="none"></svg><time class="tnum">2:41</time></div><blockquote>"8 works. Can you also check the tire pressure light?"</blockquote></div>
-        <div class="msg ai"><div class="bub">Hi Maria, you're booked for Thu Oct 10 at 8:00 AM with Dan for an oil change and tire pressure check. Reply C to cancel.</div><div class="meta"><svg width="12" height="12" aria-hidden="true" style="flex:none"><use href="#cleo-mark"/></svg>Cleo · 9:16 AM · Delivered</div></div>
+        <div class="msg ai"><div class="bub">Hi Maria, you're booked for Thu Oct 10 at 8:00 AM with Dan for an oil change and tire pressure check. Reply C to cancel.</div><div class="meta"><svg width="14" height="14" aria-hidden="true" style="flex:none"><use href="#cleo-mark"/></svg>Cleo · 9:16 AM · Delivered</div></div>
         <div class="msg in"><div class="bub">Thank you! Is there a shuttle?</div><div class="meta">9:21 AM</div></div>
-        <div class="msg ai"><div class="bub">Yes, we run a shuttle within 10 miles every 30 minutes. Want me to reserve a seat?</div><div class="meta"><svg width="12" height="12" aria-hidden="true" style="flex:none"><use href="#cleo-mark"/></svg>Cleo · 9:21 AM</div></div>
-        <div class="msg note"><div class="bub"><b><svg class="i sm" aria-hidden="true"><use href="#i-lock"/></svg>INTERNAL NOTE · ALEX LIN</b>She's a fleet customer, give her the fleet rate. @Dan</div></div>
+        <div class="msg ai"><div class="bub">Yes, we run a shuttle within 10 miles every 30 minutes. Want me to reserve a seat?</div><div class="meta"><svg width="14" height="14" aria-hidden="true" style="flex:none"><use href="#cleo-mark"/></svg>Cleo · 9:21 AM</div></div>
+        <div class="msg note"><div class="bub"><b>NOTE · ALEX LIN</b>She's a fleet customer, give her the fleet rate. @Dan</div></div>
         <div class="sys"><svg class="i sm" aria-hidden="true"><use href="#i-user"/></svg>Dan Whitaker took over from Cleo · 9:30 AM</div>
         <div class="msg staff"><div class="bub">Hi Maria, Dan here. I've applied our fleet pricing to Thursday's visit, see you then!</div><div class="meta">Dan Whitaker · 9:31 AM · Read</div></div>
         <div class="event"><div class="eh"><span class="ic ok"><svg class="i sm" aria-hidden="true"><use href="#i-cal"/></svg></span><div><b>Appointment · Thu Oct 10, 8:00 AM</b><span>Oil change, TPMS check · Dan Whitaker · Bay 4</span></div><button class="end btn secondary sm">Open</button></div></div>
@@ -1675,7 +1857,7 @@ table.t tbody tr.sel { background: var(--accent-soft); }
     <article class="plate" id="c-composer" data-c>
       <header><h3>Composer <span class="dom">Cleo</span></h3><p>While Cleo is handling a conversation, the composer says so and offers to take over, so nobody talks over the AI by accident.</p></header>
       <div class="spec col">
-        <div class="composer locked"><div class="ai-bar"><svg class="mark turn" width="16" height="16"><use href="#cleo-mark"/></svg><span><b>Cleo is handling this conversation.</b> Your message will pause Cleo.</span><button class="btn secondary sm">Take over</button></div><div class="area"><span class="ph">Write a reply…</span></div><div class="bar"><span class="chan"><svg class="i sm" aria-hidden="true"><use href="#i-msg"/></svg>SMS</span><div class="right"><button class="btn primary sm" disabled><svg class="i sm" aria-hidden="true"><use href="#i-send"/></svg>Send</button></div></div></div>
+        <div class="composer locked"><div class="ai-bar"><span data-cm="trace" data-size="16"></span><span><b>Cleo is handling this conversation.</b> Your message will pause Cleo.</span><button class="btn secondary sm">Take over</button></div><div class="area"><span class="ph">Write a reply…</span></div><div class="bar"><span class="chan"><svg class="i sm" aria-hidden="true"><use href="#i-msg"/></svg>SMS</span><div class="right"><button class="btn primary sm" disabled><svg class="i sm" aria-hidden="true"><use href="#i-send"/></svg>Send</button></div></div></div>
         <div class="composer"><div class="area">Hi Maria, your RAV4 is ready for pickup. Total is <span class="var">ro_total</span>, payable at the service desk.</div><div class="bar"><button class="btn ghost icon sm" aria-label="Attach"><svg class="i sm" aria-hidden="true"><use href="#i-clip"/></svg></button><button class="btn ghost sm"><svg class="i sm" aria-hidden="true"><use href="#i-spark"/></svg>Rewrite</button><button class="btn ghost sm">{ } Insert</button><div class="right"><span class="cap tnum">96 / 160</span><div class="split"><button class="btn primary sm"><svg class="i sm" aria-hidden="true"><use href="#i-send"/></svg>Send</button><button class="btn primary sm" aria-label="Schedule"><svg class="i sm" aria-hidden="true"><use href="#i-chev-d"/></svg></button></div></div></div></div>
       </div>
     </article>
@@ -1685,7 +1867,7 @@ table.t tbody tr.sel { background: var(--accent-soft); }
       <div class="spec"><div class="convo">
         <div class="crow unread on"><div class="av cust">MG</div><div style="min-width:0"><b>Maria Gonzales <svg class="i sm" aria-hidden="true"><use href="#i-msg"/></svg></b><p>Thank you! Is there a shuttle?</p></div><div class="r"><span>9:21</span><span class="ud"></span></div></div>
         <div class="crow unread"><div class="av cust"><svg class="i sm" aria-hidden="true"><use href="#i-user"/></svg></div><div style="min-width:0"><b>(555) 019-7731 <svg class="i sm" aria-hidden="true"><use href="#i-phone"/></svg></b><p>Missed transfer to Parts, left a message</p></div><div class="r"><span>9:06</span><span class="pill warning">Needs you</span></div></div>
-        <div class="crow"><div class="av cust">JO</div><div style="min-width:0"><b>James Okafor <svg class="i sm" aria-hidden="true"><use href="#i-msg"/></svg></b><p><span style="color:var(--ai)">Cleo:</span> Your Camry is in bay 2, about an hour left.</p></div><div class="r"><span>8:52</span><svg width="12" height="12" aria-hidden="true" style="flex:none"><use href="#cleo-mark"/></svg></div></div>
+        <div class="crow"><div class="av cust">JO</div><div style="min-width:0"><b>James Okafor <svg class="i sm" aria-hidden="true"><use href="#i-msg"/></svg></b><p><span style="color:var(--ai)">Cleo:</span> Your Camry is in bay 2, about an hour left.</p></div><div class="r"><span>8:52</span><svg width="14" height="14" aria-hidden="true" style="flex:none"><use href="#cleo-mark"/></svg></div></div>
         <div class="crow"><div class="av cust">LP</div><div style="min-width:0"><b>Linda Park <svg class="i sm" aria-hidden="true"><use href="#i-phone"/></svg></b><p><span style="color:var(--ink-2)">Dan:</span> Part arrives tomorrow, I'll call you.</p></div><div class="r"><span>Yesterday</span><div class="av xs">DW</div></div></div>
       </div></div>
     </article>
@@ -1719,7 +1901,7 @@ table.t tbody tr.sel { background: var(--accent-soft); }
     <article class="plate wide" id="c-livebar" data-c>
       <header><h3>Live call bar <span class="dom">Cleo</span></h3><p>Floats at the bottom while a call is in progress, so staff can listen in or take over from any page.</p></header>
       <div class="spec col">
-        <div class="livebar"><span class="pulse"></span><span><b>Cleo is on a call</b> <span class="muted">· Robert Chen · 1:12</span></span><span class="eq"><i></i><i></i><i></i><i></i></span><button class="btn ghost sm"><svg class="i sm" aria-hidden="true"><use href="#i-headset"/></svg>Listen</button><button class="btn secondary sm">Take over</button><button class="btn ghost icon sm" aria-label="Minimise"><svg class="i sm" aria-hidden="true"><use href="#i-chev-d"/></svg></button></div>
+        <div class="livebar"><span data-cm="trace" data-size="20"></span><span><b>Cleo is on a call</b> <span class="muted">· Robert Chen · 1:12</span></span><span class="eq"><i></i><i></i><i></i><i></i></span><button class="btn ghost sm"><svg class="i sm" aria-hidden="true"><use href="#i-headset"/></svg>Listen</button><button class="btn secondary sm">Take over</button><button class="btn ghost icon sm" aria-label="Minimise"><svg class="i sm" aria-hidden="true"><use href="#i-chev-d"/></svg></button></div>
         <div class="livebar warn"><span class="pulse"></span><span><b>Transfer waiting</b> · Parts desk · ringing 0:18</span><button class="btn secondary sm">Pick up</button></div>
       </div>
     </article>
@@ -1764,7 +1946,7 @@ table.t tbody tr.sel { background: var(--accent-soft); }
         <div class="sh"><div class="av cust">MG</div><div><h6>Maria Gonzales</h6><span class="tnum">Inbound call · Oct 8, 9:14 AM · 2:41</span></div><div class="end"><button class="btn ghost icon sm" aria-label="Previous"><svg class="i sm" aria-hidden="true"><use href="#i-chev-l"/></svg></button><button class="btn ghost icon sm" aria-label="Next"><svg class="i sm" aria-hidden="true"><use href="#i-chev-r"/></svg></button><button class="btn ghost icon sm" aria-label="Close"><svg class="i sm" aria-hidden="true"><use href="#i-x"/></svg></button></div></div>
         <div style="padding:0 16px"><div class="seg full" data-seg><button class="on">Details</button><button>Customer</button><button>Conversation</button></div></div>
         <div class="sb"><div class="player compact" style="border-radius:var(--r-lg)"><button class="play" data-play aria-label="Play recording"><svg class="i" aria-hidden="true"><use href="#i-play"/></svg></button><svg class="wave" data-wave="44" data-progress=".2" viewBox="0 0 300 26" preserveAspectRatio="none"></svg><time class="tnum">0:32 / 2:41</time></div>
-          <div class="kv"><div><span>Intent</span><b>Book oil change</b></div><div><span>Outcome</span><b><span class="pill success">Booked</span></b></div><div><span>Department</span><b><span class="dept" style="--c:var(--dept-service)">Service</span></b></div><div><span>Handled by</span><b>Cleo</b></div></div>
+          <div class="kv"><div><span>Intent</span><b>Book oil change</b></div><div><span>Outcome</span><b><span class="pill success">Booked</span></b></div><div><span>Department</span><b><span class="dept"><svg class="i sm" aria-hidden="true"><use href="#i-wrench"/></svg>Service</span></b></div><div><span>Handled by</span><b>Cleo</b></div></div>
         </div>
         <div class="sf"><button class="btn ghost"><svg class="i sm" aria-hidden="true"><use href="#i-ext"/></svg>Full page</button><button class="btn primary"><svg class="i sm" aria-hidden="true"><use href="#i-msg"/></svg>Message</button></div>
       </div></div></div>
@@ -1810,7 +1992,7 @@ table.t tbody tr.sel { background: var(--accent-soft); }
       <div class="spec col">
         <div class="toast"><span class="ic" style="color:var(--success)"><svg class="i" aria-hidden="true"><use href="#i-ok"/></svg></span><div><b>Hours saved</b><p>Cleo uses the new hours from the next call.</p></div><div class="end"><button class="btn ghost icon sm" aria-label="Dismiss"><svg class="i sm" aria-hidden="true"><use href="#i-x"/></svg></button></div></div>
         <div class="toast"><span class="ic" style="color:var(--danger)"><svg class="i" aria-hidden="true"><use href="#i-err"/></svg></span><div><b>Message not sent</b><p>The number can't receive texts. Try calling instead.</p></div><div class="end"><button class="btn secondary sm">Call</button></div></div>
-        <div class="toast dark"><span class="ic"><svg width="16" height="16" class="spin mark-white"><use href="#cleo-mark"/></svg></span><div><b>Exporting 412 calls…</b><p>We'll email you the file.</p></div><div class="end"><button class="btn link" style="font-size:12.5px">Undo</button></div></div>
+        <div class="toast dark"><span class="ic"><span data-cm="trace" data-size="16"></span></span><div><b>Exporting 412 calls…</b><p>We'll email you the file.</p></div><div class="end"><button class="btn link" style="font-size:12.5px">Undo</button></div></div>
       </div>
     </article>
 
@@ -1820,7 +2002,7 @@ table.t tbody tr.sel { background: var(--accent-soft); }
         <div class="callout info"><span class="ic"><svg class="i" aria-hidden="true"><use href="#i-info"/></svg></span><div><b>Cleo learned 3 new answers this week</b><p>Review them in Knowledge.</p></div><div class="end"><button class="btn secondary sm">Review</button></div></div>
         <div class="callout warn"><span class="ic"><svg class="i" aria-hidden="true"><use href="#i-warn"/></svg></span><div><b>Holiday hours not set</b><p>Thanksgiving is in 7 weeks. Callers will hear your regular hours.</p></div></div>
         <div class="callout err"><span class="ic"><svg class="i" aria-hidden="true"><use href="#i-err"/></svg></span><div><b>Scheduler disconnected</b><p>Cleo can't book until it's reconnected.</p></div><div class="end"><button class="btn primary sm">Reconnect</button></div></div>
-        <div class="callout promo"><span class="ic"><svg width="16" height="16" aria-hidden="true" style="flex:none"><use href="#cleo-mark"/></svg></span><div><b>18 customers are due for winter tire changes</b><p>Cleo can text them and book the ones who reply.</p></div><div class="end"><button class="btn accent sm">Set up outreach</button></div></div>
+        <div class="callout promo"><span class="ic"><svg width="18" height="18" aria-hidden="true" style="flex:none"><use href="#cleo-mark"/></svg></span><div><b>18 customers are due for winter tire changes</b><p>Cleo can text them and book the ones who reply.</p></div><div class="end"><button class="btn accent sm">Set up outreach</button></div></div>
       </div>
     </article>
 
@@ -1841,7 +2023,7 @@ table.t tbody tr.sel { background: var(--accent-soft); }
 
 <!-- ============================ 06 PATTERNS ============================ -->
 <section class="group" id="patterns" data-group="Page patterns">
-  <div class="group-head"><span class="gn">06</span><h2>Page patterns</h2><p>How the components combine into screens. Seven layouts cover every page in the dashboard; new pages pick one rather than inventing a layout.</p></div>
+  <div class="group-head"><span class="gn">06</span><h2>Page patterns</h2><p>How the components combine into screens. Nine layouts cover every page in the dashboard; new pages pick one rather than inventing a layout.</p></div>
   <div class="plates">
     <article class="plate" id="p-dashboard" data-p>
       <header><h3>Overview dashboard</h3><p>KPI row, one primary chart, then supporting lists. Home and Reports.</p></header>
@@ -1887,7 +2069,7 @@ table.t tbody tr.sel { background: var(--accent-soft); }
       <div class="spec"><div class="pat" style="grid-template-columns:40px 100px 1fr;height:230px">
         <div class="rail-m"><svg><use href="#cleo-mark"/></svg><i></i><i></i><i></i><i class="on"></i></div>
         <div class="pane" style="gap:8px"><div class="ln" style="width:50%;height:5px"></div><div class="ln"></div><div class="ln d"></div><div class="ln"></div><div class="ln" style="width:50%;height:5px;margin-top:6px"></div><div class="ln"></div><div class="ln"></div></div>
-        <div class="pane"><div class="blk"><div class="ln d" style="width:40%"></div><div class="ln" style="margin-top:8px;width:80%"></div></div><div class="blk" style="display:flex;justify-content:space-between;align-items:center"><div class="ln" style="width:50%"></div><span class="ln a" style="width:26px;height:14px;border-radius:7px;opacity:.8"></span></div><div class="blk" style="display:flex;justify-content:space-between;align-items:center"><div class="ln" style="width:40%"></div><span class="ln" style="width:26px;height:14px;border-radius:7px"></span></div><div class="blk" style="margin-top:auto;display:flex;justify-content:flex-end;gap:6px;box-shadow:var(--e2)"><span class="ln" style="width:40px;height:14px"></span><span class="ln d" style="width:56px;height:14px;background:var(--ink)"></span></div></div>
+        <div class="pane"><div class="blk"><div class="ln d" style="width:40%"></div><div class="ln" style="margin-top:8px;width:80%"></div></div><div class="blk" style="display:flex;justify-content:space-between;align-items:center"><div class="ln" style="width:50%"></div><span class="ln a" style="width:26px;height:14px;border-radius:7px;opacity:.8"></span></div><div class="blk" style="display:flex;justify-content:space-between;align-items:center"><div class="ln" style="width:40%"></div><span class="ln" style="width:26px;height:14px;border-radius:7px"></span></div><div class="blk" style="margin-top:auto;display:flex;justify-content:flex-end;gap:6px;box-shadow:var(--e2)"><span class="ln" style="width:40px;height:14px"></span><span class="ln" style="width:56px;height:14px;background:var(--primary)"></span></div></div>
       </div></div>
     </article>
 
@@ -1896,7 +2078,91 @@ table.t tbody tr.sel { background: var(--accent-soft); }
       <div class="spec"><div class="pat" style="grid-template-columns:1fr;height:230px">
         <div class="pane"><div style="display:flex;align-items:center;gap:6px"><span class="ln a" style="width:14px;height:14px;border-radius:50%;opacity:1"></span><span class="ln a" style="flex:1;height:2px"></span><span class="ln" style="width:14px;height:14px;border-radius:50%;box-shadow:0 0 0 2px var(--accent)"></span><span class="ln" style="flex:1;height:2px"></span><span class="ln" style="width:14px;height:14px;border-radius:50%"></span><span class="ln" style="flex:1;height:2px"></span><span class="ln" style="width:14px;height:14px;border-radius:50%"></span></div>
           <div style="display:grid;grid-template-columns:3fr 2fr;gap:10px;flex:1"><div class="blk" style="display:flex;flex-direction:column;gap:9px"><div class="ln d" style="width:40%"></div><div class="ln" style="height:18px"></div><div class="ln" style="height:40px"></div></div><div class="blk" style="display:flex;flex-direction:column;justify-content:flex-end;gap:6px;background:var(--surface-2)"><div class="ln a" style="width:80%;height:18px;border-radius:9px;margin-left:auto;opacity:.3"></div><div class="ln" style="width:60%;height:18px;border-radius:9px"></div></div></div>
-          <div style="display:flex;justify-content:space-between"><span class="ln" style="width:50px;height:14px"></span><span class="ln d" style="width:64px;height:14px;background:var(--ink)"></span></div></div>
+          <div style="display:flex;justify-content:space-between"><span class="ln" style="width:50px;height:14px"></span><span class="ln" style="width:64px;height:14px;background:var(--primary)"></span></div></div>
+      </div></div>
+    </article>
+
+    <article class="plate wide" id="p-now" data-p>
+      <header><h3>Today (operational home)</h3><p>What needs a person right now, not how the month went. Live calls first, then anything Cleo handed over that nobody has picked up, then what's about to walk in. Items leave the page once someone acts on them.</p></header>
+      <div class="spec col"><div class="ag ov">
+        <div class="ag-top">
+          <div class="ag-id"><div><b>Good morning, Alex</b><span>Thursday, Oct 8 · Riverside Toyota</span></div></div>
+          <div class="row tight"><span class="pill lg"><span data-cm="trace" data-size="13"></span>Cleo is answering 3 lines</span></div>
+        </div>
+
+        <section class="ov-sec">
+          <div class="ov-hd"><b>Live now</b><span class="count">3</span></div>
+          <div class="ov-live">
+            <div class="ov-call warn"><div class="ov-call-top"><span class="pill warning"><svg class="i sm" aria-hidden="true"><use href="#i-hand"/></svg>Wants a person</span><span class="tnum cap">0:48</span></div><b>Robert Chen</b><span>Warranty question on a 2022 RAV4. Cleo is holding.</span><div class="row tight"><button class="btn primary sm"><svg class="i sm" aria-hidden="true"><use href="#i-headset"/></svg>Pick up</button><button class="btn ghost sm">Send to Dan</button></div></div>
+            <div class="ov-call"><div class="ov-call-top"><span class="pill ai"><span data-cm="trace" data-size="12"></span>Cleo</span><span class="eq"><i></i><i></i><i></i><i></i></span><span class="tnum cap">2:13</span></div><b>Maria Gonzales</b><span>Booking an oil change, picking a time.</span><div class="row tight"><button class="btn secondary sm"><svg class="i sm" aria-hidden="true"><use href="#i-headset"/></svg>Listen</button><button class="btn ghost sm">Take over</button></div></div>
+            <div class="ov-call"><div class="ov-call-top"><span class="pill ai"><span data-cm="trace" data-size="12"></span>Cleo</span><span class="eq"><i></i><i></i><i></i><i></i></span><span class="tnum cap">0:21</span></div><b>(555) 017-4410</b><span>New caller. Asking about recall 24TA07.</span><div class="row tight"><button class="btn secondary sm"><svg class="i sm" aria-hidden="true"><use href="#i-headset"/></svg>Listen</button><button class="btn ghost sm">Take over</button></div></div>
+          </div>
+        </section>
+
+        <div class="ov-cols">
+          <section class="ov-sec">
+            <div class="ov-hd"><b>Needs you</b><span class="count danger">4</span><span class="cap" style="margin-left:auto">Oldest first</span></div>
+            <div class="card flat ov-list">
+              <div><span class="ov-ic warn"><svg class="i sm" aria-hidden="true"><use href="#i-phone-in"/></svg></span><div><b>Call back L. Park</b><span>Asked for a price on brakes. Quotes are off, so Cleo promised a callback.</span></div><span class="ov-age tnum">42m</span><div class="ov-act"><button class="btn secondary sm">Call</button><button class="btn ghost icon sm" aria-label="Mark done"><svg class="i sm" aria-hidden="true"><use href="#i-check"/></svg></button></div></div>
+              <div><span class="ov-ic warn"><svg class="i sm" aria-hidden="true"><use href="#i-warn"/></svg></span><div><b>Upset caller, J. Okafor</b><span>Car not ready as promised. Cleo apologised and flagged it.</span></div><span class="ov-age tnum">31m</span><div class="ov-act"><button class="btn secondary sm">Review</button><button class="btn ghost icon sm" aria-label="Mark done"><svg class="i sm" aria-hidden="true"><use href="#i-check"/></svg></button></div></div>
+              <div><span class="ov-ic"><svg class="i sm" aria-hidden="true"><use href="#i-msg"/></svg></span><div><b>Reply waiting, A. Brooks</b><span>"Can I bring it in Saturday instead?" Outside what Cleo can book.</span></div><span class="ov-age tnum">18m</span><div class="ov-act"><button class="btn secondary sm">Reply</button><button class="btn ghost icon sm" aria-label="Mark done"><svg class="i sm" aria-hidden="true"><use href="#i-check"/></svg></button></div></div>
+              <div><span class="ov-ic"><svg class="i sm" aria-hidden="true"><use href="#i-cal"/></svg></span><div><b>Approve a double booking</b><span>Cleo wants to fit K. Ito into Dan's 10:00. Dan is already at capacity.</span></div><span class="ov-age tnum">6m</span><div class="ov-act"><button class="btn secondary sm">Approve</button><button class="btn ghost sm">Decline</button></div></div>
+            </div>
+          </section>
+          <section class="ov-sec">
+            <div class="ov-hd"><b>Arriving soon</b><span class="cap" style="margin-left:auto">Next 2 hours</span></div>
+            <div class="card flat ov-list ov-next">
+              <div><span class="ov-time tnum">9:30</span><div><b>M. Gonzales</b><span>Oil change + TPMS · Dan</span></div><span class="pill success">Confirmed</span></div>
+              <div><span class="ov-time tnum">10:00</span><div><b>R. Chen</b><span>Brake inspection · Priya</span></div><span class="pill warning">No reply</span></div>
+              <div><span class="ov-time tnum">10:30</span><div><b>L. Park</b><span>Recall 24TA07 · Dan</span></div><span class="pill success">Confirmed</span></div>
+            </div>
+            <div class="ov-hd" style="margin-top:var(--s4)"><b>Cleo just handled</b></div>
+            <div class="card flat ov-list ov-feed">
+              <div><svg width="14" height="14" aria-hidden="true"><use href="#cleo-mark"/></svg><span><b>Booked</b> T. Nguyen, 30k service, Fri 8:00</span><span class="ov-age tnum">4m</span></div>
+              <div><svg width="14" height="14" aria-hidden="true"><use href="#cleo-mark"/></svg><span><b>Answered</b> hours and shuttle question</span><span class="ov-age tnum">9m</span></div>
+              <div><svg width="14" height="14" aria-hidden="true"><use href="#cleo-mark"/></svg><span><b>Rescheduled</b> S. Patel to Mon 9:00</span><span class="ov-age tnum">15m</span></div>
+            </div>
+          </section>
+        </div>
+      </div></div>
+    </article>
+
+    <article class="plate wide" id="p-agent" data-p>
+      <header><h3>Agent configuration</h3><p>Where a dealership shapes how Cleo answers. Settings on the left in plain language, a live test on the right, and nothing reaches callers until it's published.</p></header>
+      <div class="spec col"><div class="ag">
+        <div class="ag-top">
+          <div class="ag-id"><svg width="36" height="36" aria-hidden="true"><use href="#cleo-mark"/></svg><div><b>Service line</b><span>Answers (555) 014-2290 · Riverside Toyota</span></div><span class="pill live"><span class="d"></span>Live</span></div>
+          <div class="row tight"><span class="cap">2 unpublished changes</span><button class="btn secondary sm"><svg class="i sm" aria-hidden="true"><use href="#i-phone"/></svg>Test call</button><button class="btn primary sm">Publish</button></div>
+        </div>
+        <div class="tabs" data-tabs><button class="on">Behaviour</button><button>Voice</button><button>Knowledge<span class="count">12</span></button><button>Hours</button><button>Handoffs</button></div>
+        <div class="ag-body">
+          <div class="stack" style="gap:var(--s4)">
+            <div class="card flat"><h5>Greeting</h5><p class="sub">The first thing every caller hears.</p>
+              <div class="input textarea" style="margin-top:12px"><div class="ta">Thanks for calling <span class="var">dealer_name</span> service, this is Cleo. Are you calling about an appointment, or something else?</div><div class="meta"><span>Spoken by Cleo</span><span class="tnum">104 / 300</span></div></div></div>
+            <div class="card flat"><h5>What Cleo can do</h5><p class="sub">Turn a skill off and Cleo offers a callback instead.</p>
+              <div class="ag-list">
+                <div><div><b>Book service appointments</b><span>Into the DMS, with the advisor the customer last saw</span></div><span class="switch on" data-toggle role="switch" aria-checked="true" tabindex="0"><span class="tr"></span></span></div>
+                <div><div><b>Look up open recalls</b><span>By VIN or by the number calling</span></div><span class="switch on" data-toggle role="switch" aria-checked="true" tabindex="0"><span class="tr"></span></span></div>
+                <div><div><b>Quote prices from the service menu</b><span>Off: Cleo says an advisor will confirm the price</span></div><span class="switch" data-toggle role="switch" aria-checked="false" tabindex="0"><span class="tr"></span></span></div>
+                <div class="dis"><div><b>Take payments</b><span>Needs a payment provider. <a class="btn link" href="#p-agent">Set up</a></span></div><span class="switch dis"><span class="tr"></span></span></div>
+              </div></div>
+            <div class="card flat"><h5>Voice and pace</h5>
+              <div class="ag-grid2" style="margin-top:12px">
+                <div class="field" style="max-width:none"><label>Voice</label><div class="input select-trigger"><span class="v">Ava · warm, American English</span><button class="btn ghost icon sm" aria-label="Play sample"><svg class="i sm" aria-hidden="true"><use href="#i-play"/></svg></button><svg class="i" aria-hidden="true"><use href="#i-chev-d"/></svg></div></div>
+                <div class="field" style="max-width:none"><span class="fl">Answer length</span><div class="seg full"><button>Brief</button><button class="on">Balanced</button><button>Detailed</button></div></div>
+              </div></div>
+          </div>
+          <aside class="ag-test">
+            <div class="ag-test-hd"><b>Try it</b><span class="cap">Uses your unpublished changes</span></div>
+            <div class="thread" style="padding:12px;flex:1">
+              <div class="msg in"><div class="bub">Hi, my check engine light just came on.</div></div>
+              <div class="msg ai"><div class="bub">Sorry about that. I can get you in tomorrow at 8:30 with Dan for a diagnostic. Does that work?</div><div class="meta"><svg width="14" height="14" aria-hidden="true" style="flex:none"><use href="#cleo-mark"/></svg>Cleo</div></div>
+              <div class="msg in"><div class="bub">How much is that?</div></div>
+              <div class="msg ai"><div class="bub">Dan will confirm the price when you arrive. Shall I book 8:30?</div><div class="meta"><svg width="14" height="14" aria-hidden="true" style="flex:none"><use href="#cleo-mark"/></svg>Cleo · price quotes are off</div></div>
+            </div>
+            <div class="input" style="margin-top:10px"><input placeholder="Type as the caller…" aria-label="Type as the caller"><svg class="i sm" aria-hidden="true"><use href="#i-send"/></svg></div>
+          </aside>
+        </div>
       </div></div>
     </article>
 
@@ -1910,9 +2176,39 @@ table.t tbody tr.sel { background: var(--accent-soft); }
   </div>
 </section>
 
-<footer class="end-note"><svg width="26" height="26" aria-hidden="true"><use href="#cleo-mark"/></svg>Cleo component palette · v0.2 · built on the Cleo brand kit</footer>
+<footer class="end-note"><svg width="30" height="30" aria-hidden="true"><use href="#cleo-mark"/></svg>Cleo component palette · built on the Cleo brand kit</footer>
 </main>
 </div>
+
+<script>
+(function () {
+  var ARM = {"front": "M26.81,-8.23C22.52,-14.68 16.87,-21.64 11.59,-27.23C6.33,-32.83 0.58,-38.08 -5.53,-42.78C-11.64,-47.47 -18.19,-51.44 -25.13,-54.88C-32.14,-58.35 -39.58,-60.10 -47.31,-60.90C-55.05,-61.69 -63.95,-59.33 -70.96,-55.93C-65.51,-63.43 -58.70,-71.78 -51.97,-78.33C-45.41,-84.73 -34.64,-84.23 -25.66,-82.22C-16.85,-80.25 -8.47,-75.12 -0.64,-70.35C7.24,-65.55 14.31,-59.48 20.94,-53.04C27.60,-46.57 32.94,-39.91 38.78,-32.65C44.04,-26.11 33.38,-14.17 26.81,-8.23Z", "back": "M-78.19,5.72C-82.85,1.53 -88.68,-4.15 -92.65,-9.09C-97.51,-15.13 -96.46,-18.05 -93.52,-24.81C-90.96,-30.70 -87.45,-36.19 -83.75,-41.22C-80.04,-46.27 -75.52,-51.61 -70.96,-55.93L-70.64,-56.17L-70.31,-56.41L-69.98,-56.65L-69.64,-56.89L-69.30,-57.13L-68.96,-57.37L-68.61,-57.61L-68.26,-57.85L-67.91,-58.09L-67.55,-58.33L-67.19,-58.57L-66.83,-58.79L-66.43,-58.94L-66.03,-59.09L-65.63,-59.23L-65.23,-59.37L-64.82,-59.51L-64.41,-59.64L-64.00,-59.77L-63.59,-59.90L-63.18,-60.03L-62.77,-60.15L-62.35,-60.27L-61.94,-60.38L-61.52,-60.50L-61.10,-60.61L-60.68,-60.71L-60.26,-60.81L-59.84,-60.91L-59.42,-61.01L-58.99,-61.10L-58.57,-61.19L-58.15,-61.27L-57.72,-61.35L-57.30,-61.43L-56.87,-61.50L-56.45,-61.57L-56.02,-61.63L-55.60,-61.69L-55.17,-61.74L-54.74,-61.79L-54.32,-61.84L-53.89,-61.88L-53.47,-61.92L-53.05,-61.95L-52.62,-61.98L-52.20,-62.00L-51.78,-62.02L-51.36,-62.04L-50.94,-62.05L-50.52,-62.05L-50.10,-62.05L-49.68,-62.04L-49.27,-62.03L-48.85,-62.01L-48.44,-61.99L-48.03,-61.96L-47.62,-61.93L-47.22,-61.89L-47.21,-61.89L-46.81,-61.85L-46.42,-61.81L-46.02,-61.76L-45.62,-61.71L-45.23,-61.67L-44.83,-61.61L-44.44,-61.56L-44.05,-61.51L-43.65,-61.45L-43.26,-61.40L-42.87,-61.34L-42.48,-61.27L-42.08,-61.21L-41.69,-61.15L-41.30,-61.08L-40.91,-61.01L-40.52,-60.94L-40.13,-60.86L-39.75,-60.79L-39.36,-60.71L-38.97,-60.63L-38.58,-60.55L-38.20,-60.46L-37.81,-60.38L-37.43,-60.29L-37.04,-60.20L-36.66,-60.10L-36.27,-60.01L-35.89,-59.91L-35.51,-59.81L-35.13,-59.71L-34.74,-59.60L-34.36,-59.49L-33.98,-59.38L-33.60,-59.27L-33.22,-59.16L-32.85,-59.04L-32.47,-58.92L-32.09,-58.80L-31.71,-58.67L-31.34,-58.54L-30.96,-58.41L-30.59,-58.28L-30.21,-58.14L-29.84,-58.01L-29.47,-57.87L-29.10,-57.72L-28.72,-57.58L-28.35,-57.43L-27.98,-57.27L-27.61,-57.12L-27.25,-56.96L-26.88,-56.80L-26.51,-56.64L-26.14,-56.47L-25.78,-56.30L-25.41,-56.13L-25.05,-55.95L-24.69,-55.78L-24.68,-55.77L-24.62,-55.74L-24.55,-55.71L-24.49,-55.68L-24.42,-55.64L-24.35,-55.61L-24.29,-55.58L-24.22,-55.54L-24.16,-55.51L-24.09,-55.48L-24.03,-55.45L-23.96,-55.41L-23.89,-55.38L-23.83,-55.35L-23.76,-55.31L-23.70,-55.28L-23.63,-55.25L-23.56,-55.21L-23.50,-55.18L-23.43,-55.15L-23.37,-55.11L-23.30,-55.08L-23.24,-55.05L-23.17,-55.01L-23.11,-54.98L-23.04,-54.95L-22.97,-54.91L-22.91,-54.88L-22.84,-54.85L-22.78,-54.81L-22.71,-54.78L-22.65,-54.74L-22.58,-54.71L-22.52,-54.68L-22.45,-54.64L-22.39,-54.61L-22.32,-54.57L-22.26,-54.54L-22.19,-54.51L-22.13,-54.47L-22.06,-54.44L-22.00,-54.40L-21.93,-54.37L-21.87,-54.34L-21.80,-54.30L-21.73,-54.27L-21.67,-54.23L-21.60,-54.20L-21.54,-54.17L-21.47,-54.13L-21.41,-54.10L-21.35,-54.06L-21.28,-54.03L-21.22,-53.99L-21.15,-53.96L-21.09,-53.92L-21.02,-53.89L-20.96,-53.86L-20.89,-53.82L-21.30,-52.90C-30.97,-52.29 -41.81,-48.89 -49.36,-42.99C-56.82,-37.17 -62.40,-29.19 -67.25,-21.12C-72.14,-12.96 -76.03,-3.52 -78.19,5.72Z", "df": [-0.1303, -0.9915], "db": [-0.8891, -0.4576]};
+  var NS = "http://www.w3.org/2000/svg";
+  function mk(tag, a, p) { var e = document.createElementNS(NS, tag); for (var k in a) e.setAttribute(k, a[k]); if (p) p.appendChild(e); return e; }
+  document.querySelectorAll("[data-cm]").forEach(function (host) {
+    var size = +host.getAttribute("data-size") || 24, mode = host.getAttribute("data-cm");
+    var svg = mk("svg", { viewBox: "-118 -118 236 236", width: size, height: size, "class": "cm cm-" + mode + (size < 32 ? " cm-small" : "") + (host.getAttribute("data-tone") === "white" ? " mark-white" : (host.getAttribute("data-tone") === "mono" || mode === "trace") ? " mark-mono" : ""), "aria-hidden": "true" });
+    
+    var rot = mk("g", { "class": "cm-rot" }, svg);
+    if (mode === "draw" || mode === "trace") {
+      var sw = size < 24 ? 1 : Math.max(1.25, size / 36); svg.style.setProperty("--cm-sw", sw.toFixed(2) + "px"); svg.style.setProperty("--cm-swu", (sw * 236 / size).toFixed(2));
+      var fill = mk("g", { "class": "cm-fill" }, rot);
+      ["back", "front"].forEach(function (layer) { for (var k = 0; k < 4; k++) { var g = mk("g", { transform: "rotate(" + 90 * k + ")" }, fill); mk("path", { d: ARM[layer], "class": layer === "back" ? "mk-b" : "mk-f" }, g); } });
+      for (var k = 0; k < 4; k++) { var g = mk("g", { transform: "rotate(" + 90 * k + ")" }, rot);
+        var o1 = mk("path", { d: ARM.back, "class": "cm-o cm-ob", pathLength: 1 }, g); var o2 = mk("path", { d: ARM.front, "class": "cm-o", pathLength: 1 }, g); o1.style.setProperty("--i", k); o2.style.setProperty("--i", k); }
+      host.replaceWith(svg); return;
+    }
+    ["back", "front"].forEach(function (layer) {
+      for (var k = 0; k < 4; k++) {
+        var g = mk("g", { transform: "rotate(" + 90 * k + ")" }, rot);
+        var arm = mk("g", { "class": "cm-arm cm-" + layer }, g); arm.style.setProperty("--i", k); var dv = layer === "back" ? ARM.db : ARM.df; arm.style.setProperty("--dx", dv[0]); arm.style.setProperty("--dy", dv[1]);
+        mk("path", { d: ARM[layer], "class": layer === "back" ? "mk-b" : "mk-f" }, arm);
+      }
+    });
+    host.replaceWith(svg);
+  });
+})();
+</script>
 
 <script>
 (function () {
@@ -1954,7 +2250,7 @@ table.t tbody tr.sel { background: var(--accent-soft); }
     ["White", "#FFFFFF", ["#F9F9F9","#F2F2F2","#ECECEC","#E5E5E5","#DFDFDF","#D9D9D9","#D2D2D2","#CCCCCC"]]];
   var R = $("#ramps"), sc = document.createElement("div"); sc.className = "ramp-scale"; sc.innerHTML = "<span></span>" + ["base","100","200","300","400","500","600","700","800"].map(function (x) { return "<span>" + x + "</span>"; }).join(""); R.appendChild(sc);
   ramps.forEach(function (r) { var d = document.createElement("div"); d.className = "ramp"; d.innerHTML = '<div class="nm">' + r[0] + "<small>" + r[1] + "</small></div>" + '<i class="base" style="background:' + r[1] + '" title="' + r[1] + '"></i>' + r[2].map(function (c) { return '<i style="background:' + c + '" title="' + c + '"></i>'; }).join(""); R.appendChild(d); });
-  var sem = [["Success", "var(--success)", "Booked, completed, opted in"], ["Warning", "var(--warning)", "Needs a human, due soon"], ["Danger", "var(--danger)", "Missed, dropped, failed"], ["Info", "var(--info)", "In progress, scheduled"], ["Cleo", "var(--ai)", "Anything Cleo said or did"], ["Internal note", "var(--note)", "Staff-only notes"]];
+  var sem = [["Success", "var(--success)", "Booked, completed, opted in"], ["Warning", "var(--warning)", "Needs a human, due soon"], ["Danger", "var(--danger)", "Missed, dropped, failed"], ["Info", "var(--info)", "In progress, scheduled (neutral)"], ["Cleo", "var(--ai)", "Anything Cleo said or did"], ["Internal note", "var(--note)", "Staff-only notes"]];
   $("#semantic").innerHTML = sem.map(function (s) { return '<div class="sw"><i style="background:' + s[1] + '"></i><div>' + s[0] + "<small>" + s[2] + "</small></div></div>"; }).join("");
 
   /* ---------- type scale ---------- */
@@ -2014,7 +2310,7 @@ table.t tbody tr.sel { background: var(--accent-soft); }
 
   /* ---------- donut ---------- */
   (function () {
-    var s = $("#donut"), data = [["Service", 1184, "var(--dept-service)"], ["Sales", 512, "var(--dept-sales)"], ["Parts", 236, "var(--dept-parts)"], ["Finance", 74, "var(--dept-finance)"], ["Body shop", 48, "var(--dept-body)"]];
+    var s = $("#donut"), data = [["Service", 1184, "var(--chart-1)"], ["Sales", 512, "var(--chart-2)"], ["Parts", 236, "var(--chart-3)"], ["Finance", 74, "var(--chart-4)"], ["Body shop", 48, "var(--chart-5)"]];
     var tot = data.reduce(function (a, b) { return a + b[1]; }, 0), r = 62, C = 2 * Math.PI * r, off = 0;
     el("circle", { cx: 80, cy: 80, r: r, fill: "none", stroke: "var(--sunken)", "stroke-width": 18 }, s);
     data.forEach(function (dd) { var len = dd[1] / tot * C; el("circle", { cx: 80, cy: 80, r: r, fill: "none", stroke: dd[2], "stroke-width": 18, "stroke-dasharray": Math.max(len - 2, 0) + " " + (C - Math.max(len - 2, 0)), "stroke-dashoffset": -off, transform: "rotate(-90 80 80)" }, s); off += len; });
@@ -2040,20 +2336,32 @@ table.t tbody tr.sel { background: var(--accent-soft); }
   /* ---------- week view ---------- */
   (function () {
     var w = $("#week"), days = ["Mon 7", "Tue 8", "Wed 9", "Thu 10", "Fri 11"], hrs = ["7 AM", "8 AM", "9 AM", "10 AM", "11 AM"];
-    var evs = [[0, 0.5, 1, "Oil change", "M. Gonzales · Dan", "var(--dept-service)"], [0, 2, 1.5, "Brake inspection", "R. Chen · Priya", "var(--dept-service)"], [1, 1, 1, "Test drive", "New RAV4 · Sales", "var(--dept-sales)"], [1, 2.5, 1.2, "Recall 24TA07", "L. Park · Dan", "var(--dept-service)"], [2, 0, 2, "30k service", "J. Okafor · Priya", "var(--dept-service)"], [3, 1, 1, "Oil change + TPMS", "M. Gonzales · Dan", "var(--dept-service)"], [3, 3, 1, "Part pickup", "Parts counter", "var(--dept-parts)"], [4, 0.5, 1.5, "Tire rotation", "A. Brooks · Dan", "var(--dept-service)"], [4, 2.5, 1, "Finance review", "K. Ito · Finance", "var(--dept-finance)"]];
+    var evs = [[0, 0.5, 1, "Oil change", "M. Gonzales · Dan", "cleo"], [0, 2, 1.5, "Brake inspection", "R. Chen · Priya", ""], [1, 1, 1, "Test drive", "New RAV4 · Sales", ""], [1, 2.5, 1.2, "Recall 24TA07", "L. Park · Dan", "cleo"], [2, 0, 2, "30k service", "J. Okafor · Priya", ""], [3, 1, 1, "Oil change + TPMS", "M. Gonzales · Dan", "cleo"], [3, 3, 1, "Part pickup", "Parts counter", ""], [4, 0.5, 1.5, "Tire rotation", "A. Brooks · Dan", "cleo"], [4, 2.5, 1, "Finance review", "K. Ito · Finance", ""]];
     var html = '<div><div class="wh"></div>' + hrs.map(function (h) { return '<div class="hr">' + h + "</div>"; }).join("") + "</div>";
-    days.forEach(function (d, di) { html += '<div><div class="wh' + (di === 1 ? " today" : "") + '">' + d + "</div>" + hrs.map(function () { return '<div class="hr"></div>'; }).join(""); evs.filter(function (e) { return e[0] === di; }).forEach(function (e) { html += '<div class="ev" style="top:' + (34 + e[1] * 40 + 2) + "px;height:" + (e[2] * 40 - 4) + "px;--c:" + e[5] + '"><b>' + e[3] + "</b><span>" + e[4] + "</span></div>"; }); html += "</div>"; });
+    days.forEach(function (d, di) { html += '<div><div class="wh' + (di === 1 ? " today" : "") + '">' + d + "</div>" + hrs.map(function () { return '<div class="hr"></div>'; }).join(""); evs.filter(function (e) { return e[0] === di; }).forEach(function (e) { html += '<div class="ev" style="top:' + (34 + e[1] * 40 + 2) + "px;height:" + (e[2] * 40 - 4) + "px;--c:" + (e[5] ? "var(--accent)" : "var(--ink-4)") + '"><b>' + (e[5] ? '<svg width="10" height="10" style="vertical-align:-1px;margin-right:3px"><use href="#cleo-mark"/></svg>' : "") + e[3] + "</b><span>" + e[4] + "</span></div>"; }); html += "</div>"; });
     w.innerHTML = html;
   })();
 
   /* ---------- waveforms + play ---------- */
   function seeded(n) { var x = Math.sin(n * 9301 + 49297) * 233280; return x - Math.floor(x); }
   $$("svg[data-wave]").forEach(function (s, si) {
-    var n = +s.getAttribute("data-wave"), vb = s.viewBox.baseVal, w = vb.width, h = vb.height, p = +s.getAttribute("data-progress"), bw = w / n;
-    var bars = [];
-    for (var i = 0; i < n; i++) { var env = .35 + .65 * Math.abs(Math.sin(i / n * Math.PI * 3.2 + si)); var v = Math.max(.12, env * (.4 + .6 * seeded(i + si * 100))); var r = el("rect", { x: i * bw + bw * .2, y: (h - v * h) / 2, width: bw * .6, height: v * h, rx: Math.min(bw * .3, 2) }, s); bars.push(r); }
+    var p = +s.getAttribute("data-progress"), bars = [], W, H, n;
+    function build() {
+      var r = s.getBoundingClientRect(); W = Math.max(60, Math.round(r.width || s.viewBox.baseVal.width)); H = Math.max(12, Math.round(r.height || s.viewBox.baseVal.height));
+      s.setAttribute("viewBox", "0 0 " + W + " " + H); s.setAttribute("preserveAspectRatio", "none");
+      while (s.firstChild) s.removeChild(s.firstChild); bars = [];
+      var step = 4, bw = 2; n = Math.floor(W / step);
+      for (var i = 0; i < n; i++) {
+        var t = i / n, env = .28 + .72 * Math.pow(Math.abs(Math.sin(t * Math.PI * 2.6 + si * .7)), .8);
+        var v = Math.max(.14, env * (.55 + .45 * seeded(i + si * 100)));
+        var h = Math.max(2, v * H);
+        bars.push(el("rect", { x: i * step, y: (H - h) / 2, width: bw, height: h, rx: 1 }, s));
+      }
+      paint(s._p == null ? p : s._p);
+    }
     function paint(pp) { bars.forEach(function (r, i) { r.setAttribute("fill", i / n < pp ? "var(--accent)" : "var(--line-strong)"); }); }
-    paint(p); s._paint = paint; s._p = p;
+    s._paint = paint; s._p = p; build();
+    try { new ResizeObserver(function () { build(); }).observe(s); } catch (e) {}
     s.addEventListener("click", function (ev) { var b = s.getBoundingClientRect(); s._p = (ev.clientX - b.left) / b.width; paint(s._p); });
   });
   $$("[data-play]").forEach(function (b) {
@@ -2067,6 +2375,3 @@ table.t tbody tr.sel { background: var(--accent-soft); }
   });
 })();
 </script>
-
-</body>
-</html>
