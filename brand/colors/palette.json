@@ -1,0 +1,108 @@
+{
+  "colors": {
+    "White": {
+      "hex": "#FFFFFF",
+      "ramp": [
+        "#F9F9F9",
+        "#F2F2F2",
+        "#ECECEC",
+        "#E5E5E5",
+        "#DFDFDF",
+        "#D9D9D9",
+        "#D2D2D2",
+        "#CCCCCC"
+      ]
+    },
+    "Mist": {
+      "hex": "#E6ECF5",
+      "ramp": [
+        "#F0F4F9",
+        "#EEF2F8",
+        "#EBF0F7",
+        "#E8EEF6",
+        "#E6ECF5",
+        "#E0E6EF",
+        "#DAE0E9",
+        "#D5DAE3"
+      ]
+    },
+    "Cleo Blue": {
+      "hex": "#0057FF",
+      "ramp": [
+        "#3379FF",
+        "#2670FF",
+        "#1A68FF",
+        "#0D5FFF",
+        "#0057FF",
+        "#004AD9",
+        "#003DB2",
+        "#00308C"
+      ]
+    },
+    "Royal": {
+      "hex": "#0538CB",
+      "ramp": [
+        "#1E4CD0",
+        "#1847CF",
+        "#1242CE",
+        "#0B3DCC",
+        "#0538CB",
+        "#0532B7",
+        "#042A98",
+        "#032484"
+      ]
+    },
+    "Navy": {
+      "hex": "#082549",
+      "ramp": [
+        "#213B5B",
+        "#1B3557",
+        "#143052",
+        "#0E2A4E",
+        "#082549",
+        "#072142",
+        "#061C37",
+        "#05182F"
+      ]
+    },
+    "Ink": {
+      "hex": "#010516",
+      "ramp": [
+        "#1F2332",
+        "#1C1F2E",
+        "#181C2B",
+        "#141827",
+        "#101424",
+        "#0C1020",
+        "#090D1D",
+        "#050919"
+      ]
+    }
+  },
+  "notes": {
+    "ramp": "light to dark; four tints, the base, three shades (white and mist ramps step to grey)",
+    "displayP3": "the sheet labels Cleo Blue #2355F6, which is its Display P3 value; in sRGB it renders #0057FF"
+  },
+  "gradient": {
+    "type": "linear",
+    "angle": "to bottom",
+    "stops": [
+      [
+        0,
+        "#0057FF"
+      ],
+      [
+        0.32,
+        "#0538CB"
+      ],
+      [
+        0.66,
+        "#082549"
+      ],
+      [
+        1,
+        "#010516"
+      ]
+    ]
+  }
+}
