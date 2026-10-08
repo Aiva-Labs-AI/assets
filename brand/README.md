@@ -8,7 +8,7 @@ nothing depends on installed fonts.
 
 | file | what |
 | --- | --- |
-| `cleo-mark.svg` | logomark with the soft drop shadow from the sheet |
+| `cleo-mark.svg` | logomark with the sheet's shading (each band casts a soft shadow onto the gap and the piece beneath it) |
 | `cleo-mark-flat.svg` | logomark without the shadow, for small sizes and print |
 | `cleo-mark-negative.svg` | white mark for black or dark backgrounds |
 | `cleo-logo.svg` / `cleo-logo-flat.svg` | horizontal lockup, mark + wordmark |
@@ -16,7 +16,11 @@ nothing depends on installed fonts.
 | `cleo-wordmark.svg` | wordmark alone |
 | `cleo-app-icon.svg` | app icon, 1024 grid |
 
-Mark colours: front `#0057FF`, back `#0538CB`. Wordmark: Geist SemiBold at
+Mark colours: front `#0057FF`, back `#0538CB`. The mark is one arm (a band and the
+darker piece tucked under it) repeated at 90° steps, so it is exactly symmetric; the
+shading is an SVG `feDropShadow` per arm (black, 24%, blur 2.45, offset toward the
+arm's inside), which browsers, Figma and Illustrator render. Use the `-flat` files where
+filters aren't supported. Wordmark: Geist SemiBold at
 -3.3% tracking, `#000000`, cap height two thirds of the mark, gap 17% of the
 mark.
 
