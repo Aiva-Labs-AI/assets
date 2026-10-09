@@ -21,4 +21,4 @@ Tokens are the CSS custom properties at the top of the page (`--blue`,
 [`../colors/palette.json`](../colors/palette.json); the mark from
 [`../logo`](../logo). All names and figures on the page are example data.
 
-This is a visual reference rather than a code library.
+This is a visual reference rather than a code library. [`ADOPTING.md`](ADOPTING.md) covers how the dashboard adopts it.
