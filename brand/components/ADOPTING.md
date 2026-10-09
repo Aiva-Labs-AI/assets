@@ -41,8 +41,7 @@ Each step is judged against the palette page side by side.
 
 Hover and press feedback, sliding tab indicators, rows that expand smoothly, toasts that
 stack and agent output that streams all need real interaction code. Two references
-cover most of it. Both are MIT licensed and install through the shadcn CLI, so the code
-is copied in and becomes ours to edit:
+cover most of it. Both are MIT licensed and distribute through the shadcn CLI:
 
 - **[EasyUI](https://easyui.site/)** for general interactions. React, Tailwind, Framer
   Motion. `npx shadcn@latest add Surajmaurya1/easyui/<component>`
@@ -51,23 +50,30 @@ is copied in and becomes ours to edit:
   transitions, colours from `--ink` / `--surface` / `--line` variables much like ours.
   `npx shadcn add https://www.beautifului.dev/r/<component>.json`
 
-Beautiful UI's components are demos: most run on hard-coded data and timers, and most
-ignore reduced motion. Keep their interaction design and markup, then wire them to real
-props and state and add reduced-motion handling.
+Don't run `shadcn add` straight into the dashboard. The components bring their own
+foundations: Beautiful UI's pull in its colour tokens and its own Button, and EasyUI's
+overwrite `utils.ts` and add a second set of motion tokens. Install into a scratch
+folder, then port the parts worth keeping onto Cleo's tokens and our existing components.
+
+Neither library is production-ready as shipped. Beautiful UI's components are demos that
+run on hard-coded data and timers. Most components in both ignore reduced motion, and
+several of EasyUI's (tabs, checkbox) have no roles, labels or keyboard handling. Take
+their interaction design and motion, not their structure.
 
 ### Deciding per component
 
-1. **Accessibility first.** Where our Radix-based component already handles keyboard,
-   focus and screen readers, keep it and restyle it.
-2. **Otherwise borrow the best behaviour.** If a reference does it better, copy it in,
-   restyle it to Cleo's tokens, and delete our old version.
+1. **Accessibility first.** Where our Radix or cmdk component already handles keyboard,
+   focus and screen readers, keep it and restyle it. Layer borrowed motion on top.
+2. **Otherwise borrow the best behaviour.** If a reference does it better, port it onto
+   Cleo's tokens and components, and delete our old version.
 3. **Build from the palette** only what is specific to Cleo.
 
 | Component | Starting point |
 | --- | --- |
-| Select, dialog, popover, tooltip, menus | our Radix components, restyled |
-| Tabs, expandable table row, undo toast, split button, command menu, checkbox | EasyUI |
-| Cleo needs an answer, Cleo is thinking, streamed replies, Cleo's task progress, recommendation card, actions Cleo took | Beautiful UI: approval card, thinking state, streaming text, task rows, recommendation card, tool chips |
+| Select, dialog, popover, tooltip, menus, tabs, checkbox | our Radix components; borrow EasyUI's motion where it helps (sliding tab indicator, drawn check) |
+| Command menu | our existing cmdk-based one; EasyUI's version reimplements it with less keyboard support |
+| Expandable table row, undo toast, split button | EasyUI's behaviour, ported onto our table, toast and button |
+| Cleo needs an answer, Cleo is thinking, streamed replies, Cleo's task progress, recommendation card, actions Cleo took | Beautiful UI's interaction design (approval card, thinking state, streaming text, task rows, recommendation card, tool chips), wired to real data |
 | Recording player, transcript, live call card, agent settings rows | built new from the palette |
 
 Leave out the showpiece effects (gooey menu, neon edge button, liquid toggle). They pull
