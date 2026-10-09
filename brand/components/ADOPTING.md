@@ -39,16 +39,35 @@ Each step is judged against the palette page side by side.
 
 ## Behaviour: what the mock can't show
 
-Hover and press feedback, sliding tab indicators, rows that expand smoothly and toasts
-that stack all need real interaction code. For those, use
-[EasyUI](https://easyui.site/) (MIT, added through the shadcn CLI, built on Framer Motion)
-as the starting point for behaviour, then restyle to Cleo's tokens. The copied code is
-ours to edit and replaces our existing version.
+Hover and press feedback, sliding tab indicators, rows that expand smoothly, toasts that
+stack and agent output that streams all need real interaction code. Two references
+cover most of it. Both are MIT licensed and install through the shadcn CLI, so the code
+is copied in and becomes ours to edit:
+
+- **[EasyUI](https://easyui.site/)** for general interactions. React, Tailwind, Framer
+  Motion. `npx shadcn@latest add Surajmaurya1/easyui/<component>`
+- **[Beautiful UI](https://www.beautifului.dev/)** for agent interactions: approval,
+  thinking, streaming, task progress, recommendations. React, Tailwind, plain CSS
+  transitions, colours from `--ink` / `--surface` / `--line` variables much like ours.
+  `npx shadcn add https://www.beautifului.dev/r/<component>.json`
+
+Beautiful UI's components are demos: most run on hard-coded data and timers, and most
+ignore reduced motion. Keep their interaction design and markup, then wire them to real
+props and state and add reduced-motion handling.
+
+### Deciding per component
+
+1. **Accessibility first.** Where our Radix-based component already handles keyboard,
+   focus and screen readers, keep it and restyle it.
+2. **Otherwise borrow the best behaviour.** If a reference does it better, copy it in,
+   restyle it to Cleo's tokens, and delete our old version.
+3. **Build from the palette** only what is specific to Cleo.
 
 | Component | Starting point |
 | --- | --- |
-| Tabs, expandable table row, undo toast, split button, command menu, checkbox | EasyUI's version, restyled |
-| Select, dialog, popover, tooltip, menus | our existing Radix components, restyled (they carry keyboard and accessibility behaviour) |
+| Select, dialog, popover, tooltip, menus | our Radix components, restyled |
+| Tabs, expandable table row, undo toast, split button, command menu, checkbox | EasyUI |
+| Cleo needs an answer, Cleo is thinking, streamed replies, Cleo's task progress, recommendation card, actions Cleo took | Beautiful UI: approval card, thinking state, streaming text, task rows, recommendation card, tool chips |
 | Recording player, transcript, live call card, agent settings rows | built new from the palette |
 
 Leave out the showpiece effects (gooey menu, neon edge button, liquid toggle). They pull
