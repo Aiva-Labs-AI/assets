@@ -631,11 +631,11 @@ table.t tr.exp td { background: var(--surface-2); padding: 14px 14px 16px 52px; 
 .notif .tabs { padding: 0 14px; gap: 16px; }
 .nrow { display: grid; grid-template-columns: 30px minmax(0, 1fr) auto; gap: 10px; padding: 12px 14px; border-bottom: 1px solid var(--line); font-size: 13px; position: relative; }
 .nrow:last-child { border-bottom: 0; }
-.nrow .ic { width: 30px; height: 30px; border-radius: 8px; display: grid; place-items: center; }
+.nrow .ic { width: 30px; height: 30px; border-radius: 8px; display: grid; place-items: center; position: relative; }
 .nrow b { font-weight: 600; } .nrow p { margin: 2px 0 6px; color: var(--ink-2); font-size: 12.5px; }
 .nrow b, .nrow p { display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 2; overflow: hidden; }
 .nrow time { font-size: 11.5px; color: var(--ink-3); white-space: nowrap; }
-.nrow.unread::after { content: ""; position: absolute; left: 5px; top: 22px; width: 6px; height: 6px; border-radius: 50%; background: var(--accent); }
+.nrow.unread .ic::after { content: ""; position: absolute; top: -3px; right: -3px; width: 8px; height: 8px; border-radius: 50%; background: var(--accent); box-shadow: 0 0 0 2px var(--surface); }
 .touch { display: inline-flex; align-items: center; gap: 0; }
 .touch span { width: 26px; height: 26px; border-radius: 50%; display: grid; place-items: center; background: var(--surface-3); color: var(--ink-3); box-shadow: 0 0 0 2px var(--surface); }
 .touch span.ok { background: var(--success-soft); color: var(--success); }
