@@ -1070,7 +1070,7 @@ footer.end-note svg { width: 24px; height: 24px; }
 .cm-draw .cm-o { animation: cm-dr 3.2s cubic-bezier(.65,0,.35,1) infinite; }
 /* Tracing: a single segment runs around every outline forever. No fill, no rotation. */
 .cm-trace .cm-o { fill: none; stroke: var(--mark-front); stroke-width: var(--cm-swu, 8); vector-effect: none; stroke-linejoin: round; stroke-linecap: round; stroke-dasharray: .3 .7; animation: cm-tr 2.4s linear infinite; }
-.cm-trace .cm-ob { stroke: var(--mark-back); }
+.cm-trace .cm-ob { stroke: var(--mark-front); }
 .cm-trace .cm-fill { display: none; }
 @keyframes cm-tr { from { stroke-dashoffset: 1; } to { stroke-dashoffset: 0; } }
 @media (prefers-reduced-motion: reduce) { .cm-trace .cm-o { animation: none !important; stroke-dasharray: none; } }
@@ -1266,7 +1266,7 @@ footer.end-note svg { width: 24px; height: 24px; }
       <header><h3>Motion &amp; the living mark</h3><p>One motion language, built on draw-on: a one-shot reveal for loads, and a perpetual trace for anything Cleo is working on. The mark never shrinks, and the line keeps a minimum weight so it reads at 16px. All mark motion stops when the viewer prefers reduced motion.</p></header>
       <div class="spec"><div class="cm-grid">
         <div class="cm-cell"><span data-cm="draw" data-size="56"></span><b>Draw-on</b><span class="cap">The outline traces in, the colour fills, and the mark settles. App and page load.</span></div>
-        <div class="cm-cell"><span data-cm="trace" data-size="56"></span><b>Tracing</b><span class="cap">A short stroke runs around the outline without end. No fill, no turn. Loading, saving, thinking, live calls.</span></div></div></div>
+        <div class="cm-cell"><span data-cm="trace" data-size="56"></span><b>Tracing</b><span class="cap">A short stroke in Cleo Blue runs around the outline without end. No fill, no turn. Mono on coloured fills, white on blue and black. Loading, saving, thinking, live calls.</span></div></div></div>
       <div class="spec" style="padding-top:0"><div class="row"><span class="lbl">In context</span>
         <button class="btn primary"><span data-cm="trace" data-size="16" data-tone="white"></span>Saving…</button>
         <span class="pill ai lg"><span data-cm="trace" data-size="13"></span>Cleo is drafting a reply</span>
@@ -1993,7 +1993,7 @@ footer.end-note svg { width: 24px; height: 24px; }
       <div class="spec col">
         <div class="toast"><span class="ic" style="color:var(--success)"><svg class="i" aria-hidden="true"><use href="#i-ok"/></svg></span><div><b>Hours saved</b><p>Cleo uses the new hours from the next call.</p></div><div class="end"><button class="btn ghost icon sm" aria-label="Dismiss"><svg class="i sm" aria-hidden="true"><use href="#i-x"/></svg></button></div></div>
         <div class="toast"><span class="ic" style="color:var(--danger)"><svg class="i" aria-hidden="true"><use href="#i-err"/></svg></span><div><b>Message not sent</b><p>The number can't receive texts. Try calling instead.</p></div><div class="end"><button class="btn secondary sm">Call</button></div></div>
-        <div class="toast dark"><span class="ic"><span data-cm="trace" data-size="16"></span></span><div><b>Exporting 412 calls…</b><p>We'll email you the file.</p></div><div class="end"><button class="btn link" style="font-size:12.5px">Undo</button></div></div>
+        <div class="toast dark"><span class="ic"><span data-cm="trace" data-size="16" data-tone="mono"></span></span><div><b>Exporting 412 calls…</b><p>We'll email you the file.</p></div><div class="end"><button class="btn link" style="font-size:12.5px">Undo</button></div></div>
       </div>
     </article>
 
@@ -2188,7 +2188,7 @@ footer.end-note svg { width: 24px; height: 24px; }
   function mk(tag, a, p) { var e = document.createElementNS(NS, tag); for (var k in a) e.setAttribute(k, a[k]); if (p) p.appendChild(e); return e; }
   document.querySelectorAll("[data-cm]").forEach(function (host) {
     var size = +host.getAttribute("data-size") || 24, mode = host.getAttribute("data-cm");
-    var svg = mk("svg", { viewBox: "-118 -118 236 236", width: size, height: size, "class": "cm cm-" + mode + (size < 32 ? " cm-small" : "") + (host.getAttribute("data-tone") === "white" ? " mark-white" : (host.getAttribute("data-tone") === "mono" || mode === "trace") ? " mark-mono" : ""), "aria-hidden": "true" });
+    var svg = mk("svg", { viewBox: "-118 -118 236 236", width: size, height: size, "class": "cm cm-" + mode + (size < 32 ? " cm-small" : "") + (host.getAttribute("data-tone") === "white" ? " mark-white" : host.getAttribute("data-tone") === "mono" ? " mark-mono" : ""), "aria-hidden": "true" });
     
     var rot = mk("g", { "class": "cm-rot" }, svg);
     if (mode === "draw" || mode === "trace") {
