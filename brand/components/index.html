@@ -221,7 +221,7 @@ main { padding: var(--s10) clamp(16px, 4vw, 56px) var(--s16); min-width: 0; }
 .split .btn:last-child { border-top-left-radius: 0; border-bottom-left-radius: 0; border-left: 1px solid rgba(255,255,255,.18); width: 34px; padding: 0; }
 .split .btn.secondary:last-child { border-left: 0; }
 .dot-badge { position: relative; }
-.dot-badge::after { content: attr(data-count); position: absolute; top: 2px; right: 2px; min-width: 16px; height: 16px; padding: 0 4px; border-radius: 8px; background: var(--danger); color: #fff; font-size: 10px; font-weight: 600; line-height: 16px; text-align: center; box-shadow: 0 0 0 2px var(--surface); }
+.dot-badge::after { content: attr(data-count); position: absolute; top: -6px; right: -8px; box-sizing: border-box; min-width: 16px; height: 16px; padding: 0 4px; border-radius: 8px; background: var(--danger); color: #fff; font-size: 10px; font-weight: 600; line-height: 16px; text-align: center; box-shadow: 0 0 0 2px var(--surface); }
 
 .field { display: flex; flex-direction: column; gap: 6px; min-width: 0; width: 100%; max-width: 320px; }
 .field label, .field .fl { font-size: 12.5px; font-weight: 500; color: var(--ink); }
