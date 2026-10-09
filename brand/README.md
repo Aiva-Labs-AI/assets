@@ -11,6 +11,7 @@ nothing depends on installed fonts.
 | `cleo-mark.svg` | logomark with the sheet's shading (each band casts a soft shadow onto the gap and the piece beneath it) |
 | `cleo-mark-flat.svg` | logomark without the shadow, for small sizes and print |
 | `cleo-mark-negative.svg` | white mark for black or dark backgrounds |
+| `cleo-mark-mono.svg` | one colour (`currentColor`), back pieces at half strength; for status pills and other coloured fills |
 | `cleo-logo.svg` / `cleo-logo-flat.svg` | horizontal lockup, mark + wordmark |
 | `cleo-logo-stacked.svg` | stacked lockup |
 | `cleo-wordmark.svg` | wordmark alone |
@@ -23,6 +24,11 @@ arm's inside), which browsers, Figma and Illustrator render. Use the `-flat` fil
 filters aren't supported. Wordmark: Geist SemiBold at
 -3.3% tracking, `#000000`, cap height two thirds of the mark, gap 17% of the
 mark.
+
+## `components/`
+
+The component palette for the Cleo dashboard: open `components/index.html`
+in a browser. See [`components/README.md`](components/README.md).
 
 ## `colors/`
 
