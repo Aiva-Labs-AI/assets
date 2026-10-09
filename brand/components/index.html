@@ -1124,6 +1124,9 @@ footer.end-note svg { width: 24px; height: 24px; }
 .ov-feed > div { grid-template-columns: auto minmax(0, 1fr) auto; padding: 9px 0; font-size: 13px; }
 .ov-feed b { display: inline; font-weight: 600; }
 @media (max-width: 900px) { .ov-cols { grid-template-columns: 1fr; } .ov-list > div { grid-template-columns: auto minmax(0, 1fr) auto; } .ov-act { grid-column: 2 / -1; } }
+/* Dark mode: white front pieces, light grey back pieces, instead of full colour */
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) { --mark-front: #FFFFFF; --mark-back: #C4C7CE; } }
+:root[data-theme="dark"] { --mark-front: #FFFFFF; --mark-back: #C4C7CE; }
 </style>
 <svg width="0" height="0" style="position:absolute" aria-hidden="true">
 <symbol id="i-search" viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></symbol>
@@ -1266,7 +1269,7 @@ footer.end-note svg { width: 24px; height: 24px; }
       <header><h3>Motion &amp; the living mark</h3><p>One motion language, built on draw-on: a one-shot reveal for loads, and a perpetual trace for anything Cleo is working on. The mark never shrinks, and the line keeps a minimum weight so it reads at 16px. All mark motion stops when the viewer prefers reduced motion.</p></header>
       <div class="spec"><div class="cm-grid">
         <div class="cm-cell"><span data-cm="draw" data-size="56"></span><b>Draw-on</b><span class="cap">The outline traces in, the colour fills, and the mark settles. App and page load.</span></div>
-        <div class="cm-cell"><span data-cm="trace" data-size="56"></span><b>Tracing</b><span class="cap">A short stroke in Cleo Blue runs around the outline without end. No fill, no turn. Mono on coloured fills, white on blue and black. Loading, saving, thinking, live calls.</span></div></div></div>
+        <div class="cm-cell"><span data-cm="trace" data-size="56"></span><b>Tracing</b><span class="cap">A short stroke runs around the outline without end. No fill, no turn. Cleo Blue on light surfaces, white in dark mode and on blue, mono on coloured fills. Loading, saving, thinking, live calls.</span></div></div></div>
       <div class="spec" style="padding-top:0"><div class="row"><span class="lbl">In context</span>
         <button class="btn primary"><span data-cm="trace" data-size="16" data-tone="white"></span>Saving…</button>
         <span class="pill ai lg"><span data-cm="trace" data-size="13"></span>Cleo is drafting a reply</span>
@@ -1280,7 +1283,7 @@ footer.end-note svg { width: 24px; height: 24px; }
       <header><h3>Mark variants</h3><p>Full colour is the default. White sits on Cleo Blue fills. Mono takes the text colour of wherever it sits, so the mark never clashes with a green, amber or red context.</p></header>
       <div class="spec col">
         <div class="mv-grid">
-          <div class="mv"><div class="mv-sw"><svg width="40" height="40" class="" aria-hidden="true"><use href="#cleo-mark"/></svg><svg width="24" height="24" class="" aria-hidden="true"><use href="#cleo-mark"/></svg><svg width="16" height="16" class="" aria-hidden="true"><use href="#cleo-mark"/></svg></div><b>Full colour</b><span class="cap">Default, on neutral surfaces</span></div>
+          <div class="mv"><div class="mv-sw"><svg width="40" height="40" class="" aria-hidden="true"><use href="#cleo-mark"/></svg><svg width="24" height="24" class="" aria-hidden="true"><use href="#cleo-mark"/></svg><svg width="16" height="16" class="" aria-hidden="true"><use href="#cleo-mark"/></svg></div><b>Full colour</b><span class="cap">Default on light surfaces. In dark mode it turns white, with light grey back pieces.</span></div>
           <div class="mv mv-blue"><div class="mv-sw"><svg width="40" height="40" class="mark-white" aria-hidden="true"><use href="#cleo-mark"/></svg><svg width="24" height="24" class="mark-white" aria-hidden="true"><use href="#cleo-mark"/></svg><svg width="16" height="16" class="mark-white" aria-hidden="true"><use href="#cleo-mark"/></svg></div><b>White</b><span class="cap">On Cleo Blue: primary buttons, app icon</span></div>
           <div class="mv"><div class="mv-sw" style="color:var(--ink)"><svg width="40" height="40" class="mark-mono" aria-hidden="true"><use href="#cleo-mark"/></svg><svg width="24" height="24" class="mark-mono" aria-hidden="true"><use href="#cleo-mark"/></svg><svg width="16" height="16" class="mark-mono" aria-hidden="true"><use href="#cleo-mark"/></svg></div><b>Mono</b><span class="cap">Takes the text colour; back pieces at half strength</span></div>
         </div>
