@@ -1,7 +1,7 @@
 # Cleo component palette
 
 `index.html` is the component palette for the Cleo dashboard: every component
-drawn live in the Cleo brand kit, in light and dark. Open it in a browser; it
+drawn live in the Cleo brand kit, in light, off-white and dark. Open it in a browser; it
 is a single self-contained page (fonts load from Google Fonts).
 
 Groups:

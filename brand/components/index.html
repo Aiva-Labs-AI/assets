@@ -63,7 +63,7 @@
   --focus: 0 0 0 3px rgba(0,87,255,.32);
   --mark-front: #0057FF; --mark-back: #0538CB;
 }
-@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) {
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]):not([data-theme="offwhite"]) {
   --bg: #02060F; --surface: #0A1120; --surface-2: #0E1628; --surface-3: #141E33; --sunken: #18233A;
   --line: #1B2640; --line-strong: #2A3858; --ink: #EDF1F8; --ink-2: #B3BCCD; --ink-3: #8C96AA; --ink-4: #5F6A80;
   --accent: #3379FF; --accent-ink: #FFFFFF; --accent-hover: #4D8BFF; --accent-press: #2670FF; --accent-soft: #0F2457; --accent-soft-ink: #A9C4FF;
@@ -766,7 +766,7 @@ footer.end-note svg { width: 18px; height: 18px; }
   --focus: 0 0 0 3px rgba(0,87,255,.22);
   --track-body: -0.011em; --track-head: -0.035em;
 }
-@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) {
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]):not([data-theme="offwhite"]) {
   --bg: #111113; --surface: #1C1C1F; --surface-2: #18181A; --surface-3: #232326; --sunken: #26262A;
   --line: #29292D; --line-strong: #36363B;
   --ink: #F2F2F3; --ink-2: #A1A1A6; --ink-3: #75757B; --ink-4: #4D4D52;
@@ -960,7 +960,7 @@ table.t tbody tr.sel { background: var(--accent-soft); }
 
 /* ---------- v0.2.1: blue primary, cleaner player ---------- */
 :root { --primary: #0057FF; --primary-ink: #FFFFFF; --primary-hover: #004AD9; }
-@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) { --primary: #3D7FFF; --primary-ink: #FFFFFF; --primary-hover: #5590FF; } }
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]):not([data-theme="offwhite"]) { --primary: #3D7FFF; --primary-ink: #FFFFFF; --primary-hover: #5590FF; } }
 :root[data-theme="dark"] { --primary: #3D7FFF; --primary-ink: #FFFFFF; --primary-hover: #5590FF; }
 .btn.primary { box-shadow: inset 0 1px 0 rgba(255,255,255,.14), 0 1px 2px rgba(0,40,140,.25); }
 .pager .pages button.on { background: var(--accent-soft); color: var(--accent-soft-ink); }
@@ -986,7 +986,7 @@ table.t tbody tr.sel { background: var(--accent-soft); }
   --info: #71717A; --info-soft: #F1F1F2; --info-ink: #3F3F46;
   --chart-1: #2a78d6; --chart-2: #eb6834; --chart-3: #1baf7a; --chart-4: #eda100; --chart-5: #e87ba4;
 }
-@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) {
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]):not([data-theme="offwhite"]) {
   --warning: #F2B640; --warning-soft: #2B2410; --warning-ink: #F7D27E;
   --info: #A1A1A6; --info-soft: #232326; --info-ink: #D4D4D8;
   --chart-1: #3987e5; --chart-2: #d95926; --chart-3: #199e70; --chart-4: #c98500; --chart-5: #d55181;
@@ -1134,8 +1134,21 @@ footer.end-note svg { width: 24px; height: 24px; }
 .ov-feed b { display: inline; font-weight: 600; }
 @media (max-width: 900px) { .ov-cols { grid-template-columns: 1fr; } .ov-list > div { grid-template-columns: auto minmax(0, 1fr) auto; } .ov-act { grid-column: 2 / -1; } }
 /* Dark mode: white front pieces, light grey back pieces, instead of full colour */
-@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) { --mark-front: #FFFFFF; --mark-back: #C4C7CE; } }
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]):not([data-theme="offwhite"]) { --mark-front: #FFFFFF; --mark-back: #C4C7CE; } }
 :root[data-theme="dark"] { --mark-front: #FFFFFF; --mark-back: #C4C7CE; }
+/* ---------- v0.3.1: off-white light theme (softer than white, for long sessions) ---------- */
+:root[data-theme="offwhite"] {
+  --bg: #EFEEEA; --surface: #F8F7F4; --surface-2: #F3F2EE; --surface-3: #EAE9E4; --sunken: #E4E2DD;
+  --line: #E0DED8; --line-strong: #D0CEC7; --field: #FAF9F6;
+  --ink: #141413; --ink-2: #55534E; --ink-3: #73716B; --ink-4: #A3A09A;
+  --accent-soft: #E7ECF8; --ai-soft: #EBEFF8; --ai-line: #D5DDF2; --info-soft: #EAE9E4;
+  --success-soft: #E6F2EA; --warning-soft: #F8EFD6; --danger-soft: #F7E7E5; --note-soft: #F7F1DF; --note-line: #EADDB0;
+  --e1: 0 0 0 1px var(--line), 0 1px 2px rgba(40,35,25,.04);
+  --e2: 0 0 0 1px var(--line), 0 10px 25px -8px rgba(40,35,25,.14);
+  --e3: 0 0 0 1px var(--line), 0 28px 60px -16px rgba(40,35,25,.24);
+  color-scheme: light;
+}
+.theme-switch .seg { display: flex; } .theme-switch .seg button { flex: 1; justify-content: center; padding: 4px 6px; font-size: 12px; }
 </style>
 <svg width="0" height="0" style="position:absolute" aria-hidden="true">
 <symbol id="i-search" viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></symbol>
@@ -1219,7 +1232,7 @@ footer.end-note svg { width: 24px; height: 24px; }
   <div class="brand"><svg width="30" height="30" aria-hidden="true"><use href="#cleo-mark"/></svg><b>Cleo</b><span>Components</span></div>
   <nav id="toc"></nav>
   <div class="theme-switch"><div class="seg" role="group" aria-label="Theme">
-    <button data-theme-set="system" class="on" type="button">Auto</button><button data-theme-set="light" type="button"><svg class="i sm" aria-hidden="true"><use href="#i-sun"/></svg>Light</button><button data-theme-set="dark" type="button"><svg class="i sm" aria-hidden="true"><use href="#i-moon"/></svg>Dark</button>
+    <button data-theme-set="system" class="on" type="button">Auto</button><button data-theme-set="light" type="button">Light</button><button data-theme-set="offwhite" type="button">Off-white</button><button data-theme-set="dark" type="button">Dark</button>
   </div></div>
 </aside>
 
@@ -1228,7 +1241,7 @@ footer.end-note svg { width: 24px; height: 24px; }
   <span class="eyebrow"><svg width="18" height="18" aria-hidden="true" style="flex:none"><use href="#cleo-mark"/></svg> Cleo dashboard · Design system</span>
   <h1>The Cleo component palette</h1>
   <p>Every building block the Cleo dashboard needs, from tokens to full screens, drawn in the Cleo brand. Service advisors live in this product all day, so the system favours calm surfaces, dense but readable data, and clear signals for anything that needs a human.</p>
-  <div class="stats"><span><b>6</b> foundations</span><span><b id="count-c">0</b> components</span><span><b>9</b> page patterns</span><span>Light and dark</span><span class="ex-note"><svg class="i sm" aria-hidden="true"><use href="#i-info"/></svg> All names and figures are example data</span></div>
+  <div class="stats"><span><b>6</b> foundations</span><span><b id="count-c">0</b> components</span><span><b>9</b> page patterns</span><span>Light, off-white and dark</span><span class="ex-note"><svg class="i sm" aria-hidden="true"><use href="#i-info"/></svg> All names and figures are example data</span></div>
 </section>
 
 <!-- ============================ 00 FOUNDATIONS ============================ -->
