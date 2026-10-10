@@ -530,7 +530,7 @@ table.t tr.exp td { background: var(--surface-2); padding: 14px 14px 16px 52px; 
 .wpick:hover { background: var(--surface-2); }
 .wpick .ic { width: 36px; height: 36px; border-radius: 10px; display: grid; place-items: center; background: var(--surface-3); color: var(--ink-2); }
 .wpick b { display: block; font-weight: 500; font-size: 13.5px; } .wpick p { margin: 2px 0 0; color: var(--ink-3); font-size: 12.5px; }
-.card > .convo { box-shadow: none; border-radius: 0; margin: 0 calc(-1 * var(--s5)); width: auto; border-top: 1px solid var(--line); }
+.widget > .convo { box-shadow: none; border-radius: 0; margin: 0 calc(-1 * var(--s5)); width: auto; border-top: 1px solid var(--line); }
 .card-foot { display: flex; align-items: center; justify-content: space-between; gap: var(--s3); margin: auto calc(-1 * var(--s5)) calc(-1 * var(--s5)); padding: 10px var(--s5); border-top: 1px solid var(--line); font-size: 12.5px; color: var(--ink-3); }
 @media (prefers-reduced-motion: reduce) { .editing .widget, .widget.lift { transition: none; transform: none; } }
 .editbar { display: inline-flex; align-items: center; gap: 4px; max-width: 100%; padding: 6px 6px 6px 14px; border-radius: var(--r-xl); background: var(--ink); color: var(--surface); box-shadow: var(--e3); font-size: 13px; animation: editbar-in var(--t-base) var(--ease) both; }
@@ -2008,7 +2008,7 @@ footer.end-note svg { width: 24px; height: 24px; }
 
     <article class="plate" id="c-inboxwidget" data-c>
       <header><h3>Inbox widget <span class="dom">Cleo</span></h3><p>The inbox's most urgent open tasks, on a dashboard. Same rows as the conversation list; a row opens that conversation in the inbox.</p></header>
-      <div class="spec"><section class="card" style="width:100%;display:flex;flex-direction:column">
+      <div class="spec"><section class="card widget" style="width:100%;display:flex;flex-direction:column">
         <div class="card-head"><div><h5>Inbox <span class="count">6</span></h5><div class="sub">Open tasks, most urgent first</div></div><div class="seg" data-seg><button class="on">Mine</button><button>Everyone</button></div></div>
         <div class="convo">
           <div class="crow esc esc-crit unread"><div class="av cust"><svg class="i sm" aria-hidden="true"><use href="#i-user"/></svg></div><div style="min-width:0"><b>(555) 019-7731 <span style="color:var(--danger)"><svg class="i sm" aria-hidden="true"><use href="#i-warn"/></svg></span></b><p>Recall part, Parts didn't pick up</p></div><div class="r"><span>9:06</span><span class="ud"></span></div></div>
