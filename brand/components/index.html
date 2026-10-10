@@ -516,8 +516,8 @@ table.t tr.exp td { background: var(--surface-2); padding: 14px 14px 16px 52px; 
 .editing .widget:hover { box-shadow: var(--e2), inset 0 0 0 1px var(--line-strong); }
 .editing .widget .wctl { display: flex; }
 .editing .widget > :not(.wctl) { pointer-events: none; }
-.editing .widget .card-head > :not(:first-child) { visibility: hidden; }
-.editing .widget .card-head, .editing .widget.kpi .k { padding-right: 104px; }
+.editing .widget .card-head > :not(:first-child) { display: none; }
+.editing .widget .card-head, .editing .widget.kpi .k { padding-right: 76px; }
 .widget.lift { box-shadow: var(--e3), inset 0 0 0 1px var(--accent); transform: scale(1.01); cursor: grabbing; z-index: 3; }
 .widget-drop { border-radius: var(--r-lg); border: 2px dashed color-mix(in srgb, var(--accent) 45%, transparent); background: var(--accent-soft); min-height: 120px; }
 .widget-add { all: unset; box-sizing: border-box; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 6px; min-height: 120px; padding: var(--s5); border-radius: var(--r-lg); border: 1.5px dashed var(--line-strong); color: var(--ink-3); font-size: 13px; font-weight: 500; cursor: pointer; transition: all var(--t-fast); }
@@ -533,6 +533,16 @@ table.t tr.exp td { background: var(--surface-2); padding: 14px 14px 16px 52px; 
 .card > .convo { box-shadow: none; border-radius: 0; margin: 0 calc(-1 * var(--s5)); width: auto; border-top: 1px solid var(--line); }
 .card-foot { display: flex; align-items: center; justify-content: space-between; gap: var(--s3); margin: auto calc(-1 * var(--s5)) calc(-1 * var(--s5)); padding: 10px var(--s5); border-top: 1px solid var(--line); font-size: 12.5px; color: var(--ink-3); }
 @media (prefers-reduced-motion: reduce) { .editing .widget, .widget.lift { transition: none; transform: none; } }
+.editbar { display: inline-flex; align-items: center; gap: 4px; max-width: 100%; padding: 6px 6px 6px 14px; border-radius: var(--r-xl); background: var(--ink); color: var(--surface); box-shadow: var(--e3); font-size: 13px; animation: editbar-in var(--t-base) var(--ease) both; }
+.editbar .mode { display: flex; align-items: center; gap: 8px; min-width: 0; padding-right: 8px; white-space: nowrap; }
+.editbar .mode b { font-weight: 600; }
+.editbar .mode span { color: color-mix(in srgb, var(--surface) 62%, transparent); overflow: hidden; text-overflow: ellipsis; }
+.editbar .sep { width: 1px; height: 20px; margin: 0 4px; background: color-mix(in srgb, var(--surface) 20%, transparent); flex: none; }
+.editbar .btn.ghost { color: var(--surface); }
+.editbar .btn.ghost:hover { background: color-mix(in srgb, var(--surface) 12%, transparent); }
+.editbar .btn.secondary { background: color-mix(in srgb, var(--surface) 10%, transparent); color: var(--surface); border-color: color-mix(in srgb, var(--surface) 22%, transparent); }
+.editbar .btn.secondary:hover { background: color-mix(in srgb, var(--surface) 18%, transparent); }
+@keyframes editbar-in { from { opacity: 0; transform: translateY(12px); } }
 .acc { width: 100%; border: 1px solid var(--line); border-radius: var(--r-lg); overflow: hidden; background: var(--surface); }
 .acc > div + div { border-top: 1px solid var(--line); }
 .acc .ah { display: flex; align-items: center; gap: 10px; padding: 12px 14px; cursor: pointer; font-weight: 500; font-size: 13.5px; }
@@ -1347,7 +1357,7 @@ footer.end-note svg { width: 24px; height: 24px; }
       <div class="spec"><div class="cm-grid">
         <div class="cm-cell"><span data-cm="draw" data-size="56"></span><b>Draw-on</b><span class="cap">The outline traces in, the colour fills, and the mark settles. App and page load.</span></div>
         <div class="cm-cell"><span data-cm="trace" data-size="56"></span><b>Tracing</b><span class="cap">A short stroke runs around the outline without end. No fill, no turn. Cleo Blue on light surfaces, white in dark mode and on blue, mono on coloured fills. Loading, saving, thinking, live calls.</span></div></div></div>
-      <div class="spec" style="padding-top:0"><div class="row"><span class="lbl">In context</span>
+      <div class="spec" style="padding-top:0"><div class="row"><span class="mode">In context</span>
         <button class="btn primary"><span data-cm="trace" data-size="16" data-tone="white"></span>Saving…</button>
         <span class="pill ai lg"><span data-cm="trace" data-size="13"></span>Cleo is drafting a reply</span>
         <span class="pill success lg"><svg width="13" height="13" class="mark-mono" aria-hidden="true"><use href="#cleo-mark"/></svg>Booked</span><span class="pill warning lg"><span data-cm="trace" data-size="13" data-tone="mono"></span>Cleo on hold</span><span class="pill danger lg"><svg width="13" height="13" class="mark-mono" aria-hidden="true"><use href="#cleo-mark"/></svg>Cleo missed it</span>
@@ -1364,7 +1374,7 @@ footer.end-note svg { width: 24px; height: 24px; }
           <div class="mv mv-blue"><div class="mv-sw"><svg width="40" height="40" class="mark-white" aria-hidden="true"><use href="#cleo-mark"/></svg><svg width="24" height="24" class="mark-white" aria-hidden="true"><use href="#cleo-mark"/></svg><svg width="16" height="16" class="mark-white" aria-hidden="true"><use href="#cleo-mark"/></svg></div><b>White</b><span class="cap">On Cleo Blue: primary buttons, app icon</span></div>
           <div class="mv"><div class="mv-sw" style="color:var(--ink)"><svg width="40" height="40" class="mark-mono" aria-hidden="true"><use href="#cleo-mark"/></svg><svg width="24" height="24" class="mark-mono" aria-hidden="true"><use href="#cleo-mark"/></svg><svg width="16" height="16" class="mark-mono" aria-hidden="true"><use href="#cleo-mark"/></svg></div><b>Mono</b><span class="cap">Takes the text colour; back pieces at half strength</span></div>
         </div>
-        <div class="row tight"><span class="lbl">In context</span>
+        <div class="row tight"><span class="mode">In context</span>
           <span class="pill success lg"><svg width="14" height="14" class="mark-mono" aria-hidden="true"><use href="#cleo-mark"/></svg>Booked by Cleo</span><span class="pill warning lg"><svg width="14" height="14" class="mark-mono" aria-hidden="true"><use href="#cleo-mark"/></svg>Cleo needs you</span><span class="pill danger lg"><svg width="14" height="14" class="mark-mono" aria-hidden="true"><use href="#cleo-mark"/></svg>Cleo missed it</span>
         </div>
       </div>
@@ -1384,13 +1394,13 @@ footer.end-note svg { width: 24px; height: 24px; }
     <article class="plate wide" id="c-button" data-c>
       <header><h3>Button</h3><p>Cleo Blue primary for the main action on a screen, outline secondary for everything else. Actions that hand work to Cleo use the soft blue tint with the sparkle; danger needs a confirmation step.</p></header>
       <div class="spec col">
-        <div class="row"><span class="lbl">Variants</span>
+        <div class="row"><span class="mode">Variants</span>
           <button class="btn primary">Save changes</button><button class="btn secondary">Cancel</button><button class="btn ghost">Skip</button><button class="btn tint"><svg class="i" aria-hidden="true"><use href="#i-spark"/></svg>Draft with Cleo</button><button class="btn ghost"><svg class="i" aria-hidden="true"><use href="#i-plus"/></svg>Add note</button><button class="btn danger">Remove member</button><button class="btn link">View call details <svg class="i sm" aria-hidden="true"><use href="#i-arrow-r"/></svg></button>
         </div>
-        <div class="row"><span class="lbl">States</span>
+        <div class="row"><span class="mode">States</span>
           <button class="btn primary hover">Hover</button><button class="btn primary focus">Focus</button><button class="btn primary" disabled>Disabled</button><button class="btn primary"><span data-cm="trace" data-size="16" data-tone="white"></span>Saving…</button><button class="btn secondary focus">Focus</button><button class="btn secondary" disabled>Disabled</button>
         </div>
-        <div class="row"><span class="lbl">Sizes</span>
+        <div class="row"><span class="mode">Sizes</span>
           <button class="btn primary sm">Small</button><button class="btn primary">Medium</button><button class="btn primary lg">Large</button><button class="btn secondary sm"><svg class="i sm" aria-hidden="true"><use href="#i-download"/></svg>Export</button><button class="btn secondary"><svg class="i" aria-hidden="true"><use href="#i-filter"/></svg>Filter<span class="count">3</span></button><button class="btn secondary lg"><svg class="i" aria-hidden="true"><use href="#i-cal"/></svg>Last 30 days<svg class="i" aria-hidden="true"><use href="#i-chev-d"/></svg></button>
         </div>
       </div>
@@ -1821,25 +1831,25 @@ footer.end-note svg { width: 24px; height: 24px; }
     </article>
 
     <article class="plate wide" id="c-widget" data-c>
-      <header><h3>Dashboard widget &amp; edit mode</h3><p>On a page people arrange for themselves, each KPI or section card is a widget. Customize swaps the page header's button for Reset, Add widget and Done, and puts a handle, a width menu and a remove button on every widget; drag to move, and the slot it will land in shows as the drop target. Each person has their own layout, with the default one to reset to.</p></header>
+      <header><h3>Dashboard widget &amp; edit mode</h3><p>On a page people arrange for themselves, each KPI or section card is a widget. Customize floats the edit bar at the bottom of the screen (Reset to default, Add widget, Done) and puts a handle and an options menu (width, replace, remove) on every widget; drag to move, and the slot it will land in shows as the drop target. Each person has their own layout, with the default one to reset to.</p></header>
       <div class="spec col">
         <div class="row" style="justify-content:space-between;width:100%"><b style="font-size:15px;font-weight:600">Overview</b><button class="btn secondary sm"><svg class="i sm" aria-hidden="true"><use href="#i-grid"/></svg>Customize</button></div>
-        <div class="row" style="justify-content:space-between;width:100%"><b style="font-size:15px;font-weight:600">Overview</b><div class="row tight"><button class="btn ghost sm">Reset to default</button><button class="btn secondary sm"><svg class="i sm" aria-hidden="true"><use href="#i-plus"/></svg>Add widget</button><button class="btn primary sm">Done</button></div></div>
+        <div class="editbar" role="toolbar" aria-label="Customize Overview" style="align-self:center"><span class="mode"><svg class="i sm" aria-hidden="true"><use href="#i-grid"/></svg><b>Customizing</b><span>Only you see this layout</span></span><span class="sep"></span><button class="btn ghost sm">Reset to default</button><button class="btn secondary sm"><svg class="i sm" aria-hidden="true"><use href="#i-plus"/></svg>Add widget</button><button class="btn primary sm">Done</button></div>
         <div class="editing" style="display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;width:100%;align-items:stretch">
-          <div class="card kpi widget"><div class="wctl"><button class="btn ghost icon sm grip" aria-label="Move Appointments booked"><svg class="i sm" aria-hidden="true"><use href="#i-grip"/></svg></button><button class="btn ghost icon sm" aria-label="Change width of Appointments booked"><svg class="i sm" aria-hidden="true"><use href="#i-columns"/></svg></button><button class="btn ghost icon sm" aria-label="Remove Appointments booked"><svg class="i sm" aria-hidden="true"><use href="#i-x"/></svg></button></div><span class="k"><svg class="i sm" aria-hidden="true"><use href="#i-cal"/></svg>Appointments booked</span><span class="v">318</span><span class="d"><span class="delta up"><svg class="i sm" aria-hidden="true"><use href="#i-up"/></svg>21</span>vs the 30 days before</span></div>
+          <div class="card kpi widget"><div class="wctl"><button class="btn ghost icon sm grip" aria-label="Move Appointments booked"><svg class="i sm" aria-hidden="true"><use href="#i-grip"/></svg></button><button class="btn ghost icon sm" aria-label="Options for Appointments booked" aria-haspopup="menu"><svg class="i sm" aria-hidden="true"><use href="#i-more"/></svg></button></div><span class="k"><svg class="i sm" aria-hidden="true"><use href="#i-cal"/></svg>Appointments booked</span><span class="v">318</span><span class="d"><span class="delta up"><svg class="i sm" aria-hidden="true"><use href="#i-up"/></svg>21</span>vs the 30 days before</span></div>
           <div class="widget-drop" aria-hidden="true"></div>
-          <div class="card kpi widget lift"><div class="wctl"><button class="btn ghost icon sm grip" aria-label="Move Calls answered"><svg class="i sm" aria-hidden="true"><use href="#i-grip"/></svg></button><button class="btn ghost icon sm" aria-label="Change width of Calls answered"><svg class="i sm" aria-hidden="true"><use href="#i-columns"/></svg></button><button class="btn ghost icon sm" aria-label="Remove Calls answered"><svg class="i sm" aria-hidden="true"><use href="#i-x"/></svg></button></div><span class="k"><svg class="i sm" aria-hidden="true"><use href="#i-phone"/></svg>Calls answered</span><span class="v">1,284 <small>/ 1,302</small></span><span class="d"><span class="delta flat">98.6%</span>answer rate</span></div>
-          <section class="card widget" style="grid-column:span 2"><div class="wctl"><button class="btn ghost icon sm grip" aria-label="Move Most booked"><svg class="i sm" aria-hidden="true"><use href="#i-grip"/></svg></button><button class="btn ghost icon sm" aria-label="Change width of Most booked"><svg class="i sm" aria-hidden="true"><use href="#i-columns"/></svg></button><button class="btn ghost icon sm" aria-label="Remove Most booked"><svg class="i sm" aria-hidden="true"><use href="#i-x"/></svg></button></div><div class="card-head"><div><h5>Most booked</h5><div class="sub">Services Cleo scheduled</div></div></div>
+          <div class="card kpi widget lift"><div class="wctl"><button class="btn ghost icon sm grip" aria-label="Move Calls answered"><svg class="i sm" aria-hidden="true"><use href="#i-grip"/></svg></button><button class="btn ghost icon sm" aria-label="Options for Calls answered" aria-haspopup="menu"><svg class="i sm" aria-hidden="true"><use href="#i-more"/></svg></button></div><span class="k"><svg class="i sm" aria-hidden="true"><use href="#i-phone"/></svg>Calls answered</span><span class="v">1,284 <small>/ 1,302</small></span><span class="d"><span class="delta flat">98.6%</span>answer rate</span></div>
+          <section class="card widget" style="grid-column:span 2"><div class="wctl"><button class="btn ghost icon sm grip" aria-label="Move Most booked"><svg class="i sm" aria-hidden="true"><use href="#i-grip"/></svg></button><button class="btn ghost icon sm" aria-label="Options for Most booked" aria-haspopup="menu"><svg class="i sm" aria-hidden="true"><use href="#i-more"/></svg></button></div><div class="card-head"><div><h5>Most booked</h5><div class="sub">Services Cleo scheduled</div></div></div>
             <div class="rank"><div><i>1</i><div><b style="font-weight:500">Oil change</b></div><b class="tnum" style="font-weight:600">142</b></div><div><i>2</i><div><b style="font-weight:500">Scheduled maintenance</b></div><b class="tnum" style="font-weight:600">96</b></div></div></section>
           <button class="widget-add"><svg class="i sm" aria-hidden="true"><use href="#i-plus"/></svg>Add widget</button>
         </div>
-        <div class="menu" role="menu" aria-label="Width" style="max-width:220px;align-self:flex-end"><div class="mh">Width</div><div class="mi">Third</div><div class="mi">Half</div><div class="mi sel">Two-thirds<span class="end"><svg class="i" aria-hidden="true"><use href="#i-check"/></svg></span></div><div class="mi">Full width</div></div>
-        <span class="cap">Shown: the page header at rest and while customizing (the actions take Customize's place), a widget at rest, one being dragged (lifted) with the slot it will land in, the add tile that ends the grid, and the width menu. Widths are presets on the 12-column grid: a quarter or half for KPIs, a third, half, two-thirds or full width for the rest.</span>
+        <div class="menu" role="menu" aria-label="Widget options" style="max-width:260px;align-self:flex-end"><div class="mh">Width</div><div class="mi">Third</div><div class="mi">Half</div><div class="mi sel">Two-thirds<span class="end"><svg class="i" aria-hidden="true"><use href="#i-check"/></svg></span></div><div class="mi">Full width</div><div class="sep"></div><div class="mi"><svg class="i" aria-hidden="true"><use href="#i-refresh"/></svg>Replace with another widget</div><div class="mi danger"><svg class="i" aria-hidden="true"><use href="#i-trash"/></svg>Remove</div></div>
+        <span class="cap">Shown: the Customize button, the edit bar (fixed to the bottom centre while customizing), a widget at rest, one being dragged (lifted) with the slot it will land in, the add tile that ends the grid, and the options menu. Widths are presets on the 12-column grid: a quarter or half for KPIs, a third, half, two-thirds or full width for the rest.</span>
       </div>
     </article>
 
     <article class="plate" id="c-wlib" data-c>
-      <header><h3>Widget library</h3><p>Every widget a page supports, grouped, in a side sheet so the page stays in view. Added widgets show as added; removing one puts it back here.</p></header>
+      <header><h3>Widget library</h3><p>Every widget a page supports, grouped, in a side sheet so the page stays in view. Added widgets show as added; removing one puts it back here. Opened from a widget's Replace, the same sheet titles itself "Replace …" and each row's button reads Use: the pick takes the old widget's spot and width.</p></header>
       <div class="spec"><div class="sheet-stage"><div class="sheet" role="dialog" aria-label="Add widgets" style="min-height:0">
         <div class="sh"><div><h6>Add widgets</h6><span>New widgets go at the end of your Overview.</span></div><div class="end"><button class="btn ghost icon sm" aria-label="Close"><svg class="i sm" aria-hidden="true"><use href="#i-x"/></svg></button></div></div>
         <div style="padding:0 16px"><div class="input pill" style="height:32px"><svg class="i sm" aria-hidden="true"><use href="#i-search"/></svg><input placeholder="Search widgets" aria-label="Search widgets"></div></div>
