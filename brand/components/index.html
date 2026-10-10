@@ -242,6 +242,7 @@ main { padding: var(--s10) clamp(16px, 4vw, 56px) var(--s16); min-width: 0; }
 .textarea .ta { min-height: 52px; color: var(--ink); line-height: 1.5; }
 .textarea .meta { display: flex; justify-content: space-between; font-size: 11.5px; color: var(--ink-3); }
 .var { display: inline-flex; align-items: center; gap: 4px; padding: 1px 7px; margin: 0 1px; border-radius: var(--r-xs); background: var(--accent-soft); color: var(--accent-soft-ink); font: 500 12px/1.6 var(--mono); }
+.mention { display: inline-flex; align-items: center; padding: 0 6px; margin: 0 1px; border-radius: var(--r-xs); background: var(--accent-soft); color: var(--accent-soft-ink); font-weight: 500; white-space: nowrap; }
 .select-trigger { justify-content: space-between; cursor: pointer; }
 .select-trigger .v { flex: 1; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
 .menu { background: var(--surface); border-radius: var(--r-lg); box-shadow: var(--e2); padding: 6px; min-width: 220px; display: flex; flex-direction: column; gap: 1px; }
@@ -1411,6 +1412,14 @@ footer.end-note svg { width: 24px; height: 24px; }
       <div class="spec col">
         <div class="input textarea" style="max-width:none"><div class="ta">Hi <span class="var">first_name</span>, your <span class="var">vehicle</span> is due for its <span class="var">service_due</span>. Reply YES and I'll find you a time at <span class="var">dealer_name</span>.</div><div class="meta"><span><svg class="i sm" aria-hidden="true"><use href="#i-msg"/></svg> 1 SMS segment</span><span class="tnum">142 / 160</span></div></div>
         <div class="row tight"><span class="cap">Insert:</span><span class="var">first_name</span><span class="var">vehicle</span><span class="var">advisor</span><span class="var">appt_time</span></div>
+      </div>
+    </article>
+
+    <article class="plate" id="c-mention" data-c>
+      <header><h3>Mention</h3><p>A teammate named in a note. Type <span class="mono">@</span> to pick one; the name renders as a chip so it can't be half-deleted.</p></header>
+      <div class="spec col">
+        <div class="input textarea" style="max-width:none"><div class="ta"><span class="mention">@Priya Shah</span> she's a fleet customer, give her the fleet rate.</div></div>
+        <div class="menu" style="max-width:260px"><div class="mi hl"><span class="av xs c2">PS</span>Priya Shah</div><div class="mi"><span class="av xs c3">AL</span>Alex Lee</div><div class="mi"><span class="av xs c4">JR</span>Jordan Reyes</div></div>
       </div>
     </article>
 
