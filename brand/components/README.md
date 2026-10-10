@@ -14,7 +14,7 @@ Groups:
 | 03 Data display | KPI cards, data table, cards, lists, charts, heatmap, funnel, meters, timeline, schedule, empty and loading states |
 | 04 Calls & conversations | recording player, transcript, AI summary, call path, message thread, composer, conversation list, customer, vehicle and service history, live call bar, notifications |
 | 05 Overlays & feedback | dialog, side sheet, menus, filter popover, command palette, toasts, callouts, coachmark, save bar |
-| 06 Page patterns | dashboard, list + sheet, three-pane inbox, master–detail, settings, wizard, today (operational home), agent configuration, filter bar |
+| 06 Page patterns | dashboard, list + sheet, three-pane inbox, master–detail, settings, wizard, today (operational home), agent configuration, filter bar, sign in |
 
 Tokens are the CSS custom properties at the top of the page (`--blue`,
 `--surface`, `--ink`, `--s4`, `--r-lg`, `--e2` …). Colours come from
