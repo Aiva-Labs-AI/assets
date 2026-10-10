@@ -523,16 +523,26 @@ table.t tr.exp td { background: var(--surface-2); padding: 14px 14px 16px 52px; 
 .widget-add { all: unset; box-sizing: border-box; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 6px; min-height: 120px; padding: var(--s5); border-radius: var(--r-lg); border: 1.5px dashed var(--line-strong); color: var(--ink-3); font-size: 13px; font-weight: 500; cursor: pointer; transition: all var(--t-fast); }
 .widget-add:hover { color: var(--accent); border-color: var(--accent); background: var(--accent-soft); }
 .widget-add:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
-.wlib { display: flex; flex-direction: column; gap: 2px; }
-.wlib .gt { font-size: 11px; font-weight: 600; color: var(--ink-3); letter-spacing: .06em; text-transform: uppercase; padding: 12px 4px 6px; }
-.wlib .gt:first-child { padding-top: 0; }
-.wpick { display: grid; grid-template-columns: 36px minmax(0, 1fr) auto; align-items: center; gap: 12px; padding: 10px 8px; border-radius: var(--r-md); }
-.wpick:hover { background: var(--surface-2); }
-.wpick .ic { width: 36px; height: 36px; border-radius: 10px; display: grid; place-items: center; background: var(--surface-3); color: var(--ink-2); }
-.wpick b { display: block; font-weight: 500; font-size: 13.5px; } .wpick p { margin: 2px 0 0; color: var(--ink-3); font-size: 12.5px; }
+.dialog.gallery { max-width: 1080px; display: flex; flex-direction: column; }
+.dialog.gallery .gq { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 12px; padding: 14px 20px 12px; }
+.dialog.gallery .gq .input { flex: 1 1 240px; max-width: 320px; }
+.dialog.gallery .gb { flex: 1; min-height: 0; overflow: auto; padding: 4px 20px 20px; }
+.wgal { display: grid; grid-template-columns: repeat(auto-fill, minmax(230px, 1fr)); gap: 12px; }
+.wgal > .gt { grid-column: 1 / -1; font-size: 11px; font-weight: 600; color: var(--ink-3); letter-spacing: .06em; text-transform: uppercase; padding: 8px 2px 0; }
+.wgal > .gt:first-child { padding-top: 0; }
+.wcard { position: relative; display: flex; flex-direction: column; min-width: 0; border-radius: var(--r-lg); background: var(--surface); box-shadow: inset 0 0 0 1px var(--line); overflow: hidden; cursor: pointer; transition: box-shadow var(--t-fast) var(--ease), transform var(--t-fast) var(--ease); }
+.wcard:hover, .wcard:focus-within { box-shadow: inset 0 0 0 1px var(--line-strong), var(--e2); transform: translateY(-1px); }
+.wcard .thumb { position: relative; height: 168px; overflow: hidden; background: var(--bg); border-bottom: 1px solid var(--line); }
+.wcard .thumb > .sc { position: absolute; left: 12px; top: 12px; transform-origin: top left; pointer-events: none; }
+.wcard .thumb > .sc > * { box-shadow: var(--e1); }
+.wcard .thumb::after { content: ""; position: absolute; left: 0; right: 0; bottom: 0; height: 32px; background: linear-gradient(to bottom, transparent, var(--bg)); pointer-events: none; }
+.wcard .wb { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 8px; align-items: center; padding: 10px 10px 10px 12px; }
+.wcard .wb b { display: block; font-weight: 500; font-size: 13.5px; } .wcard .wb p { margin: 2px 0 0; color: var(--ink-3); font-size: 12px; }
+.wcard.added { cursor: default; } .wcard.added:hover { transform: none; box-shadow: inset 0 0 0 1px var(--line); }
+.wcard.added .thumb > .sc { opacity: .45; }
 .widget > .convo { box-shadow: none; border-radius: 0; margin: 0 calc(-1 * var(--s5)); width: auto; border-top: 1px solid var(--line); }
 .card-foot { display: flex; align-items: center; justify-content: space-between; gap: var(--s3); margin: auto calc(-1 * var(--s5)) calc(-1 * var(--s5)); padding: 10px var(--s5); border-top: 1px solid var(--line); font-size: 12.5px; color: var(--ink-3); }
-@media (prefers-reduced-motion: reduce) { .editing .widget, .widget.lift { transition: none; transform: none; } }
+@media (prefers-reduced-motion: reduce) { .editing .widget, .widget.lift, .wcard, .wcard:hover { transition: none; transform: none; } }
 .editbar { display: inline-flex; align-items: center; gap: 4px; max-width: 100%; padding: 6px 6px 6px 14px; border-radius: var(--r-xl); background: var(--ink); color: var(--surface); box-shadow: var(--e3); font-size: 13px; animation: editbar-in var(--t-base) var(--ease) both; }
 .editbar .mode { display: flex; align-items: center; gap: 8px; min-width: 0; padding-right: 8px; white-space: nowrap; }
 .editbar .mode b { font-weight: 600; }
@@ -1848,19 +1858,15 @@ footer.end-note svg { width: 24px; height: 24px; }
       </div>
     </article>
 
-    <article class="plate" id="c-wlib" data-c>
-      <header><h3>Widget library</h3><p>Every widget a page supports, grouped, in a side sheet so the page stays in view. Added widgets show as added; removing one puts it back here. Opened from a widget's Replace, the same sheet titles itself "Replace …" and each row's button reads Use: the pick takes the old widget's spot and width.</p></header>
-      <div class="spec"><div class="sheet-stage"><div class="sheet" role="dialog" aria-label="Add widgets" style="min-height:0">
-        <div class="sh"><div><h6>Add widgets</h6><span>New widgets go at the end of your Overview.</span></div><div class="end"><button class="btn ghost icon sm" aria-label="Close"><svg class="i sm" aria-hidden="true"><use href="#i-x"/></svg></button></div></div>
-        <div style="padding:0 16px"><div class="input pill" style="height:32px"><svg class="i sm" aria-hidden="true"><use href="#i-search"/></svg><input placeholder="Search widgets" aria-label="Search widgets"></div></div>
-        <div class="sb"><div class="wlib">
-          <div class="gt">Work</div>
-          <div class="wpick"><span class="ic"><svg class="i" aria-hidden="true"><use href="#i-inbox"/></svg></span><div><b>Inbox</b><p>Open tasks, most urgent first</p></div><button class="btn secondary sm"><svg class="i sm" aria-hidden="true"><use href="#i-plus"/></svg>Add</button></div>
-          <div class="gt">Calls</div>
-          <div class="wpick"><span class="ic"><svg class="i" aria-hidden="true"><use href="#i-chart"/></svg></span><div><b>Calls over time</b><p>Handled by Cleo, transferred and missed</p></div><button class="btn ghost sm" disabled><svg class="i sm" aria-hidden="true"><use href="#i-check"/></svg>Added</button></div>
-          <div class="wpick"><span class="ic"><svg class="i" aria-hidden="true"><use href="#i-clock"/></svg></span><div><b>When calls come in</b><p>By weekday and hour</p></div><button class="btn secondary sm"><svg class="i sm" aria-hidden="true"><use href="#i-plus"/></svg>Add</button></div>
-          <div class="gt">Appointments</div>
-          <div class="wpick"><span class="ic"><svg class="i" aria-hidden="true"><use href="#i-wrench"/></svg></span><div><b>Most booked</b><p>Services Cleo scheduled</p></div><button class="btn ghost sm" disabled><svg class="i sm" aria-hidden="true"><use href="#i-check"/></svg>Added</button></div>
+    <article class="plate wide" id="c-wlib" data-c>
+      <header><h3>Widget library</h3><p>Every widget a page supports, in a gallery: each card is a live preview of the widget, so what it shows is clear at a glance. Tabs filter by group; a click anywhere on a card adds it. Added widgets stay in place, dimmed. Opened from a widget's Replace, the gallery titles itself "Replace …" and each card's button reads Use: the pick takes the old widget's spot and width.</p></header>
+      <div class="spec"><div class="scrim"><div class="dialog gallery" role="dialog" aria-label="Add widgets" style="max-width:860px">
+        <div class="dh"><div style="flex:1;min-width:0"><h6>Add widgets</h6><p>New widgets go at the end of your Overview.</p></div><button class="btn ghost icon sm" aria-label="Close"><svg class="i sm" aria-hidden="true"><use href="#i-x"/></svg></button></div>
+        <div class="gq"><div class="input pill" style="height:32px"><svg class="i sm" aria-hidden="true"><use href="#i-search"/></svg><input placeholder="Search widgets" aria-label="Search widgets"></div><div class="tabs" style="border:0;margin:0"><button class="on">All</button><button>Work</button><button>Calls</button><button>Appointments</button></div></div>
+        <div class="gb"><div class="wgal">
+          <div class="wcard added"><div class="thumb"><div class="sc" style="width:416px;transform:scale(0.52)"><section class="card widget"><div class="card-head"><div><h5>Inbox <span class="count">6</span></h5><div class="sub">Open tasks, most urgent first</div></div><div class="seg"><button class="on">Mine</button><button>Everyone</button></div></div><div class="convo"><div class="crow esc esc-crit unread"><div class="av cust"><svg class="i sm" aria-hidden="true"><use href="#i-user"/></svg></div><div style="min-width:0"><b>(555) 019-7731</b><p>Recall part, Parts didn't pick up</p></div><div class="r"><span>9:06</span><span class="ud"></span></div></div><div class="crow esc esc-warn"><div class="av cust">MG</div><div style="min-width:0"><b>Maria Gonzales</b><p>Loaner for Thursday's oil change</p></div><div class="r"><span>9:21</span><div class="av xs c3">DW</div></div></div></div></section></div></div><div class="wb"><div><b>Inbox</b><p>Open tasks, most urgent first</p></div><button class="btn ghost sm" disabled><svg class="i sm" aria-hidden="true"><use href="#i-check"/></svg>Added</button></div></div>
+          <div class="wcard"><div class="thumb"><div class="sc" style="width:308px;transform:scale(0.66)"><div class="card kpi"><span class="k"><svg class="i sm" aria-hidden="true"><use href="#i-phone"/></svg>Calls answered</span><span class="v">1,284 <small>/ 1,302</small></span><span class="d"><span class="delta flat">98.6%</span>answer rate</span><svg class="spark" data-spark="9,9,8,9,9,9,8,9,9,9,9,9" viewBox="0 0 200 36" preserveAspectRatio="none"></svg></div></div></div><div class="wb"><div><b>Calls answered</b><p>Answer rate, with the trend</p></div><button class="btn secondary sm"><svg class="i sm" aria-hidden="true"><use href="#i-plus"/></svg>Add</button></div></div>
+          <div class="wcard"><div class="thumb"><div class="sc" style="width:416px;transform:scale(0.52)"><section class="card"><div class="card-head"><div><h5>Most booked</h5><div class="sub">Services Cleo scheduled</div></div></div><div class="rank"><div><i>1</i><div><b style="font-weight:500">Oil change</b><span>35% of bookings</span></div><b class="tnum" style="font-weight:600">142</b></div><div><i>2</i><div><b style="font-weight:500">Scheduled maintenance</b><span>24% of bookings</span></div><b class="tnum" style="font-weight:600">96</b></div><div><i>3</i><div><b style="font-weight:500">Tires and alignment</b><span>17% of bookings</span></div><b class="tnum" style="font-weight:600">71</b></div></div></section></div></div><div class="wb"><div><b>Most booked</b><p>Services Cleo scheduled</p></div><button class="btn secondary sm"><svg class="i sm" aria-hidden="true"><use href="#i-plus"/></svg>Add</button></div></div>
         </div></div>
       </div></div></div>
     </article>
