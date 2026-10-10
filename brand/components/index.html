@@ -1029,6 +1029,8 @@ table.t tbody tr.sel { background: var(--accent-soft); }
 .guide-on { background: var(--ai-soft) !important; color: var(--ai) !important; animation: guide-on var(--t-slow) var(--ease); }
 @keyframes guide-on { from { background: transparent; color: inherit; } }
 .guide-bub { transition: opacity var(--t-slow) var(--ease); }
+/* The pointer is over the bubble: it fades back so what's under it shows. Clicks already pass through. */
+.guide-bub.see { opacity: .2; transition-duration: var(--t-base); }
 .guide-cur.out, .guide-bub.out { opacity: 0; }
 
 /* ---------- v0.2.1: blue primary, cleaner player ---------- */
@@ -1988,7 +1990,7 @@ footer.end-note svg { width: 24px; height: 24px; }
     </article>
 
     <article class="plate wide" id="c-guide" data-c>
-      <header><h3>Guide <span class="dom">Cleo</span></h3><p>Hold Ctrl and Option (Ctrl and Alt on Windows) and ask how to do something. Cleo listens, answers out loud in a bubble by the pointer, and moves to the thing on screen it means, which takes Cleo's colour while she points at it. It only knows what's on this person's screen, and it points; it never clicks. Cleo floats by the pointer on nothing. While listening, the mark turns slowly and swells a little with the voice; while speaking, it bobs gently as Cleo talks; while thinking, the mark traces; when the answer starts, it's the plain mark again. Each change cross-fades. When it's done it fades away; nothing stays on the page.</p></header>
+      <header><h3>Guide <span class="dom">Cleo</span></h3><p>Hold Ctrl and Option (Ctrl and Alt on Windows) and ask how to do something. Cleo listens, answers out loud in a bubble by the pointer, and moves to the thing on screen it means, which takes Cleo's colour while she points at it. It only knows what's on this person's screen, and it points; it never clicks. Cleo floats by the pointer on nothing. While listening, the mark turns slowly and swells a little with the voice; while speaking, it bobs gently as Cleo talks; while thinking, the mark traces; when the answer starts, it's the plain mark again. Each change cross-fades. Move the pointer onto the bubble and it turns see-through, so it never hides what's under it. When it's done it fades away; nothing stays on the page.</p></header>
       <div class="spec well" style="justify-content:center;align-items:flex-start;gap:40px;flex-wrap:wrap">
         <div class="col" style="gap:8px;align-items:flex-start"><span class="guide-cur listen"><svg aria-hidden="true"><use href="#cleo-mark"/></svg></span><div class="guide-bub"><div class="who">Listening<span class="eq"><i></i><i></i><i></i><i></i></span></div><span class="heard">How do I add someone to my team…</span></div></div>
         <div class="col" style="gap:8px;align-items:flex-start"><span class="guide-cur"><span data-cm="trace" data-size="28"></span></span><div class="guide-bub"><div class="who">Thinking</div><span class="heard">How do I add someone to my team?</span></div></div>
