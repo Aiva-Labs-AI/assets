@@ -1004,6 +1004,33 @@ table.t tbody tr.sel { background: var(--accent-soft); }
 .think li { padding-left: 14px; color: var(--ink-3); font-size: 12.5px; }
 .think li b { color: var(--ink-2); font-weight: 500; }
 
+/* ---------- Cleo guide: ask out loud, Cleo answers and points ---------- */
+.guide-cur { width: 32px; height: 32px; display: grid; place-items: center; transition: opacity var(--t-slow) var(--ease); }
+.guide-cur > svg { grid-area: 1 / 1; width: 28px; height: 28px; flex: none; transition: scale var(--t-base) var(--ease), rotate var(--t-base) var(--ease), opacity var(--t-base) var(--ease); }
+/* The plain mark and the tracing mark share the spot; one fades out as the other fades in. */
+.guide-cur > svg.off { opacity: 0; }
+/* --lvl is the person's voice level while listening, 0 to 1. */
+/* Listening: the mark turns slowly and swells a little with the voice. */
+.guide-cur.listen > svg { scale: calc(1 + var(--lvl, .3) * .06); animation: guide-turn 9s linear infinite; transition-duration: var(--t-fast); }
+@keyframes guide-turn { to { rotate: 360deg; } }
+/* Speaking: the mark talks, a gentle bob and tilt for as long as Cleo's voice plays. */
+.guide-cur.speak > svg { animation: guide-talk 1.2s ease-in-out infinite; }
+@keyframes guide-talk { 0%, 100% { scale: 1; rotate: -3deg; } 50% { scale: 1.06; rotate: 3deg; } }
+.guide-bub { width: max-content; max-width: 300px; background: var(--surface); color: var(--ink); border-radius: var(--r-lg); box-shadow: var(--e2); padding: 10px 12px; display: flex; flex-direction: column; gap: 6px; font-size: 13px; line-height: 1.45; }
+.guide-bub .who { display: flex; align-items: center; gap: 6px; font-size: 11.5px; color: var(--ink-3); }
+.guide-bub .heard { color: var(--ink-3); }
+.guide-bub p { margin: 0; }
+.guide-bub .eq { display: inline-flex; gap: 2px; align-items: center; height: 14px; margin-left: auto; }
+.guide-bub .eq i { width: 2px; height: 4px; background: var(--ai); border-radius: 1px; animation: eq 1s ease-in-out infinite; }
+.guide-bub .eq i:nth-child(2) { animation-delay: .2s; } .guide-bub .eq i:nth-child(3) { animation-delay: .4s; } .guide-bub .eq i:nth-child(4) { animation-delay: .1s; }
+.guide-bub .eq.live i { animation: none; transition: height var(--t-fast) linear; }
+/* The thing Cleo points at takes her colour while she does. It sits on whatever component
+   that is, so it has to win over the component's own colours. */
+.guide-on { background: var(--ai-soft) !important; color: var(--ai) !important; animation: guide-on var(--t-slow) var(--ease); }
+@keyframes guide-on { from { background: transparent; color: inherit; } }
+.guide-bub { transition: opacity var(--t-slow) var(--ease); }
+.guide-cur.out, .guide-bub.out { opacity: 0; }
+
 /* ---------- v0.2.1: blue primary, cleaner player ---------- */
 :root { --primary: #0057FF; --primary-ink: #FFFFFF; --primary-hover: #004AD9; }
 @media (prefers-color-scheme: dark) { :root:not([data-theme="light"]):not([data-theme="offwhite"]) { --primary: #3D7FFF; --primary-ink: #FFFFFF; --primary-hover: #5590FF; } }
@@ -1958,6 +1985,15 @@ footer.end-note svg { width: 24px; height: 24px; }
         <p>18 customers with all-season tires and over 30k miles visited last winter. I can text them and book with <span class="ent"><span class="av c3">PS</span>Priya</span> on <span class="pill">Saturdays</span>.</p>
         <div class="rf"><span class="conf"><i><b style="height:6px"></b><b style="height:9px"></b><b style="height:12px"></b></i>High confidence</span><div class="row tight"><button class="btn secondary sm">Edit list</button><button class="btn accent sm">Start outreach</button></div></div>
       </div></div>
+    </article>
+
+    <article class="plate wide" id="c-guide" data-c>
+      <header><h3>Guide <span class="dom">Cleo</span></h3><p>Hold Ctrl and Option (Ctrl and Alt on Windows) and ask how to do something. Cleo listens, answers out loud in a bubble by the pointer, and moves to the thing on screen it means, which takes Cleo's colour while she points at it. It only knows what's on this person's screen, and it points; it never clicks. Cleo floats by the pointer on nothing. While listening, the mark turns slowly and swells a little with the voice; while speaking, it bobs gently as Cleo talks; while thinking, the mark traces; when the answer starts, it's the plain mark again. Each change cross-fades. When it's done it fades away; nothing stays on the page.</p></header>
+      <div class="spec well" style="justify-content:center;align-items:flex-start;gap:40px;flex-wrap:wrap">
+        <div class="col" style="gap:8px;align-items:flex-start"><span class="guide-cur listen"><svg aria-hidden="true"><use href="#cleo-mark"/></svg></span><div class="guide-bub"><div class="who">Listening<span class="eq"><i></i><i></i><i></i><i></i></span></div><span class="heard">How do I add someone to my team…</span></div></div>
+        <div class="col" style="gap:8px;align-items:flex-start"><span class="guide-cur"><span data-cm="trace" data-size="28"></span></span><div class="guide-bub"><div class="who">Thinking</div><span class="heard">How do I add someone to my team?</span></div></div>
+        <div class="col" style="gap:8px;align-items:flex-start"><button class="btn secondary sm guide-on"><svg class="i sm" aria-hidden="true"><use href="#i-plus"/></svg>Invite teammate</button><span class="guide-cur" style="margin-left:96px"><svg aria-hidden="true"><use href="#cleo-mark"/></svg></span><div class="guide-bub" style="margin-left:96px"><div class="who">Cleo</div><p>Click Invite teammate, then enter their email and pick a role.</p></div></div>
+      </div>
     </article>
 
     <article class="plate" id="c-think" data-c>
