@@ -11,8 +11,8 @@ Groups:
 | 00 Foundations | colour ramps and semantic roles, type scale, spacing, radius, elevation, motion (draw-on and tracing), mark variants, icons |
 | 01 Primitives | buttons, inputs, selects, checkboxes, switches, segmented controls, sliders, date range, pills, chips, avatars, tooltips |
 | 02 Navigation | sidebar, top bar, breadcrumb, tabs, settings navigation, pagination, stepper |
-| 03 Data display | KPI cards, data table, cards, lists, charts, heatmap, funnel, meters, timeline, schedule, empty and loading states |
-| 04 Calls & conversations | recording player, transcript, AI summary, call path, message thread, composer, conversation list, customer, vehicle and service history, live call bar, notifications |
+| 03 Data display | KPI cards, data table, cards, lists, charts, heatmap, funnel, meters, timeline, schedule, empty and loading states, dashboard widgets with edit mode, widget library |
+| 04 Calls & conversations | recording player, transcript, AI summary, call path, message thread, composer, conversation list, inbox widget, customer, vehicle and service history, live call bar, notifications |
 | 05 Overlays & feedback | dialog, side sheet, menus, filter popover, command palette, toasts, callouts, coachmark, save bar |
 | 06 Page patterns | dashboard, list + sheet, three-pane inbox, master–detail, settings, wizard, today (operational home), agent configuration, filter bar, sign in |
 

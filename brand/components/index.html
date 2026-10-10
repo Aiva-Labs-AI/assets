@@ -508,6 +508,51 @@ table.t tr.exp td { background: var(--surface-2); padding: 14px 14px 16px 52px; 
 .empty b { font-size: 14.5px; font-weight: 600; } .empty p { margin: 0; color: var(--ink-3); font-size: 13px; max-width: 34ch; }
 .skel { background: linear-gradient(90deg, var(--sunken) 0%, var(--surface-3) 40%, var(--sunken) 80%); background-size: 200% 100%; animation: shimmer 1.4s linear infinite; border-radius: 4px; height: 10px; }
 @keyframes shimmer { to { background-position: -200% 0; } }
+/* ---------- customizable dashboard: widgets, edit mode, widget library ---------- */
+.widget { position: relative; }
+.widget .wctl { position: absolute; top: 10px; right: 10px; z-index: 2; display: none; gap: 2px; padding: 2px; background: var(--surface); border-radius: var(--r-md); box-shadow: var(--e2); }
+.widget .wctl .grip { cursor: grab; }
+.editing .widget { box-shadow: var(--e1), inset 0 0 0 1px var(--line-strong); cursor: grab; user-select: none; transition: box-shadow var(--t-fast) var(--ease), transform var(--t-fast) var(--ease); }
+.editing .widget:hover { box-shadow: var(--e2), inset 0 0 0 1px var(--line-strong); }
+.editing .widget .wctl { display: flex; }
+.editing .widget > :not(.wctl) { pointer-events: none; }
+.editing .widget .card-head > :not(:first-child) { display: none; }
+.editing .widget .card-head, .editing .widget.kpi .k { padding-right: 76px; }
+.widget.lift { box-shadow: var(--e3), inset 0 0 0 1px var(--accent); transform: scale(1.01); cursor: grabbing; z-index: 3; }
+.widget-drop { border-radius: var(--r-lg); border: 2px dashed color-mix(in srgb, var(--accent) 45%, transparent); background: var(--accent-soft); min-height: 120px; }
+.widget-add { all: unset; box-sizing: border-box; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 6px; min-height: 120px; padding: var(--s5); border-radius: var(--r-lg); border: 1.5px dashed var(--line-strong); color: var(--ink-3); font-size: 13px; font-weight: 500; cursor: pointer; transition: all var(--t-fast); }
+.widget-add:hover { color: var(--accent); border-color: var(--accent); background: var(--accent-soft); }
+.widget-add:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+.dialog.gallery { max-width: 1080px; display: flex; flex-direction: column; }
+.dialog.gallery .gq { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 12px; padding: 14px 20px 12px; }
+.dialog.gallery .gq .input { flex: 1 1 240px; max-width: 320px; }
+.dialog.gallery .gb { flex: 1; min-height: 0; overflow: auto; padding: 4px 20px 20px; }
+.wgal { display: grid; grid-template-columns: repeat(auto-fill, minmax(230px, 1fr)); gap: 12px; }
+.wgal > .gt { grid-column: 1 / -1; font-size: 11px; font-weight: 600; color: var(--ink-3); letter-spacing: .06em; text-transform: uppercase; padding: 8px 2px 0; }
+.wgal > .gt:first-child { padding-top: 0; }
+.wcard { position: relative; display: flex; flex-direction: column; min-width: 0; border-radius: var(--r-lg); background: var(--surface); box-shadow: inset 0 0 0 1px var(--line); overflow: hidden; cursor: pointer; transition: box-shadow var(--t-fast) var(--ease), transform var(--t-fast) var(--ease); }
+.wcard:hover, .wcard:focus-within { box-shadow: inset 0 0 0 1px var(--line-strong), var(--e2); transform: translateY(-1px); }
+.wcard .thumb { position: relative; height: 168px; overflow: hidden; background: var(--bg); border-bottom: 1px solid var(--line); }
+.wcard .thumb > .sc { position: absolute; left: 12px; top: 12px; transform-origin: top left; pointer-events: none; }
+.wcard .thumb > .sc > * { box-shadow: var(--e1); }
+.wcard .thumb::after { content: ""; position: absolute; left: 0; right: 0; bottom: 0; height: 32px; background: linear-gradient(to bottom, transparent, var(--bg)); pointer-events: none; }
+.wcard .wb { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 8px; align-items: center; padding: 10px 10px 10px 12px; }
+.wcard .wb b { display: block; font-weight: 500; font-size: 13.5px; } .wcard .wb p { margin: 2px 0 0; color: var(--ink-3); font-size: 12px; }
+.wcard.added { cursor: default; } .wcard.added:hover { transform: none; box-shadow: inset 0 0 0 1px var(--line); }
+.wcard.added .thumb > .sc { opacity: .45; }
+.widget > .convo { box-shadow: none; border-radius: 0; margin: 0 calc(-1 * var(--s5)); width: auto; border-top: 1px solid var(--line); }
+.card-foot { display: flex; align-items: center; justify-content: space-between; gap: var(--s3); margin: auto calc(-1 * var(--s5)) calc(-1 * var(--s5)); padding: 10px var(--s5); border-top: 1px solid var(--line); font-size: 12.5px; color: var(--ink-3); }
+@media (prefers-reduced-motion: reduce) { .editing .widget, .widget.lift, .wcard, .wcard:hover { transition: none; transform: none; } }
+.editbar { display: inline-flex; align-items: center; gap: 4px; max-width: 100%; padding: 6px 6px 6px 14px; border-radius: var(--r-xl); background: var(--ink); color: var(--surface); box-shadow: var(--e3); font-size: 13px; animation: editbar-in var(--t-base) var(--ease) both; }
+.editbar .mode { display: flex; align-items: center; gap: 8px; min-width: 0; padding-right: 8px; white-space: nowrap; }
+.editbar .mode b { font-weight: 600; }
+.editbar .mode span { color: color-mix(in srgb, var(--surface) 62%, transparent); overflow: hidden; text-overflow: ellipsis; }
+.editbar .sep { width: 1px; height: 20px; margin: 0 4px; background: color-mix(in srgb, var(--surface) 20%, transparent); flex: none; }
+.editbar .btn.ghost { color: var(--surface); }
+.editbar .btn.ghost:hover { background: color-mix(in srgb, var(--surface) 12%, transparent); }
+.editbar .btn.secondary { background: color-mix(in srgb, var(--surface) 10%, transparent); color: var(--surface); border-color: color-mix(in srgb, var(--surface) 22%, transparent); }
+.editbar .btn.secondary:hover { background: color-mix(in srgb, var(--surface) 18%, transparent); }
+@keyframes editbar-in { from { opacity: 0; transform: translateY(12px); } }
 .acc { width: 100%; border: 1px solid var(--line); border-radius: var(--r-lg); overflow: hidden; background: var(--surface); }
 .acc > div + div { border-top: 1px solid var(--line); }
 .acc .ah { display: flex; align-items: center; gap: 10px; padding: 12px 14px; cursor: pointer; font-weight: 500; font-size: 13.5px; }
@@ -1243,6 +1288,7 @@ footer.end-note svg { width: 24px; height: 24px; }
 <symbol id="i-logout" viewBox="0 0 24 24"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4M16 17l5-5-5-5M21 12H9"/></symbol>
 <symbol id="i-moon" viewBox="0 0 24 24"><path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9z"/></symbol>
 <symbol id="i-sun" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M6.3 17.7l-1.4 1.4M19.1 4.9l-1.4 1.4"/></symbol>
+<symbol id="i-grip" viewBox="0 0 24 24"><g fill="currentColor" stroke="none"><circle cx="9" cy="6" r="1.5"/><circle cx="15" cy="6" r="1.5"/><circle cx="9" cy="12" r="1.5"/><circle cx="15" cy="12" r="1.5"/><circle cx="9" cy="18" r="1.5"/><circle cx="15" cy="18" r="1.5"/></g></symbol>
 <symbol id="i-grid" viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></symbol>
 <symbol id="i-list" viewBox="0 0 24 24"><path d="M8 6h13M8 12h13M8 18h13M3 6h.01M3 12h.01M3 18h.01"/></symbol>
 <symbol id="i-cmd" viewBox="0 0 24 24"><path d="M15 6v12a3 3 0 1 0 3-3H6a3 3 0 1 0 3 3V6a3 3 0 1 0-3 3h12a3 3 0 1 0-3-3"/></symbol>
@@ -1793,6 +1839,37 @@ footer.end-note svg { width: 24px; height: 24px; }
         <div class="row" style="flex-wrap:nowrap"><div class="skel" style="width:36px;height:36px;border-radius:50%;flex:none"></div><div class="stack" style="flex:1;gap:8px"><div class="skel" style="width:55%"></div><div class="skel" style="width:85%;height:8px"></div></div></div>
       </div>
     </article>
+
+    <article class="plate wide" id="c-widget" data-c>
+      <header><h3>Dashboard widget &amp; edit mode</h3><p>On a page people arrange for themselves, each KPI or section card is a widget. Customize floats the edit bar at the bottom of the screen (Reset to default, Add widget, Done) and puts a handle and an options menu (width, replace, remove) on every widget; drag to move, and the slot it will land in shows as the drop target. Each person has their own layout, with the default one to reset to.</p></header>
+      <div class="spec col">
+        <div class="row" style="justify-content:space-between;width:100%"><b style="font-size:15px;font-weight:600">Overview</b><button class="btn secondary sm"><svg class="i sm" aria-hidden="true"><use href="#i-grid"/></svg>Customize</button></div>
+        <div class="editbar" role="toolbar" aria-label="Customize Overview" style="align-self:center"><span class="mode"><svg class="i sm" aria-hidden="true"><use href="#i-grid"/></svg><b>Customizing</b><span>Only you see this layout</span></span><span class="sep"></span><button class="btn ghost sm">Reset to default</button><button class="btn secondary sm"><svg class="i sm" aria-hidden="true"><use href="#i-plus"/></svg>Add widget</button><button class="btn primary sm">Done</button></div>
+        <div class="editing" style="display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;width:100%;align-items:stretch">
+          <div class="card kpi widget"><div class="wctl"><button class="btn ghost icon sm grip" aria-label="Move Appointments booked"><svg class="i sm" aria-hidden="true"><use href="#i-grip"/></svg></button><button class="btn ghost icon sm" aria-label="Options for Appointments booked" aria-haspopup="menu"><svg class="i sm" aria-hidden="true"><use href="#i-more"/></svg></button></div><span class="k"><svg class="i sm" aria-hidden="true"><use href="#i-cal"/></svg>Appointments booked</span><span class="v">318</span><span class="d"><span class="delta up"><svg class="i sm" aria-hidden="true"><use href="#i-up"/></svg>21</span>vs the 30 days before</span></div>
+          <div class="widget-drop" aria-hidden="true"></div>
+          <div class="card kpi widget lift"><div class="wctl"><button class="btn ghost icon sm grip" aria-label="Move Calls answered"><svg class="i sm" aria-hidden="true"><use href="#i-grip"/></svg></button><button class="btn ghost icon sm" aria-label="Options for Calls answered" aria-haspopup="menu"><svg class="i sm" aria-hidden="true"><use href="#i-more"/></svg></button></div><span class="k"><svg class="i sm" aria-hidden="true"><use href="#i-phone"/></svg>Calls answered</span><span class="v">1,284 <small>/ 1,302</small></span><span class="d"><span class="delta flat">98.6%</span>answer rate</span></div>
+          <section class="card widget" style="grid-column:span 2"><div class="wctl"><button class="btn ghost icon sm grip" aria-label="Move Most booked"><svg class="i sm" aria-hidden="true"><use href="#i-grip"/></svg></button><button class="btn ghost icon sm" aria-label="Options for Most booked" aria-haspopup="menu"><svg class="i sm" aria-hidden="true"><use href="#i-more"/></svg></button></div><div class="card-head"><div><h5>Most booked</h5><div class="sub">Services Cleo scheduled</div></div></div>
+            <div class="rank"><div><i>1</i><div><b style="font-weight:500">Oil change</b></div><b class="tnum" style="font-weight:600">142</b></div><div><i>2</i><div><b style="font-weight:500">Scheduled maintenance</b></div><b class="tnum" style="font-weight:600">96</b></div></div></section>
+          <button class="widget-add"><svg class="i sm" aria-hidden="true"><use href="#i-plus"/></svg>Add widget</button>
+        </div>
+        <div class="menu" role="menu" aria-label="Widget options" style="max-width:260px;align-self:flex-end"><div class="mh">Width</div><div class="mi">Third</div><div class="mi">Half</div><div class="mi sel">Two-thirds<span class="end"><svg class="i" aria-hidden="true"><use href="#i-check"/></svg></span></div><div class="mi">Full width</div><div class="sep"></div><div class="mi"><svg class="i" aria-hidden="true"><use href="#i-refresh"/></svg>Replace with another widget</div><div class="mi danger"><svg class="i" aria-hidden="true"><use href="#i-trash"/></svg>Remove</div></div>
+        <span class="cap">Shown: the Customize button, the edit bar (fixed to the bottom centre while customizing), a widget at rest, one being dragged (lifted) with the slot it will land in, the add tile that ends the grid, and the options menu. Widths are presets on the 12-column grid: a quarter or half for KPIs, a third, half, two-thirds or full width for the rest.</span>
+      </div>
+    </article>
+
+    <article class="plate wide" id="c-wlib" data-c>
+      <header><h3>Widget library</h3><p>Every widget a page supports, in a gallery: each card is a live preview of the widget, so what it shows is clear at a glance. Tabs filter by group; a click anywhere on a card adds it. Added widgets stay in place, dimmed. Opened from a widget's Replace, the gallery titles itself "Replace …" and each card's button reads Use: the pick takes the old widget's spot and width.</p></header>
+      <div class="spec"><div class="scrim"><div class="dialog gallery" role="dialog" aria-label="Add widgets" style="max-width:860px">
+        <div class="dh"><div style="flex:1;min-width:0"><h6>Add widgets</h6><p>New widgets go at the end of your Overview.</p></div><button class="btn ghost icon sm" aria-label="Close"><svg class="i sm" aria-hidden="true"><use href="#i-x"/></svg></button></div>
+        <div class="gq"><div class="input pill" style="height:32px"><svg class="i sm" aria-hidden="true"><use href="#i-search"/></svg><input placeholder="Search widgets" aria-label="Search widgets"></div><div class="tabs" style="border:0;margin:0"><button class="on">All</button><button>Work</button><button>Calls</button><button>Appointments</button></div></div>
+        <div class="gb"><div class="wgal">
+          <div class="wcard added"><div class="thumb"><div class="sc" style="width:416px;transform:scale(0.52)"><section class="card widget"><div class="card-head"><div><h5>Inbox <span class="count">6</span></h5><div class="sub">Open tasks, most urgent first</div></div><div class="seg"><button class="on">Mine</button><button>Everyone</button></div></div><div class="convo"><div class="crow esc esc-crit unread"><div class="av cust"><svg class="i sm" aria-hidden="true"><use href="#i-user"/></svg></div><div style="min-width:0"><b>(555) 019-7731</b><p>Recall part, Parts didn't pick up</p></div><div class="r"><span>9:06</span><span class="ud"></span></div></div><div class="crow esc esc-warn"><div class="av cust">MG</div><div style="min-width:0"><b>Maria Gonzales</b><p>Loaner for Thursday's oil change</p></div><div class="r"><span>9:21</span><div class="av xs c3">DW</div></div></div></div></section></div></div><div class="wb"><div><b>Inbox</b><p>Open tasks, most urgent first</p></div><button class="btn ghost sm" disabled><svg class="i sm" aria-hidden="true"><use href="#i-check"/></svg>Added</button></div></div>
+          <div class="wcard"><div class="thumb"><div class="sc" style="width:308px;transform:scale(0.66)"><div class="card kpi"><span class="k"><svg class="i sm" aria-hidden="true"><use href="#i-phone"/></svg>Calls answered</span><span class="v">1,284 <small>/ 1,302</small></span><span class="d"><span class="delta flat">98.6%</span>answer rate</span><svg class="spark" data-spark="9,9,8,9,9,9,8,9,9,9,9,9" viewBox="0 0 200 36" preserveAspectRatio="none"></svg></div></div></div><div class="wb"><div><b>Calls answered</b><p>Answer rate, with the trend</p></div><button class="btn secondary sm"><svg class="i sm" aria-hidden="true"><use href="#i-plus"/></svg>Add</button></div></div>
+          <div class="wcard"><div class="thumb"><div class="sc" style="width:416px;transform:scale(0.52)"><section class="card"><div class="card-head"><div><h5>Most booked</h5><div class="sub">Services Cleo scheduled</div></div></div><div class="rank"><div><i>1</i><div><b style="font-weight:500">Oil change</b><span>35% of bookings</span></div><b class="tnum" style="font-weight:600">142</b></div><div><i>2</i><div><b style="font-weight:500">Scheduled maintenance</b><span>24% of bookings</span></div><b class="tnum" style="font-weight:600">96</b></div><div><i>3</i><div><b style="font-weight:500">Tires and alignment</b><span>17% of bookings</span></div><b class="tnum" style="font-weight:600">71</b></div></div></section></div></div><div class="wb"><div><b>Most booked</b><p>Services Cleo scheduled</p></div><button class="btn secondary sm"><svg class="i sm" aria-hidden="true"><use href="#i-plus"/></svg>Add</button></div></div>
+        </div></div>
+      </div></div></div>
+    </article>
   </div>
 </section>
 
@@ -1933,6 +2010,20 @@ footer.end-note svg { width: 24px; height: 24px; }
         <div class="crow"><div class="av cust">JO</div><div style="min-width:0"><b>James Okafor <svg class="i sm" aria-hidden="true"><use href="#i-msg"/></svg></b><p><span style="color:var(--ai)">Cleo:</span> Your Camry is in bay 2, about an hour left.</p></div><div class="r"><span>8:52</span><svg width="14" height="14" aria-hidden="true" style="flex:none"><use href="#cleo-mark"/></svg></div></div>
         <div class="crow"><div class="av cust">LP</div><div style="min-width:0"><b>Linda Park <svg class="i sm" aria-hidden="true"><use href="#i-phone"/></svg></b><p><span style="color:var(--ink-2)">Dan:</span> Part arrives tomorrow, I'll call you.</p></div><div class="r"><span>Yesterday</span><div class="av xs">DW</div></div></div>
       </div></div>
+    </article>
+
+    <article class="plate" id="c-inboxwidget" data-c>
+      <header><h3>Inbox widget <span class="dom">Cleo</span></h3><p>The inbox's most urgent open tasks, on a dashboard. Same rows as the conversation list; a row opens that conversation in the inbox.</p></header>
+      <div class="spec"><section class="card widget" style="width:100%;display:flex;flex-direction:column">
+        <div class="card-head"><div><h5>Inbox <span class="count">6</span></h5><div class="sub">Open tasks, most urgent first</div></div><div class="seg" data-seg><button class="on">Mine</button><button>Everyone</button></div></div>
+        <div class="convo">
+          <div class="crow esc esc-crit unread"><div class="av cust"><svg class="i sm" aria-hidden="true"><use href="#i-user"/></svg></div><div style="min-width:0"><b>(555) 019-7731 <span style="color:var(--danger)"><svg class="i sm" aria-hidden="true"><use href="#i-warn"/></svg></span></b><p>Recall part, Parts didn't pick up</p></div><div class="r"><span>9:06</span><span class="ud"></span></div></div>
+          <div class="crow esc esc-warn"><div class="av cust">MG</div><div style="min-width:0"><b>Maria Gonzales <svg class="i sm" aria-hidden="true"><use href="#i-hand"/></svg></b><p>Loaner for Thursday's oil change</p></div><div class="r"><span>9:21</span><div class="av xs c3" title="Dan Whitaker">DW</div></div></div>
+          <div class="crow esc esc-ok"><div class="av cust">JO</div><div style="min-width:0"><b>James Okafor <span style="color:var(--accent)">@</span></b><p>Status update on the Camry</p></div><div class="r"><span>8:52</span><svg width="14" height="14" aria-hidden="true" style="flex:none"><use href="#cleo-mark"/></svg></div></div>
+          <div class="crow esc esc-ok"><div class="av cust">AB</div><div style="min-width:0"><b>Aisha Brooks</b><p>Trade-in appraisal follow-up</p></div><div class="r"><span>Yesterday</span><div class="av xs c4" title="Marcus Bell">MB</div></div></div>
+        </div>
+        <div class="card-foot"><span>2 more open</span><button class="btn link">Open inbox <svg class="i sm" aria-hidden="true"><use href="#i-arrow-r"/></svg></button></div>
+      </section></div>
     </article>
 
     <article class="plate" id="c-customer" data-c>
