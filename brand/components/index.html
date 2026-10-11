@@ -698,6 +698,19 @@ table.t tr.exp td { background: var(--surface-2); padding: 14px 14px 16px 52px; 
 .dialog h6 { margin: 0; font-size: 16px; font-weight: 600; letter-spacing: -.01em; }
 .dialog p { margin: 6px 0 0; color: var(--ink-2); font-size: 13.5px; }
 .dialog .df { display: flex; justify-content: flex-end; gap: 8px; padding: 18px 20px 20px; flex-wrap: wrap; }
+.dialog.media { max-width: 1080px; display: grid; grid-template-columns: minmax(0, 1.6fr) minmax(0, 1fr); }
+.dialog.media .vid { position: relative; min-height: 0; background: var(--ink-c); }
+.dialog.media .vid video, .dialog.media .vid img { display: block; width: 100%; height: 100%; min-height: 100%; aspect-ratio: 16 / 9; object-fit: cover; }
+.dialog.media .side { display: flex; flex-direction: column; min-width: 0; }
+.dialog.media .dh { flex-direction: column; gap: 12px; padding-top: 18px; }
+.dialog.media .dh .top { display: flex; align-items: center; justify-content: space-between; gap: 12px; }
+.dialog.media h6 { font-size: 20px; }
+.dialog.media p { font-size: 14px; line-height: 1.55; }
+.dialog.media .how { list-style: none; margin: 4px 0 0; padding: 0; display: flex; flex-direction: column; gap: 12px; font-size: 13.5px; color: var(--ink-2); }
+.dialog.media .how li { display: flex; gap: 10px; align-items: baseline; }
+.dialog.media .how .n { flex: none; width: 20px; height: 20px; border-radius: var(--r-pill); display: inline-grid; place-items: center; background: var(--accent-soft); color: var(--accent-soft-ink); font-size: 11.5px; font-weight: 600; }
+.dialog.media .df { margin-top: auto; }
+@media (max-width: 860px) { .dialog.media { grid-template-columns: minmax(0, 1fr); max-height: calc(100vh - 32px); overflow: auto; } }
 .scrim { background: color-mix(in srgb, var(--ink-c) 45%, transparent); border-radius: var(--r-md); padding: 28px 16px; display: grid; place-items: center; width: 100%; }
 .sheet { width: 100%; max-width: 440px; margin-left: auto; background: var(--surface); border-radius: var(--r-lg) 0 0 var(--r-lg); box-shadow: var(--e3); display: flex; flex-direction: column; min-height: 460px; }
 .sheet .sh { display: flex; align-items: flex-start; gap: 10px; padding: 16px 16px 12px; }
@@ -2129,6 +2142,26 @@ footer.end-note svg { width: 24px; height: 24px; }
       <div class="spec"><div class="scrim"><div class="dialog" role="dialog" aria-label="Example dialog">
         <div class="dh"><span class="ic" style="background:var(--danger-soft);color:var(--danger)"><svg class="i" aria-hidden="true"><use href="#i-warn"/></svg></span><div><h6>Stop this campaign?</h6><p>Cleo will stop texting the 214 customers who haven't replied yet. Conversations already in progress continue.</p></div></div>
         <div class="df"><button class="btn secondary">Keep running</button><button class="btn danger">Stop campaign</button></div>
+      </div></div></div>
+    </article>
+
+    <article class="plate wide" id="c-media-dialog" data-c>
+      <header><h3>Media dialog</h3><p>Introduces something new with a short video, once per person. The video never autoplays and has captions; the side says in a few steps what the video shows, for anyone who skips it. One button. Stacks under 860px.</p></header>
+      <div class="spec"><div class="scrim"><div class="dialog media" role="dialog" aria-labelledby="md-t" aria-describedby="md-d">
+        <div class="vid"><video controls preload="none" poster="../../media/whats-new/new-look-poster.jpg" src="../../media/whats-new/new-look.mp4" aria-label="Video: the new Cleo dashboard, 40 seconds"><track kind="captions" src="../../media/whats-new/new-look.vtt" srclang="en" label="English" default></video></div>
+        <div class="side">
+          <div class="dh">
+            <div class="top"><span class="pill ai"><svg width="14" height="14" aria-hidden="true" style="flex:none"><use href="#cleo-mark"/></svg>New look</span><button class="btn ghost icon sm" aria-label="Close"><svg class="i sm" aria-hidden="true"><use href="#i-x"/></svg></button></div>
+            <div><h6 id="md-t">Same dashboard, new look</h6><p id="md-d">Everything works the way it did. If you can't find something, Cleo shows you where it is.</p></div>
+            <ol class="how">
+              <li><span class="n">1</span><span>Hold <span class="kbd">Ctrl</span> + <span class="kbd">Alt</span> (<span class="kbd">Control</span> + <span class="kbd">Option</span> on a Mac).</span></li>
+              <li><span class="n">2</span><span>Ask out loud, like &ldquo;Where do I listen to yesterday's calls?&rdquo;</span></li>
+              <li><span class="n">3</span><span>Let go. Cleo answers and points to the page.</span></li>
+              <li><span class="n">4</span><span>Still stuck? Support is in the sidebar.</span></li>
+            </ol>
+          </div>
+          <div class="df"><button class="btn primary">Continue</button></div>
+        </div>
       </div></div></div>
     </article>
 
