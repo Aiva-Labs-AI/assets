@@ -76,5 +76,6 @@ their interaction design and motion, not their structure.
 | Cleo needs an answer, Cleo is thinking, streamed replies, Cleo's task progress, recommendation card, actions Cleo took | Beautiful UI's interaction design (approval card, thinking state, streaming text, task rows, recommendation card, tool chips), wired to real data |
 | Recording player, transcript, live call card, agent settings rows | built new from the palette |
 
-Leave out the showpiece effects (gooey menu, neon edge button, liquid toggle). They pull
-against the calm the palette is aiming for.
+Leave out the showpiece effects (gooey menu, liquid toggle). They pull against the calm the
+palette is aiming for. The one exception is the neon edge, kept to a single chip (`.chip.neon`)
+for the one new thing worth noticing, such as the top bar's New look.
