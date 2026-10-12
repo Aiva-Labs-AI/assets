@@ -909,6 +909,18 @@ body { font-size: 13.5px; letter-spacing: var(--track-body); }
 .chip { border: 0; box-shadow: 0 0 0 1px var(--line-strong); height: 28px; font-size: 12.5px; }
 .chip.on { box-shadow: none; }
 .chip.sm { height: 22px; font-size: 11.5px; }
+/* neon chip: the one new thing worth noticing (the top bar's New look). An accent beam runs round a 1px rim; it stops and dims under reduced motion. Ported from EasyUI's neon edge button. */
+.chip.neon { position: relative; isolation: isolate; overflow: hidden; padding: 1px; box-shadow: none; background: var(--line-strong); }
+.chip.neon:hover { background: var(--line-strong); }
+.chip.neon:active { transform: scale(.98); }
+.chip.neon .rim { position: absolute; inset: -200%; pointer-events: none; }
+.chip.neon .beam { position: absolute; inset: 0; background: conic-gradient(from 0deg at 50% 50%, transparent 0deg 280deg, var(--accent) 340deg, transparent 360deg); animation: neon 3s linear infinite; }
+@keyframes neon { to { transform: rotate(360deg); } }
+.chip.neon .face { position: relative; z-index: 1; display: inline-flex; align-items: center; align-self: stretch; gap: 6px; padding: 0 9px; border-radius: inherit; background: var(--surface); transition: background var(--t-fast); }
+.chip.neon:hover .face { background: var(--surface-2); }
+.chip.neon svg.i { color: var(--accent); transition: transform 300ms var(--ease); }
+.chip.neon:hover svg.i { transform: scale(1.1); }
+@media (prefers-reduced-motion: reduce) { .chip.neon .beam { animation: none; opacity: .4; } .chip.neon:active { transform: none; } }
 
 /* status: small rounded-rect tints, dot first */
 .pill { height: 20px; border-radius: 6px; padding: 0 7px; font-size: 11.5px; }
@@ -1615,8 +1627,9 @@ footer.end-note svg { width: 24px; height: 24px; }
     </article>
 
     <article class="plate" id="c-chip" data-c>
-      <header><h3>Chips</h3><p>Filter chips open a menu; active filters become removable chips with a clear-all.</p></header>
+      <header><h3>Chips</h3><p>Filter chips open a menu; active filters become removable chips with a clear-all. The neon chip is for the one new thing worth noticing, like the top bar&rsquo;s New look; never more than one on screen.</p></header>
       <div class="spec col">
+        <div class="row tight"><button class="chip neon"><span class="rim" aria-hidden="true"><span class="beam"></span></span><span class="face"><svg class="i" aria-hidden="true"><use href="#i-spark"/></svg>New look</span></button></div>
         <div class="row tight"><span class="chip"><svg class="i" aria-hidden="true"><use href="#i-tag"/></svg>Intent<svg class="i sm" aria-hidden="true"><use href="#i-chev-d"/></svg></span><span class="chip on">Department <span class="k">·</span> Service<span class="x"><svg class="i sm" aria-hidden="true"><use href="#i-x"/></svg></span></span><span class="chip on">Outcome <span class="k">·</span> 2<span class="x"><svg class="i sm" aria-hidden="true"><use href="#i-x"/></svg></span></span><span class="chip">Sentiment<svg class="i sm" aria-hidden="true"><use href="#i-chev-d"/></svg></span><button class="btn link" style="font-size:13px">Clear all</button></div>
         <div class="row tight"><span class="chip sm">Oil change</span><span class="chip sm">Recall</span><span class="chip sm on">Brakes</span><span class="chip sm">Tires</span><span class="chip sm">Warranty</span></div>
       </div>
@@ -1678,6 +1691,7 @@ footer.end-note svg { width: 24px; height: 24px; }
           <div class="input pill" style="width:240px;height:34px"><svg class="i" aria-hidden="true"><use href="#i-search"/></svg><input placeholder="Search calls, customers, VINs" aria-label="Search"><span class="kbd">⌘K</span></div>
           <button class="chip" style="height:34px"><svg class="i" aria-hidden="true"><use href="#i-building"/></svg>Riverside Toyota<svg class="i sm" aria-hidden="true"><use href="#i-chev-d"/></svg></button>
           <button class="chip" style="height:34px"><svg class="i" aria-hidden="true"><use href="#i-cal"/></svg>Last 30 days<svg class="i sm" aria-hidden="true"><use href="#i-chev-d"/></svg></button>
+          <button class="chip neon" style="height:34px"><span class="rim" aria-hidden="true"><span class="beam"></span></span><span class="face"><svg class="i" aria-hidden="true"><use href="#i-spark"/></svg>New look</span></button>
           <button class="btn ghost icon dot-badge" data-count="4" aria-label="Notifications"><svg class="i" aria-hidden="true"><use href="#i-bell"/></svg></button>
           <div class="av sm c3">AL</div>
         </div>
