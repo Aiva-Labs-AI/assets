@@ -1342,6 +1342,7 @@ footer.end-note svg { width: 24px; height: 24px; }
 <symbol id="i-logout" viewBox="0 0 24 24"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4M16 17l5-5-5-5M21 12H9"/></symbol>
 <symbol id="i-moon" viewBox="0 0 24 24"><path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9z"/></symbol>
 <symbol id="i-sun" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M6.3 17.7l-1.4 1.4M19.1 4.9l-1.4 1.4"/></symbol>
+<symbol id="i-contrast" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 3v18a9 9 0 0 0 0-18z" fill="currentColor" stroke="none"/></symbol>
 <symbol id="i-grip" viewBox="0 0 24 24"><g fill="currentColor" stroke="none"><circle cx="9" cy="6" r="1.5"/><circle cx="15" cy="6" r="1.5"/><circle cx="9" cy="12" r="1.5"/><circle cx="15" cy="12" r="1.5"/><circle cx="9" cy="18" r="1.5"/><circle cx="15" cy="18" r="1.5"/></g></symbol>
 <symbol id="i-grid" viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></symbol>
 <symbol id="i-list" viewBox="0 0 24 24"><path d="M8 6h13M8 12h13M8 18h13M3 6h.01M3 12h.01M3 18h.01"/></symbol>
@@ -2523,7 +2524,7 @@ footer.end-note svg { width: 24px; height: 24px; }
   $("#spacing").innerHTML = [4, 8, 12, 16, 20, 24, 32, 40, 48, 64].map(function (s) { return '<div><i style="height:' + s + 'px"></i>' + s + "</div>"; }).join("");
 
   /* ---------- icons ---------- */
-  var icons = ["home","inbox","phone","phone-in","phone-fwd","msg","mail","cal","clock","bell","user","users","tasks","mega","chart","gear","search","filter","sliders","columns","sort","plus","x","check","chev-d","play","pause","volume","download","mic","headset","spark","wrench","car","recall","file","tag","pin","building","cash","roller","lock","shield","pencil","trash","copy","ext","refresh","snooze","hand","ban","info","warn","ok","err","send","clip"];
+  var icons = ["home","inbox","phone","phone-in","phone-fwd","msg","mail","cal","clock","bell","user","users","tasks","mega","chart","gear","search","filter","sliders","columns","sort","plus","x","check","chev-d","play","pause","volume","download","mic","headset","spark","wrench","car","recall","file","tag","pin","building","cash","roller","lock","shield","pencil","trash","copy","ext","refresh","snooze","hand","ban","info","warn","ok","err","send","clip","contrast"];
   $("#icons").innerHTML = icons.map(function (i) { return '<div><svg class="i"><use href="#i-' + i + '"/></svg>' + i + "</div>"; }).join("");
 
   /* ---------- mini calendars ---------- */
