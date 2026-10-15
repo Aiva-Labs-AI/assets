@@ -1125,9 +1125,6 @@ table.t tbody tr.sel { background: var(--accent-soft); }
 .lane > b { position: absolute; top: 0; }
 .lane > b.to { transform: translateX(-100%); padding-right: 1px; }
 .lane > b.back { padding-left: 1px; }
-/* Events on the call: someone joins, the caller is connected. */
-.lane-mark { position: absolute; top: -4px; bottom: -4px; width: 0; border-left: 1px solid var(--line-strong); }
-.lane-mark::before { content: ""; position: absolute; top: -3px; left: -4px; width: 7px; height: 7px; border-radius: 50%; background: var(--c); box-shadow: 0 0 0 2px var(--surface); }
 .lane-now { position: absolute; top: -6px; bottom: -6px; left: calc(var(--p) * 100%); width: 2px; margin-left: -1px; border-radius: 1px; background: var(--ink); pointer-events: none; }
 .lane-now::before { content: ""; position: absolute; top: -2px; left: -3px; width: 8px; height: 8px; border-radius: 50%; background: var(--ink); box-shadow: 0 0 0 2px var(--surface); }
 .lane-axis { display: flex; justify-content: space-between; margin-top: 8px; font-size: 10.5px; color: var(--ink-4); font-variant-numeric: tabular-nums; }
@@ -2114,7 +2111,6 @@ footer.end-note svg { width: 24px; height: 24px; }
                   <div class="lane backend"><b class="to" style="left:8.2%" title="0:13 Hand-off: the voice asks the backend agent what to do">&#10230;</b><i style="left:8.32%;width:1.37%" title="0:13 Backend agent thinking: “A recall part question for a 2021 Highlander. Parts handles recall parts and is open, so transfer to Parts.”"></i><i class="tool" style="left:9.81%;width:34.78%" title="0:15 Tool call: transfer to the Parts desk. Took 56 s; Dan answered and took the call.">transfer<em> · 56 s</em></i><b class="back" style="left:44.72%" title="1:12 Reply: the transfer connected and Cleo left the call">&#10229;</b></div>
                   <div class="lane staff"><i style="left:36.02%;width:1.37%" title="0:58 Dan · Parts: “Parts, this is Dan.” (Maria was on hold)"></i><i style="left:42.61%;width:1.18%" title="1:08 Dan · Parts: “Sure, put her through.” (Maria was on hold)"></i><i style="left:49.69%;width:6.83%" title="1:20 Dan · Parts: “It came in this morning. I can hold one for you under your name.”"></i><i style="left:60.87%;width:16.15%" title="1:38 Dan · Parts: “Thursday works. Service can do 8 AM, and I’ll tag the part to your repair order.”"></i><i style="left:81.99%;width:10.56%" title="2:12 Dan · Parts: “You’re welcome, Maria. See you Thursday.”"></i></div>
                 </div>
-                <span class="lane-mark staff" style="left:36.02%" title="0:58 Dan joins"></span><span class="lane-mark caller" style="left:44.72%" title="1:12 Maria connected to Dan"></span>
                 <span class="lane-now" aria-hidden="true"></span>
               </div>
               <div class="lane-axis" aria-hidden="true"><span>0:00</span><span>0:40</span><span>1:20</span><span>2:01</span><span>2:41</span></div>
