@@ -25,6 +25,38 @@ filters aren't supported. Wordmark: Geist SemiBold at
 -3.3% tracking, `#000000`, cap height two thirds of the mark, gap 17% of the
 mark.
 
+### `logo/official/`
+
+The designer's exported files from the 2026 Brand Guidelines, one file per
+size. Prefer these over the reconstructions above wherever the exact artwork
+matters (site, ads, decks, print).
+
+| files | what |
+| --- | --- |
+| `cleo-logo-{48,64,96,128,256}.svg` | horizontal lockup, full colour, for light backgrounds |
+| `cleo-logo-negative-*.svg` | horizontal lockup, white, for blue, black or photo backgrounds |
+| `cleo-mark-{32,48,64,96,128,256}.svg` | logomark, full colour |
+| `cleo-mark-negative-*.svg` | logomark, white |
+| `cleo-logo-stacked-{64,96,128,192,256}.svg` | vertical lockup, full colour |
+| `cleo-logo-stacked-negative-*.svg` | vertical lockup, white |
+
+The number is the artwork's height in px (width for the stacked lockup).
+
+### Logo usage
+
+- **Primary logo:** the horizontal lockup, for most applications.
+- **Backgrounds:** full colour on light surfaces; the white (`-negative`)
+  version on Cleo Blue, black or photography.
+- **On photos:** place the logo over calm, high-contrast areas with negative
+  space, never over busy detail or faces.
+- **Clear space**, measured in logomark heights: horizontal lockup 1/2 around
+  it (1/6 between mark and wordmark); logomark alone 1/4; stacked lockup 1/3
+  around it (1/8 between mark and wordmark). Nothing else goes inside it.
+- **Minimum size:** horizontal lockup 145px wide, stacked lockup 32px wide,
+  logomark 24px.
+- **Don't:** change the typeface or colours, add effects or strokes, rotate
+  it, or alter its proportions. Use the files as they are.
+
 ## `components/`
 
 The component palette for the Cleo dashboard: open `components/index.html`
@@ -65,3 +97,9 @@ traced from the sheet.
 Globe, waveform and four-circle line tiles (white at 50% on Cleo Blue) and the
 brand gradient. The halftone car photography and the product UI collage on the
 sheet are raster artwork and are not included.
+
+Photography gets a subtle dither treatment in Cleo's blue tones, so it reads as
+a digital texture while the image stays recognisable. Patterns are built from
+circles, lines and repeated structures; use them as supporting backgrounds
+(decks, social, web) and never let them compete with the logo, type or
+message.
