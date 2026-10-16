@@ -1089,6 +1089,91 @@ table.t tbody tr.sel { background: var(--accent-soft); }
 .seltext.ai { background: var(--ai-soft); }
 @media (prefers-reduced-motion: reduce) { .selbar .say, .selbar .acts, .selbar .more, .selbar .go, .selbar .btn svg.i, .seltext { transition: none; } }
 
+/* ---------- Speaker lanes: who spoke when, on the recording player's clock ---------- */
+/* --p is the playhead (0 to 1), shared with the player beside the lanes. Bars and marks are placed in % of the call. */
+.lanes { --p: 0; display: flex; gap: 12px; width: 100%; font-size: 11.5px; }
+/* On the player, the lanes take the waveform's place and are its scrubber. */
+.player.with-lanes { container-type: inline-size; padding: 12px 12px 10px 10px; }
+.player.with-lanes .lanes { flex: 1; width: auto; min-width: 0; }
+@container (max-width: 560px) {
+  .player.with-lanes .lanes { order: -1; flex-basis: 100%; }
+  .player.with-lanes time { margin-right: auto; min-width: 0; text-align: left; }
+  .player.with-lanes .lane em { display: none; }
+}
+.lanes .caller { --c: var(--ink-3); } .lanes .cleo { --c: var(--accent); } .lanes .backend { --c: var(--ai); } .lanes .staff { --c: var(--chart-4); }
+.lane-names { display: flex; flex-direction: column; gap: 6px; flex: none; max-width: 112px; min-width: 0; }
+.lane-names span { display: block; height: 14px; line-height: 14px; color: var(--ink-2); font-weight: 500; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.lane-names span::before { content: ""; display: inline-block; width: 6px; height: 6px; margin-right: 6px; border-radius: 50%; background: var(--c); vertical-align: 1px; }
+.lane-names .backend { padding-left: 12px; color: var(--ink-3); font-weight: 400; }
+.lane-body { flex: 1; min-width: 0; }
+.lane-track { position: relative; cursor: pointer; border-radius: var(--r-xs); }
+/* Played stays full strength; the rest of the call fades. */
+.lane-rows { display: flex; flex-direction: column; gap: 6px; mask-image: linear-gradient(90deg, var(--ink) calc(var(--p) * 100%), color-mix(in srgb, var(--ink) 34%, transparent) calc(var(--p) * 100%)); }
+.lane { position: relative; height: 14px; border-radius: var(--r-pill); background: var(--surface-2); }
+.lane em { font-style: normal; }
+.lane > i { position: absolute; top: 3px; bottom: 3px; min-width: 3px; border-radius: var(--r-pill); background: var(--c); font-style: normal; }
+.lane.backend > i { top: 4px; bottom: 4px; }
+/* A tool call Cleo's backend agent made, with how long it took. */
+.lane > i.tool { top: 0; bottom: 0; padding: 0 6px; background: var(--ai-soft); box-shadow: inset 0 0 0 1px var(--ai-line); color: var(--ai); font: 500 10px/14px var(--font); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+/* The caller on hold: a hatched stretch on the caller's own lane, never a lane of its own. */
+.lane > i.hold, .legend i.hold { background: repeating-linear-gradient(135deg, color-mix(in srgb, var(--ink-4) 55%, transparent) 0 1px, transparent 1px 5px); box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--ink-4) 45%, transparent); }
+.lane > i.hold { top: 0; bottom: 0; border-radius: var(--r-xs); display: flex; justify-content: center; overflow: hidden; color: var(--ink-2); font: 500 10px/14px var(--font); white-space: nowrap; }
+.lane > i.hold span { padding: 0 4px; border-radius: 3px; background: var(--surface-2); }
+/* Hand-off from the voice to the backend agent, and its reply. */
+.lane > b, .lane-hand { color: var(--ai); font: 400 11px/14px var(--font); }
+.legend i.hold { width: 18px; }
+.lane > b { position: absolute; top: 0; }
+.lane > b.to { transform: translateX(-100%); padding-right: 1px; }
+.lane > b.back { padding-left: 1px; }
+.lane-now { position: absolute; top: -6px; bottom: -6px; left: calc(var(--p) * 100%); width: 2px; margin-left: -1px; border-radius: 1px; background: var(--ink); pointer-events: none; }
+.lane-now::before { content: ""; position: absolute; top: -2px; left: -3px; width: 8px; height: 8px; border-radius: 50%; background: var(--ink); box-shadow: 0 0 0 2px var(--surface); }
+.lane-axis { display: flex; justify-content: space-between; margin-top: 8px; font-size: 10.5px; color: var(--ink-4); font-variant-numeric: tabular-nums; }
+
+/* ---------- Diff: a resolved prompt (or any text) before and after, side by side ---------- */
+.diff { width: 100%; container-type: inline-size; overflow: hidden; border-radius: var(--r-lg); background: var(--surface); box-shadow: 0 0 0 1px var(--line); }
+.diff-head { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 6px 12px; padding: 7px 8px 7px 14px; background: var(--surface-2); border-bottom: 1px solid var(--line); }
+.diff-title { display: flex; flex-wrap: wrap; align-items: center; gap: 4px 8px; min-width: 0; }
+.diff-title b { font-size: 13px; font-weight: 600; }
+.diff-title > svg.i { color: var(--ink-3); }
+.diff-stat { display: inline-flex; gap: 6px; font: 500 12px var(--mono); }
+.diff-stat .add { color: var(--success); } .diff-stat .del { color: var(--danger); }
+.diff-cols { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); border-bottom: 1px solid var(--line); font-size: 12px; color: var(--ink-3); }
+.diff-cols span { padding: 6px 12px 6px 14px; }
+.diff-cols span + span { border-left: 1px solid var(--line); }
+.diff-cols b { margin-right: 6px; color: var(--ink); font-weight: 600; }
+.diff-body { font: 12px/20px var(--mono); }
+.diff-row { display: grid; grid-template-columns: 44px minmax(0, 1fr) 44px minmax(0, 1fr); }
+.diff-row .ln { padding: 0 8px; text-align: right; color: var(--ink-4); font-size: 11.5px; text-decoration: none; user-select: none; }
+.diff-row a.ln:hover { color: var(--accent); text-decoration: underline; text-underline-offset: 2px; }
+.diff-row .lt { position: relative; padding: 0 12px 0 20px; color: var(--ink-2); white-space: pre-wrap; overflow-wrap: anywhere; }
+.diff-row .lt:nth-child(2) { border-right: 1px solid var(--line); }
+.diff-row .del { background: var(--danger-soft); } .diff-row .add { background: var(--success-soft); }
+.diff-row .ln.del { background: color-mix(in srgb, var(--danger) 10%, var(--danger-soft)); } .diff-row .ln.add { background: color-mix(in srgb, var(--success) 10%, var(--success-soft)); }
+.diff-row .lt.del, .diff-row .lt.add { color: var(--ink); }
+.diff-row .lt.del::before, .diff-row .lt.add::before { position: absolute; left: 6px; }
+.diff-row .lt.del::before { content: "−"; color: var(--danger); } .diff-row .lt.add::before { content: "+"; color: var(--success); }
+.diff-row .nil { background: var(--surface-2); }
+/* The words that changed inside a changed line. */
+.diff-row del, .diff-row ins { border-radius: 2px; color: inherit; text-decoration: none; }
+.diff-row del { background: color-mix(in srgb, var(--danger) 26%, transparent); } .diff-row ins { background: color-mix(in srgb, var(--success) 26%, transparent); }
+/* Unchanged stretches fold away; the button opens one, "Show the whole prompt" (.whole) opens them all. */
+.diff-fold > button { all: unset; box-sizing: border-box; display: flex; align-items: center; gap: 8px; width: 100%; padding: 2px 14px; background: color-mix(in srgb, var(--accent) 5%, var(--surface-2)); color: var(--ink-3); font: 12px/20px var(--font); cursor: pointer; }
+.diff-fold > button:hover { background: var(--accent-soft); color: var(--accent-soft-ink); }
+.diff-fold > button:focus-visible { box-shadow: inset var(--focus); }
+.diff-rows { display: none; }
+.diff-fold.open > button, .diff.whole .diff-fold > button { display: none; }
+.diff-fold.open > .diff-rows, .diff.whole .diff-rows { display: block; }
+/* Narrow: After under Before, one column. Unchanged lines show once, under their new number. */
+@container (max-width: 640px) {
+  .diff-head > .row { margin-left: -6px; } .diff-head .btn.sm { padding: 0 6px; }
+  .diff-head a.btn > span { display: none; }
+  .diff-cols { display: flex; flex-wrap: wrap; gap: 2px 16px; padding: 6px 14px; }
+  .diff-cols span { padding: 0; } .diff-cols span + span { border-left: 0; }
+  .diff-row { grid-template-columns: 40px minmax(0, 1fr); }
+  .diff-row .lt:nth-child(2) { border-right: 0; }
+  .diff-row .nil, .diff-row.ctx > :nth-child(-n+2) { display: none; }
+}
+
 /* ---------- v0.2.1: blue primary, cleaner player ---------- */
 :root { --primary: #0057FF; --primary-ink: #FFFFFF; --primary-hover: #004AD9; }
 @media (prefers-color-scheme: dark) { :root:not([data-theme="light"]):not([data-theme="offwhite"]) { --primary: #3D7FFF; --primary-ink: #FFFFFF; --primary-hover: #5590FF; } }
@@ -1911,6 +1996,39 @@ footer.end-note svg { width: 24px; height: 24px; }
       </div></div>
     </article>
 
+    <article class="plate wide" id="c-diff" data-c>
+      <header><h3>Diff</h3><p>A resolved prompt (or a tool list, or settings) before and after, side by side, GitHub style. Changed words are marked inside each changed line; unchanged stretches fold away with one line of context either side, and each fold opens on its own. &ldquo;Show the whole prompt&rdquo; opens every line, still marked. Line numbers link into the pull request when there is one. In a narrow column After sits under Before.</p></header>
+      <div class="spec col">
+        <div class="diff" data-diff>
+          <div class="diff-head">
+            <div class="diff-title"><svg class="i sm" aria-hidden="true"><use href="#i-file"/></svg><b>Pickup check</b><span class="diff-stat"><span class="add">+8</span><span class="del">&minus;4</span></span><span class="cap">what Cleo asks when someone answers a transfer</span></div>
+            <div class="row tight"><button class="btn ghost sm" type="button" data-diff-whole aria-pressed="false"><span>Show the whole prompt</span></button><a class="btn ghost sm" href="#c-diff" aria-label="View in the PR"><span>View in the PR</span><svg class="i sm" aria-hidden="true"><use href="#i-ext"/></svg></a></div>
+          </div>
+          <div class="diff-cols"><span><b>Before</b>main · c6339ba</span><span><b>After</b>this change · 1605df4</span></div>
+          <div class="diff-body">
+            <div class="diff-fold"><button type="button"><svg class="i sm" aria-hidden="true"><use href="#i-chev-d"/></svg>Show 3 unchanged lines</button><div class="diff-rows"><div class="diff-row ctx"><a class="ln" href="#diff-L1">1</a><span class="lt">You check who answered when Cleo transfers a call for Riverside Toyota.</span><a class="ln" href="#diff-R1">1</a><span class="lt">You check who answered when Cleo transfers a call for Riverside Toyota.</span></div><div class="diff-row ctx"><a class="ln" href="#diff-L2">2</a><span class="lt">heard: the words from the staff phone so far. agent_name: Cleo's name on this call.</span><a class="ln" href="#diff-R2">2</a><span class="lt">heard: the words from the staff phone so far. agent_name: Cleo's name on this call.</span></div><div class="diff-row ctx"><a class="ln" href="#diff-L3">3</a><span class="lt">turn_status: still_speaking for a partial transcript, finished for a final one.</span><a class="ln" href="#diff-R3">3</a><span class="lt">turn_status: still_speaking for a partial transcript, finished for a final one.</span></div></div></div>
+            <div class="diff-row ctx"><a class="ln" href="#diff-L4">4</a><span class="lt">question: Which action is justified by the speech heard so far?</span><a class="ln" href="#diff-R4">4</a><span class="lt">question: Which action is justified by the speech heard so far?</span></div>
+            <div class="diff-row"><a class="ln del" href="#diff-L5">5</a><span class="lt del">rule: Act only on completed, intelligible evidence for the action.<del> Otherwise wait.</del></span><a class="ln add" href="#diff-R5">5</a><span class="lt add">rule: Act only on completed, intelligible evidence for the action.</span></div>
+            <div class="diff-row ctx"><a class="ln" href="#diff-L6">6</a><span class="lt">dialogue: An addressed question or ordinary offer to help is enough live dialogue.</span><a class="ln" href="#diff-R6">6</a><span class="lt">dialogue: An addressed question or ordinary offer to help is enough live dialogue.</span></div>
+            <div class="diff-row"><a class="ln del" href="#diff-L7">7</a><span class="lt del">dialogue: <del>Asking permission</del> to hold is <del>dialogue, whereas</del> a <del>one-way</del> hold <del>instruction</del> can be a recording.</span><a class="ln add" href="#diff-R7">7</a><span class="lt add">dialogue: <ins>A person asking us</ins> to hold<ins>, asked or told,</ins> is <ins>`hold`;</ins> a <ins>recorded</ins> hold <ins>notice</ins> can be a recording.</span></div>
+            <div class="diff-row"><span class="ln nil"></span><span class="lt nil"></span><a class="ln add" href="#diff-R8">8</a><span class="lt add">greeting: Staff often answer with only their name, the dealership or hello, then wait. That is a person on the line.</span></div>
+            <div class="diff-row ctx"><a class="ln" href="#diff-L8">8</a><span class="lt">state: `heard` is speech from the staff phone, not the caller on hold.</span><a class="ln" href="#diff-R9">9</a><span class="lt">state: `heard` is speech from the staff phone, not the caller on hold.</span></div>
+            <div class="diff-row ctx"><a class="ln" href="#diff-L9">9</a><span class="lt">human: A complete response addressed to us, such as a question, an offer to help or agreement.</span><a class="ln" href="#diff-R10">10</a><span class="lt">human: A complete response addressed to us, such as a question, an offer to help or agreement.</span></div>
+            <div class="diff-row"><a class="ln del" href="#diff-L10">10</a><span class="lt del">human, not: A name, affiliation<del>,</del> hello <del>or one-way</del> request to hold <del>can begin a recording</del>.</span><a class="ln add" href="#diff-R11">11</a><span class="lt add">human, not: A <ins>greeting with only a </ins>name, affiliation<ins> or</ins> hello <ins>is `greeting`, and a</ins> request to hold <ins>is `hold`</ins>.</span></div>
+            <div class="diff-row"><span class="ln nil"></span><span class="lt nil"></span><a class="ln add" href="#diff-R12">12</a><span class="lt add">greeting: A person answering with only their name, the department or hello ("Parts, this is Dan").</span></div>
+            <div class="diff-row"><span class="ln nil"></span><span class="lt nil"></span><a class="ln add" href="#diff-R13">13</a><span class="lt add">hold: A person asking us to hold or wait: "please hold", "one moment", "I'll be right with you".</span></div>
+            <div class="diff-row ctx"><a class="ln" href="#diff-L11">11</a><span class="lt">automated_failure: A mailbox, an unavailable extension, or a menu that names a key to press.</span><a class="ln" href="#diff-R14">14</a><span class="lt">automated_failure: A mailbox, an unavailable extension, or a menu that names a key to press.</span></div>
+            <div class="diff-fold"><button type="button"><svg class="i sm" aria-hidden="true"><use href="#i-chev-d"/></svg>Show 2 unchanged lines</button><div class="diff-rows"><div class="diff-row ctx"><a class="ln" href="#diff-L12">12</a><span class="lt">automated_failure, not: A menu without a key, bare digits, or a connecting notice.</span><a class="ln" href="#diff-R15">15</a><span class="lt">automated_failure, not: A menu without a key, bare digits, or a connecting notice.</span></div><div class="diff-row ctx"><a class="ln" href="#diff-L13">13</a><span class="lt">own_ai: An explicit self-introduction with the name `agent_name`.</span><a class="ln" href="#diff-R16">16</a><span class="lt">own_ai: An explicit self-introduction with the name `agent_name`.</span></div></div></div>
+            <div class="diff-row ctx"><a class="ln" href="#diff-L14">14</a><span class="lt">own_ai, not: An offer to help, a dealer name, or another person's name.</span><a class="ln" href="#diff-R17">17</a><span class="lt">own_ai, not: An offer to help, a dealer name, or another person's name.</span></div>
+            <div class="diff-row"><a class="ln del" href="#diff-L15">15</a><span class="lt del">wait: <del>No action has its evidence yet. Name-only and</del> hold speech<del> can still continue differently</del>.</span><a class="ln add" href="#diff-R18">18</a><span class="lt add">wait: <ins>Someone may still come on the line: a recorded</ins> hold <ins>or connecting notice, or unfinished </ins>speech.</span></div>
+            <div class="diff-row"><span class="ln nil"></span><span class="lt nil"></span><a class="ln add" href="#diff-R19">19</a><span class="lt add">unclear: Finished speech that fits no other action: garbled or fragmentary words.</span></div>
+            <div class="diff-row ctx"><a class="ln" href="#diff-L16">16</a><span class="lt">Answer with one action and a one-line reason.</span><a class="ln" href="#diff-R20">20</a><span class="lt">Answer with one action and a one-line reason.</span></div>
+            <div class="diff-fold"><button type="button"><svg class="i sm" aria-hidden="true"><use href="#i-chev-d"/></svg>Show 2 unchanged lines</button><div class="diff-rows"><div class="diff-row ctx"><a class="ln" href="#diff-L17">17</a><span class="lt">Never answer with an action that is not listed.</span><a class="ln" href="#diff-R21">21</a><span class="lt">Never answer with an action that is not listed.</span></div><div class="diff-row ctx"><a class="ln" href="#diff-L18">18</a><span class="lt">Reply in JSON with the fields choice and reason.</span><a class="ln" href="#diff-R22">22</a><span class="lt">Reply in JSON with the fields choice and reason.</span></div></div></div>
+          </div>
+        </div>
+      </div>
+    </article>
+
     <article class="plate wide" id="c-calendar" data-c>
       <header><h3>Schedule view</h3><p>Week view of appointments by advisor or bay. Visits Cleo booked carry the mark and a blue edge; everything else stays neutral.</p></header>
       <div class="spec"><div class="week-scroll"><div class="week" id="week"></div></div></div>
@@ -1976,6 +2094,31 @@ footer.end-note svg { width: 24px; height: 24px; }
         <div class="player" id="player1"><button class="play" data-play aria-label="Play recording"><svg class="i" aria-hidden="true"><use href="#i-play"/></svg></button><svg class="wave" data-wave="64" data-progress=".38" viewBox="0 0 600 40" preserveAspectRatio="none"></svg><time><b class="tnum">1:02</b> / 2:41</time><div class="ctrl"><button class="btn ghost sm"><span class="speed">1.5×</span></button><button class="btn ghost icon sm" aria-label="Volume"><svg class="i sm" aria-hidden="true"><use href="#i-volume"/></svg></button><button class="btn ghost icon sm" aria-label="Download recording"><svg class="i sm" aria-hidden="true"><use href="#i-download"/></svg></button></div></div>
         <div class="row"><div class="player compact" style="width:auto;flex:1;max-width:420px"><button class="play" data-play aria-label="Play recording"><svg class="i" aria-hidden="true"><use href="#i-play"/></svg></button><svg class="wave" data-wave="40" data-progress="0" viewBox="0 0 300 26" preserveAspectRatio="none"></svg><time class="tnum">0:00 / 0:38</time></div>
         <div class="menu" style="min-width:140px"><div class="mh">Speed</div><div class="mi">1×</div><div class="mi sel">1.5×<span class="end"><svg class="i sm" aria-hidden="true"><use href="#i-check"/></svg></span></div><div class="mi">2×</div></div></div>
+      </div>
+    </article>
+
+    <article class="plate wide" id="c-lanes" data-c>
+      <header><h3>Speaker lanes <span class="dom">Cleo</span></h3><p>The recording player with who spoke when in place of the waveform, one lane per voice: the caller, Cleo, Cleo&rsquo;s backend agent indented under her (&#10230; hand-off, &#10229; reply, tool calls with how long they took), then each staff member. A hold is a hatched stretch on the caller&rsquo;s own lane. The lanes are the player&rsquo;s scrubber: one playhead, click or arrow keys to seek, and what has played is full strength. Hover a bar for its time, speaker and words. In a narrow column the controls move under the lanes.</p></header>
+      <div class="spec col">
+        <div class="player with-lanes"><button class="play" data-play aria-label="Play recording"><svg class="i" aria-hidden="true"><use href="#i-play"/></svg></button>
+          <div class="lanes" data-lanes style="--p:.38">
+            <div class="lane-names"><span class="caller">Maria Gonzales</span><span class="cleo">Cleo</span><span class="backend">Backend agent</span><span class="staff">Dan · Parts</span></div>
+            <div class="lane-body">
+              <div class="lane-track" role="slider" tabindex="0" aria-label="Seek recording" aria-valuemin="0" aria-valuemax="161" aria-valuenow="61">
+                <div class="lane-rows">
+                  <div class="lane caller"><i style="left:3.73%;width:4.35%" title="0:06 Maria Gonzales: “Hi, I’m calling about the recall part for my Highlander. Is it in yet?”"></i><i style="left:12.73%;width:0.62%" title="0:20 Maria Gonzales: “Sure.”"></i><i class="hold" style="left:13.66%;width:31.06%" title="0:22 to 1:12 Maria on hold for 50 s while Cleo reached Parts"><span><em>on hold </em>0:50</span></i><i style="left:45.34%;width:3.73%" title="1:13 Maria Gonzales: “Hi Dan. Is the airbag part for the Highlander recall in?”"></i><i style="left:57.14%;width:3.11%" title="1:32 Maria Gonzales: “Great, can I bring it in Thursday?”"></i><i style="left:78.26%;width:3.11%" title="2:06 Maria Gonzales: “Perfect, thank you so much.”"></i><i style="left:93.17%;width:1.86%" title="2:30 Maria Gonzales: “Bye.”"></i></div>
+                  <div class="lane cleo"><i style="left:0.25%;width:2.98%" title="0:00 Cleo: “Thanks for calling Riverside Toyota, this is Cleo. How can I help?”"></i><i style="left:8.7%;width:3.42%" title="0:14 Cleo: “Let me check with our Parts desk. One moment, please.”"></i><i style="left:37.89%;width:4.35%" title="1:01 Cleo: “Hi Dan, I have Maria Gonzales on the line about the Highlander recall part.” (said to staff only; Maria was on hold)"></i></div>
+                  <div class="lane backend"><b class="to" style="left:8.2%" title="0:13 Hand-off: the voice asks the backend agent what to do">&#10230;</b><i style="left:8.32%;width:1.37%" title="0:13 Backend agent thinking: “A recall part question for a 2021 Highlander. Parts handles recall parts and is open, so transfer to Parts.”"></i><i class="tool" style="left:9.81%;width:34.78%" title="0:15 Tool call: transfer to the Parts desk. Took 56 s; Dan answered and took the call.">transfer<em> · 56 s</em></i><b class="back" style="left:44.72%" title="1:12 Reply: the transfer connected and Cleo left the call">&#10229;</b></div>
+                  <div class="lane staff"><i style="left:36.02%;width:1.37%" title="0:58 Dan · Parts: “Parts, this is Dan.” (Maria was on hold)"></i><i style="left:42.61%;width:1.18%" title="1:08 Dan · Parts: “Sure, put her through.” (Maria was on hold)"></i><i style="left:49.69%;width:6.83%" title="1:20 Dan · Parts: “It came in this morning. I can hold one for you under your name.”"></i><i style="left:60.87%;width:16.15%" title="1:38 Dan · Parts: “Thursday works. Service can do 8 AM, and I’ll tag the part to your repair order.”"></i><i style="left:81.99%;width:10.56%" title="2:12 Dan · Parts: “You’re welcome, Maria. See you Thursday.”"></i></div>
+                </div>
+                <span class="lane-now" aria-hidden="true"></span>
+              </div>
+              <div class="lane-axis" aria-hidden="true"><span>0:00</span><span>0:40</span><span>1:20</span><span>2:01</span><span>2:41</span></div>
+            </div>
+          </div>
+          <time><b class="tnum">1:01</b> / 2:41</time><div class="ctrl"><button class="btn ghost sm"><span class="speed">1×</span></button><button class="btn ghost icon sm" aria-label="Download recording"><svg class="i sm" aria-hidden="true"><use href="#i-download"/></svg></button></div>
+        </div>
+        <div class="legend"><span><i class="hold"></i>Caller on hold</span><span><b class="lane-hand">&#10230;</b>Hand-off to the backend agent</span><span><b class="lane-hand">&#10229;</b>Its reply</span></div>
       </div>
     </article>
 
@@ -2687,12 +2830,39 @@ footer.end-note svg { width: 24px; height: 24px; }
     s.addEventListener("click", function (ev) { var b = s.getBoundingClientRect(); s._p = (ev.clientX - b.left) / b.width; paint(s._p); });
   });
   $$("[data-play]").forEach(function (b) {
-    var player = b.parentNode, wave = $("svg[data-wave]", player), timer = null;
+    var player = b.parentNode, wave = $("svg[data-wave]", player) || $("[data-lanes]", player), timer = null;
     b.addEventListener("click", function () {
       var use = b.querySelector("use");
       if (timer) { clearInterval(timer); timer = null; use.setAttribute("href", "#i-play"); return; }
       use.setAttribute("href", "#i-pause");
       timer = setInterval(function () { wave._p = (wave._p || 0) + .006; if (wave._p >= 1) { wave._p = 0; } wave._paint(wave._p); }, 50);
+    });
+  });
+
+  /* ---------- speaker lanes: the player's scrubber, driven like a waveform (_p, _paint) ---------- */
+  $$("[data-lanes]").forEach(function (lanes) {
+    var track = $(".lane-track", lanes), end = +track.getAttribute("aria-valuemax");
+    lanes._p = +lanes.style.getPropertyValue("--p") || 0;
+    var clock = $("time b", lanes.closest(".player"));
+    lanes._paint = function (p) {
+      var s = Math.round(p * end);
+      lanes.style.setProperty("--p", p); track.setAttribute("aria-valuenow", s);
+      clock.textContent = Math.floor(s / 60) + ":" + ("0" + s % 60).slice(-2);
+    };
+    lanes._paint(lanes._p);
+    function seek(p) { lanes._p = Math.min(1, Math.max(0, p)); lanes._paint(lanes._p); }
+    track.addEventListener("click", function (ev) { var b = track.getBoundingClientRect(); seek((ev.clientX - b.left) / b.width); });
+    track.addEventListener("keydown", function (ev) { var d = { ArrowRight: 5, ArrowLeft: -5 }[ev.key]; if (!d) return; ev.preventDefault(); seek(lanes._p + d / end); });
+  });
+
+  /* ---------- diff: open one fold, or the whole prompt ---------- */
+  $$("[data-diff]").forEach(function (d) {
+    $$(".diff-fold > button", d).forEach(function (b) { b.addEventListener("click", function () { b.parentNode.classList.add("open"); }); });
+    var whole = $("[data-diff-whole]", d);
+    whole.addEventListener("click", function () {
+      var on = d.classList.toggle("whole");
+      $$(".diff-fold", d).forEach(function (f) { f.classList.remove("open"); });
+      whole.setAttribute("aria-pressed", on); $("span", whole).textContent = on ? "Show only the changes" : "Show the whole prompt";
     });
   });
 })();
