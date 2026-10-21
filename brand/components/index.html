@@ -2746,7 +2746,17 @@ footer.end-note svg { width: 24px; height: 24px; }
   $("#hbars").innerHTML = hb.map(function (b) { return "<div><span>" + b[0] + '</span><i><b style="width:' + (b[1] / 412 * 100) + "%;--c:" + b[2] + '"></b></i><em>' + b[1] + "</em></div>"; }).join("");
 
   /* ---------- sparklines ---------- */
-  $$("svg[data-spark]").forEach(function (s) { var v = s.getAttribute("data-spark").split(",").map(Number), mx = Math.max.apply(null, v), mn = Math.min.apply(null, v) - 1, w = 200, h = 36; var pts = v.map(function (y, i) { return [i / (v.length - 1) * w, h - 3 - (y - mn) / (mx - mn) * (h - 8)]; }); var c = s.getAttribute("data-color") || "var(--accent)"; var d = "M" + pts.map(function (p) { return p[0].toFixed(1) + "," + p[1].toFixed(1); }).join("L"); el("path", { d: d + "L" + w + "," + h + "L0," + h + "Z", fill: c, "fill-opacity": ".1", stroke: "none" }, s); el("path", { d: d, fill: "none", stroke: c, "stroke-width": "1.75", "vector-effect": "non-scaling-stroke" }, s); });
+  /* A smooth line through the points that never overshoots them (monotone cubic, as d3's curveMonotoneX). */
+  function smoothPath(pts) {
+    var n = pts.length, f = function (p) { return p[0].toFixed(1) + "," + p[1].toFixed(1); };
+    if (n < 3) return "M" + pts.map(f).join("L");
+    var dx = function (i) { return pts[i + 1][0] - pts[i][0]; }, sl = function (i) { return (pts[i + 1][1] - pts[i][1]) / (dx(i) || 1); };
+    var tg = function (i) { if (i === 0) return sl(0); if (i === n - 1) return sl(n - 2); var a = sl(i - 1), b = sl(i); if (a * b <= 0) return 0; var wa = 2 * dx(i) + dx(i - 1), wb = dx(i) + 2 * dx(i - 1); return (wa + wb) / (wa / a + wb / b); };
+    var d = "M" + f(pts[0]);
+    for (var i = 0; i < n - 1; i++) { var h = dx(i) / 3; d += "C" + f([pts[i][0] + h, pts[i][1] + h * tg(i)]) + " " + f([pts[i + 1][0] - h, pts[i + 1][1] - h * tg(i + 1)]) + " " + f(pts[i + 1]); }
+    return d;
+  }
+  $$("svg[data-spark]").forEach(function (s) { var v = s.getAttribute("data-spark").split(",").map(Number), mx = Math.max.apply(null, v), mn = Math.min.apply(null, v) - 1, w = 200, h = 36; var pts = v.map(function (y, i) { return [i / (v.length - 1) * w, h - 3 - (y - mn) / (mx - mn) * (h - 8)]; }); var c = s.getAttribute("data-color") || "var(--accent)"; var d = smoothPath(pts); el("path", { d: d + "L" + w + "," + h + "L0," + h + "Z", fill: c, "fill-opacity": ".1", stroke: "none" }, s); el("path", { d: d, fill: "none", stroke: c, "stroke-width": "1.75", "vector-effect": "non-scaling-stroke" }, s); });
 
   /* ---------- area chart ---------- */
   (function () {
@@ -2756,7 +2766,7 @@ footer.end-note svg { width: 24px; height: 24px; }
     var max = 350, x = function (i) { return L + i / (weeks.length - 1) * (W - L - Rr); }, y = function (v) { return T + (1 - v / max) * (H - T - B); };
     [0, 100, 200, 300].forEach(function (v) { el("line", { x1: L, x2: W - Rr, y1: y(v), y2: y(v), class: "grid" }, s); var t = el("text", { x: L - 8, y: y(v) + 4, "text-anchor": "end" }, s); t.textContent = v; });
     weeks.forEach(function (w, i) { if (i % 3 === 0 || i === weeks.length - 1) { var t = el("text", { x: x(i), y: H - 6, "text-anchor": "middle" }, s); t.textContent = w; } });
-    function area(v, c, op) { var d = v.map(function (p, i) { return (i ? "L" : "M") + x(i) + "," + y(p); }).join(""); el("path", { d: d + "L" + x(v.length - 1) + "," + y(0) + "L" + x(0) + "," + y(0) + "Z", fill: c, "fill-opacity": op }, s); el("path", { d: d, fill: "none", stroke: c, "stroke-width": 2 }, s); }
+    function area(v, c, op) { var d = smoothPath(v.map(function (p, i) { return [x(i), y(p)]; })); el("path", { d: d + "L" + x(v.length - 1) + "," + y(0) + "L" + x(0) + "," + y(0) + "Z", fill: c, "fill-opacity": op }, s); el("path", { d: d, fill: "none", stroke: c, "stroke-width": 2 }, s); }
     area(cleo, "var(--accent)", .12); area(tr, "var(--royal)", .1); area(ms, "var(--warning)", .1);
     var i = 8; el("line", { x1: x(i), x2: x(i), y1: T, y2: y(0), stroke: "var(--ink-4)", "stroke-dasharray": "3 3" }, s);
     [[cleo, "var(--accent)"], [tr, "var(--royal)"], [ms, "var(--warning)"]].forEach(function (p) { el("circle", { cx: x(i), cy: y(p[0][i]), r: 4, fill: "var(--surface)", stroke: p[1], "stroke-width": 2 }, s); });
